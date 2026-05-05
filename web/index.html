@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PsycheForge · Structured triage for Solana DAO delegates</title>
+  <meta name="description" content="Red flags with verbatim citations, treasury impact, stakeholders, and the questions worth asking. For any Solana DAO governance proposal, in 30 seconds. Citation-grounded, no hallucination, no vote recommendation.">
+  <meta name="author" content="PsycheForge">
+  <meta name="theme-color" content="#FCF9F4">
+  <meta name="color-scheme" content="light">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://psycheforge.xyz/">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="/favicon.svg">
+  <link rel="mask-icon" href="/favicon.svg" color="#B91C1C">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PsycheForge">
+  <meta property="og:title" content="PsycheForge · Structured triage for Solana DAO delegates">
+  <meta property="og:description" content="Red flags with verbatim citations, treasury impact, and the questions worth asking. For any Solana DAO governance proposal, in 30 seconds.">
+  <meta property="og:url" content="https://psycheforge.xyz/">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@Psycheforglab">
+  <meta name="twitter:creator" content="@Psycheforglab">
+  <meta name="twitter:title" content="PsycheForge · Structured triage for Solana DAO delegates">
+  <meta name="twitter:description" content="Red flags with verbatim citations, treasury impact, and the questions worth asking. For any Solana DAO governance proposal, in 30 seconds.">
+
+  <!-- Robots -->
+  <meta name="robots" content="index, follow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..800,0..100,0..1&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #FCF9F4;
+      --bg-elev: #F2EEE5;
+      --ink: #181818;
+      --ink-2: #6E6E6E;
+      --ink-3: #A6A097;
+      --accent: #B91C1C;
+      --rule: #E2DCCD;
+
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body: 'Source Serif 4', Georgia, serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      font-feature-settings: "ss01", "ss02", "kern";
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      transition: text-decoration-thickness 0.12s ease;
+    }
+    a:hover { text-decoration-thickness: 2px; }
+
+    /* Accessibility: keyboard focus */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 1px;
+    }
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline-offset: 4px;
+    }
+    .engage-card .form-field input:focus-visible,
+    .engage-card .form-field select:focus-visible,
+    .engage-card .form-field textarea:focus-visible {
+      outline: none;
+      border-bottom-color: var(--accent);
+      border-bottom-width: 2px;
+    }
+
+    /* Accessibility: reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Accessibility: forced color schemes (Windows high-contrast) */
+    @media (forced-colors: active) {
+      .meta-strip .dot,
+      .section-marker .glyph,
+      .hero h1 .stop { forced-color-adjust: none; }
+    }
+
+    /* Skip link for screen readers + keyboard users */
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 12px;
+      background: var(--accent);
+      color: var(--bg);
+      padding: 10px 16px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      z-index: 1000;
+      transition: top 0.15s ease;
+    }
+    .skip-link:focus { top: 12px; }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* Top metadata strip */
+    .meta-strip {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-2);
+      padding: 18px 0;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .meta-strip .left { display: flex; gap: 14px; flex-wrap: wrap; }
+    .meta-strip .left .sep { color: var(--ink-3); }
+    .meta-strip .left .name { color: var(--ink); font-weight: 600; }
+    .meta-strip .right { display: flex; align-items: center; gap: 8px; }
+    .meta-strip .dot {
+      color: var(--accent);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.35; }
+    }
+
+    /* Asymmetric grid */
+    .col-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 640px) 220px;
+      gap: 64px;
+    }
+
+    /* Section marker */
+    .section-marker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-2);
+      margin-bottom: 28px;
+    }
+    .section-marker .glyph {
+      color: var(--accent);
+      margin-right: 4px;
+      font-weight: 600;
+    }
+    .section-marker .title {
+      color: var(--ink);
+    }
+
+    /* §1 Hero */
+    .hero { margin-top: 96px; margin-bottom: 32px; }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 76px;
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      margin-bottom: 32px;
+      font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 0;
+      overflow-wrap: break-word;
+      hyphens: manual;
+    }
+    .hero h1 .stop {
+      background-image: linear-gradient(transparent 76%, rgba(185,28,28,0.9) 76%, rgba(185,28,28,0.9) 92%, transparent 92%);
+      background-size: 100% 100%;
+      padding: 0 1px;
+    }
+    .hero p.abstract {
+      font-family: var(--font-body);
+      font-size: 21px;
+      line-height: 1.5;
+      color: var(--ink);
+      max-width: 580px;
+      margin-bottom: 44px;
+      font-feature-settings: "kern", "liga";
+    }
+
+    /* CTA row */
+    .cta-row {
+      display: flex;
+      gap: 32px;
+      align-items: baseline;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .cta-row a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 5px;
+      transition: color 0.18s ease, text-decoration-thickness 0.18s ease, letter-spacing 0.18s ease;
+    }
+    .cta-row a.primary {
+      color: var(--accent);
+      text-decoration-thickness: 2px;
+    }
+    .cta-row a:hover {
+      color: var(--accent);
+      text-decoration-thickness: 3px;
+      letter-spacing: 0.115em;
+    }
+    .cta-row a .arrow { display: inline-block; transition: transform 0.18s ease; }
+    .cta-row a:hover .arrow { transform: translateX(3px); }
+    .cta-tertiary {
+      margin-top: 18px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+    .cta-tertiary a {
+      color: var(--ink-3);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+      transition: color 0.18s ease;
+    }
+    .cta-tertiary a:hover { color: var(--accent); }
+
+    /* Marginalia column */
+    .margin {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: var(--ink-2);
+      padding-top: 44px;
+    }
+    .margin .note { margin-bottom: 44px; }
+    .margin .note .label {
+      color: var(--ink);
+      letter-spacing: 0.04em;
+      font-weight: 500;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .margin .note .label::before {
+      content: '* ';
+      color: var(--accent);
+    }
+    .margin .note a {
+      color: var(--accent);
+      word-break: break-all;
+    }
+
+    /* §2 Sample */
+    .receipt { margin-top: 160px; padding-top: 64px; border-top: 1px solid var(--rule); }
+    .receipt h2 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 44px;
+      line-height: 1.1;
+      letter-spacing: -0.022em;
+      color: var(--ink);
+      margin-bottom: 32px;
+      max-width: 600px;
+      font-variation-settings: "opsz" 96, "SOFT" 40, "WONK" 0;
+    }
+    .receipt .quote {
+      font-family: var(--font-body);
+      font-size: 21px;
+      line-height: 1.65;
+      color: var(--ink);
+    }
+    .receipt .quote p { margin-bottom: 18px; }
+    .receipt .quote sup {
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      vertical-align: super;
+      padding: 0 2px;
+      font-weight: 500;
+    }
+    .receipt .quote sup a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .receipt em { font-style: italic; }
+    .receipt strong { font-weight: 600; }
+    .receipt .caveat {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--ink-2);
+      font-style: italic;
+      max-width: 580px;
+    }
+    .receipt .caveat a { font-style: normal; }
+    .receipt .read-more {
+      margin-top: 28px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .receipts-teaser {
+      margin-top: 36px;
+      padding: 16px 0 0 0;
+      border-top: 1px dashed var(--rule);
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--ink-2);
+      letter-spacing: 0.02em;
+    }
+    .receipts-teaser .teaser-text {
+      flex: 1 1 auto;
+      min-width: 200px;
+      font-style: italic;
+      font-family: var(--font-body);
+      font-size: 14px;
+    }
+    .receipts-teaser a {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    /* Data block in marginalia (footnote payload) */
+    .data-block {
+      background: var(--bg-elev);
+      padding: 14px 16px;
+      margin-top: 8px;
+      font-size: 11.5px;
+    }
+    .data-block .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 2px 0;
+    }
+    .data-block .key { color: var(--ink-2); }
+    .data-block .val { color: var(--ink); }
+    .data-block .addr {
+      word-break: break-all;
+      margin-bottom: 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .data-block .addr a { color: var(--accent); }
+
+    .margin .fn {
+      margin-bottom: 28px;
+    }
+    .margin .fn .fn-num {
+      color: var(--accent);
+      font-family: var(--font-mono);
+      margin-right: 6px;
+      font-weight: 500;
+    }
+    .margin .fn .fn-label {
+      color: var(--ink);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    /* Generic section header style (re-used) */
+    .section-block { margin-top: 160px; padding-top: 64px; border-top: 1px solid var(--rule); }
+    .section-block h2 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 44px;
+      line-height: 1.1;
+      letter-spacing: -0.022em;
+      color: var(--ink);
+      margin-bottom: 24px;
+      max-width: 600px;
+      font-variation-settings: "opsz" 96, "SOFT" 40, "WONK" 0;
+    }
+    .section-block .lede {
+      font-family: var(--font-body);
+      font-size: 19px;
+      line-height: 1.55;
+      color: var(--ink);
+      max-width: 580px;
+      margin-bottom: 32px;
+    }
+
+    /* §3 Mechanism */
+    .flow-diagram {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 8px 0 48px 0;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-2);
+      flex-wrap: wrap;
+    }
+    .flow-node {
+      padding: 7px 10px;
+      border: 1px solid var(--rule);
+      background: var(--bg-elev);
+      white-space: nowrap;
+      color: var(--ink);
+    }
+    .flow-node.input { background: transparent; border-style: dashed; color: var(--ink-3); }
+    .flow-node.onchain { color: var(--accent); border-color: var(--accent); background: transparent; }
+    .flow-arrow { color: var(--accent); font-weight: 500; }
+
+    .phases {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px 40px;
+      margin-top: 8px;
+    }
+    .phase .num {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .phase .tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      border: 1px solid var(--rule);
+      padding: 2px 6px;
+      margin-bottom: 12px;
+    }
+    .phase .tag.onchain { color: var(--accent); border-color: var(--accent); }
+    .phase h3 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      font-variation-settings: "opsz" 48, "SOFT" 40, "WONK" 0;
+      margin-bottom: 10px;
+    }
+    .phase p {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+    .phase .preview {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      background: var(--bg-elev);
+      padding: 12px 14px;
+      color: var(--ink-2);
+      white-space: pre;
+      line-height: 1.5;
+      overflow-x: auto;
+    }
+    .phase .preview .key { color: var(--accent); }
+    .phase .preview .ink { color: var(--ink); }
+
+    /* §4 Game-Resistance */
+    .equation {
+      margin: 32px 0 40px 0;
+      padding: 28px 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      font-family: var(--font-display);
+      font-size: 22px;
+      text-align: center;
+      font-variation-settings: "opsz" 60, "SOFT" 50, "WONK" 0;
+      font-style: italic;
+      position: relative;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+    .equation .label {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-style: normal;
+      color: var(--ink-3);
+      letter-spacing: 0.06em;
+    }
+    .equation sub { font-size: 0.55em; vertical-align: -0.3em; font-style: normal; }
+    .equation .frac {
+      display: inline-flex;
+      flex-direction: column;
+      vertical-align: middle;
+      font-size: 0.85em;
+    }
+    .equation .frac .num {
+      border-bottom: 1px solid currentColor;
+      padding: 0 8px 6px 8px;
+      text-align: center;
+    }
+    .equation .frac .den {
+      padding: 6px 8px 0 8px;
+      text-align: center;
+    }
+    .equation .sigma { font-size: 1.15em; margin-right: 2px; font-style: normal; }
+    .equation em { font-style: italic; }
+
+    .scenarios {
+      list-style: none;
+      margin-top: 24px;
+    }
+    .scenarios li {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--ink);
+    }
+    .scenarios li:first-child { border-top: 1px solid var(--rule); }
+    .scenarios .verdict {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    /* §5 Voices */
+    .voice-stack {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .voice {
+      border-left: 2px solid var(--accent);
+      padding: 6px 0 6px 20px;
+    }
+    .voice .pull {
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--ink);
+      font-style: italic;
+      margin-bottom: 8px;
+    }
+    .voice .attrib {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-2);
+    }
+    .voices-stat {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--ink);
+    }
+    .voices-stat strong { font-weight: 600; }
+    .voices-stat em { font-style: italic; color: var(--ink-2); }
+
+    /* §4 Axioms (replaces equation) */
+    .axioms {
+      margin: 32px 0 40px 0;
+      padding: 24px 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: var(--ink);
+      position: relative;
+    }
+    .axioms .axiom-label {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--ink-3);
+      letter-spacing: 0.08em;
+    }
+    .axioms ol {
+      list-style: none;
+      counter-reset: axiom;
+      padding-left: 0;
+    }
+    .axioms ol li {
+      counter-increment: axiom;
+      padding: 6px 70px 6px 36px;
+      position: relative;
+    }
+    .axioms ol li::before {
+      content: counter(axiom) '.';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      color: var(--accent);
+      font-weight: 500;
+      width: 24px;
+      text-align: right;
+    }
+    .axioms ol li em { font-style: italic; color: var(--ink-2); }
+
+    /* §6 Tiers */
+    .tier-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .tier-card {
+      border: 1px solid var(--rule);
+      padding: 24px;
+      background: var(--bg);
+      position: relative;
+    }
+    .tier-card.premium {
+      border-color: var(--accent);
+      background: #FBF5EE;
+    }
+    .tier-card .tier-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 26px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      font-variation-settings: "opsz" 60, "SOFT" 40, "WONK" 0;
+    }
+    .tier-card .tier-price {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 36px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--accent);
+      margin-top: 12px;
+      font-variation-settings: "opsz" 96, "SOFT" 30, "WONK" 0;
+    }
+    .tier-card .tier-price .per {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-2);
+      letter-spacing: 0.06em;
+      margin-left: 4px;
+      font-weight: 400;
+    }
+    .tier-card .tier-tagline {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-style: italic;
+      color: var(--ink-2);
+      margin-top: 8px;
+      margin-bottom: 20px;
+    }
+    .tier-card .badge {
+      position: absolute;
+      top: -10px;
+      right: 24px;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      font-weight: 500;
+    }
+    .tier-card ul {
+      list-style: none;
+      font-family: var(--font-body);
+      font-size: 15.5px;
+      line-height: 1.55;
+    }
+    .tier-card ul li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+      padding-left: 16px;
+    }
+    .tier-card ul li:last-child { border-bottom: none; }
+    .tier-card ul li::before {
+      content: '·';
+      color: var(--accent);
+      position: absolute;
+      left: 0;
+      top: 8px;
+      font-size: 20px;
+      line-height: 1;
+    }
+    .tier-card .footer-line {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--ink-2);
+      text-transform: uppercase;
+    }
+    .tiers-note {
+      margin-top: 24px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-style: italic;
+      color: var(--ink-2);
+    }
+
+    /* §6 Status */
+    .status-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      margin-top: 28px;
+    }
+    .status-col h3 {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .status-col.gated h3 { color: var(--accent); border-bottom-color: var(--accent); }
+    .status-col ul {
+      list-style: none;
+    }
+    .status-col ul li {
+      font-family: var(--font-body);
+      font-size: 14.5px;
+      line-height: 1.5;
+      padding: 8px 0;
+      padding-left: 14px;
+      position: relative;
+      color: var(--ink);
+    }
+    .status-col ul li::before {
+      content: '·';
+      color: var(--accent);
+      position: absolute;
+      left: 0;
+      top: 4px;
+      font-size: 18px;
+    }
+
+    /* §7 Engagement */
+    .engage-cards {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .engage-card {
+      border: 1px solid var(--rule);
+      padding: 28px;
+      background: var(--bg);
+      position: relative;
+    }
+    .engage-card.primary {
+      border-color: var(--accent);
+      background: #FBF5EE;
+    }
+    .engage-card .path-tag {
+      position: absolute;
+      top: -10px;
+      left: 24px;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      font-weight: 500;
+    }
+    .engage-card h3 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 22px;
+      letter-spacing: -0.015em;
+      font-variation-settings: "opsz" 48, "SOFT" 40, "WONK" 0;
+      margin-bottom: 8px;
+    }
+    .engage-card p {
+      font-family: var(--font-body);
+      font-size: 15.5px;
+      line-height: 1.55;
+      color: var(--ink-2);
+      margin-bottom: 20px;
+    }
+    .engage-card .terminal {
+      background: #1A1A1A;
+      color: #E8E2D5;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.7;
+      padding: 16px 18px;
+      white-space: pre;
+      overflow-x: auto;
+    }
+    .engage-card .terminal .prompt { color: #7E7468; }
+    .engage-card .terminal .cmd { color: #E8E2D5; }
+    .engage-card .terminal .comment { color: #7E7468; font-style: italic; }
+    .engage-card .form-field {
+      margin-bottom: 14px;
+    }
+    .engage-card .form-field label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-2);
+      margin-bottom: 5px;
+    }
+    .engage-card .form-field input,
+    .engage-card .form-field select,
+    .engage-card .form-field textarea {
+      width: 100%;
+      background: var(--bg);
+      border: none;
+      border-bottom: 1px solid var(--rule);
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--ink);
+      padding: 6px 0;
+      outline: none;
+      transition: border-color 0.18s ease;
+    }
+    .engage-card .form-field input:focus,
+    .engage-card .form-field select:focus,
+    .engage-card .form-field textarea:focus {
+      border-bottom-color: var(--accent);
+    }
+    .engage-card .form-field textarea {
+      resize: none;
+      font-family: var(--font-body);
+    }
+    .engage-card .submit {
+      margin-top: 8px;
+      background: transparent;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      padding: 10px 18px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+    .engage-card .submit:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
+    .engage-card .open-link {
+      display: inline-block;
+      margin-top: 16px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+    }
+
+    /* §8 Footer */
+    .footer-section {
+      margin-top: 160px;
+      padding: 56px 0 48px 0;
+      border-top: 1px solid var(--rule);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 44px;
+    }
+    .footer-col h4 {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 14px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 4px 0;
+      color: var(--ink);
+    }
+    .footer-col ul li a {
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .footer-col ul li a:hover { color: var(--accent); }
+    .footer-col ul li.muted { color: var(--ink-3); }
+    .footer-col .brand-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 24px;
+      letter-spacing: -0.018em;
+      font-variation-settings: "opsz" 60, "SOFT" 30, "WONK" 0;
+    }
+    .footer-col .brand-tagline {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-style: italic;
+      color: var(--ink-2);
+      margin-top: 4px;
+      max-width: 240px;
+    }
+    .footer-col .addr {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--ink-2);
+      word-break: break-all;
+    }
+    .footer-col .addr a { color: var(--accent); text-decoration: none; }
+    .footer-col .addr a:hover { text-decoration: underline; }
+    .footer-disclaimer {
+      padding-top: 28px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-style: italic;
+      color: var(--ink-2);
+      max-width: 760px;
+      margin-bottom: 22px;
+      line-height: 1.55;
+    }
+    .footer-meta {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.06em;
+      color: var(--ink-3);
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Responsive */
+    @media (max-width: 880px) {
+      .col-grid { grid-template-columns: 1fr; gap: 32px; }
+      .hero { margin-top: 56px; }
+      .hero h1 { font-size: 44px; letter-spacing: -0.028em; }
+      .hero p.abstract { font-size: 18px; }
+      .receipt { margin-top: 96px; padding-top: 48px; }
+      .receipt h2 { font-size: 28px; }
+      .receipt .quote { font-size: 18px; }
+      .margin { padding-top: 8px; border-top: 1px dashed var(--rule); }
+      .margin .note { margin-bottom: 28px; }
+      .meta-strip { flex-direction: column; gap: 8px; align-items: flex-start; }
+      .section-block { margin-top: 96px; padding-top: 48px; }
+      .section-block h2 { font-size: 28px; }
+      .phases { grid-template-columns: 1fr; gap: 28px; }
+      .tier-cards, .engage-cards { grid-template-columns: 1fr; }
+      .status-cols { grid-template-columns: 1fr; gap: 20px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+      .equation { font-size: 17px; padding: 22px 0; }
+      .equation .label { display: none; }
+      .axioms { font-size: 12px; padding: 18px 0; }
+      .axioms .axiom-label { display: none; }
+      .axioms ol li { padding: 4px 0 4px 32px; }
+      .flow-diagram {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        font-size: 10px;
+      }
+      .flow-arrow {
+        transform: rotate(90deg);
+        margin-left: 14px;
+      }
+    }
+
+    /* Small phones */
+    @media (max-width: 560px) {
+      .page { padding: 0 18px; }
+      .meta-strip { font-size: 10.5px; padding: 14px 0; }
+      .meta-strip .left { gap: 8px; }
+      .hero { margin-top: 36px; }
+      .hero h1 { font-size: 36px; letter-spacing: -0.022em; }
+      .hero p.abstract { font-size: 16.5px; line-height: 1.5; }
+      .cta-row { flex-direction: column; gap: 14px; align-items: flex-start; font-size: 11.5px; }
+      .cta-tertiary { font-size: 10.5px; }
+      .col-grid { gap: 28px; }
+      .receipt { margin-top: 64px; padding-top: 32px; }
+      .receipt h2 { font-size: 24px; }
+      .receipt .quote { font-size: 16.5px; line-height: 1.6; }
+      .receipt .caveat { font-size: 14.5px; }
+      .receipts-teaser { font-size: 11px; gap: 8px; }
+      .receipts-teaser .teaser-text { font-size: 13px; }
+      .section-block { margin-top: 64px; padding-top: 32px; }
+      .section-block h2 { font-size: 24px; line-height: 1.15; }
+      .section-block .lede { font-size: 16px; line-height: 1.55; }
+      .scenarios li { grid-template-columns: 1fr; gap: 6px; padding: 10px 0; font-size: 14.5px; }
+      .scenarios .verdict { font-size: 9.5px; justify-self: start; }
+      .axioms { font-size: 11.5px; padding: 16px 0; }
+      .axioms ol li { padding: 4px 0 4px 28px; }
+      .voice .pull { font-size: 16px; }
+      .voice .attrib { font-size: 10px; }
+      .voices-stat { font-size: 14.5px; }
+      .tier-card { padding: 22px; }
+      .tier-card .tier-price { font-size: 36px; }
+      .tier-card .tier-name { font-size: 24px; }
+      .tier-card ul { font-size: 14.5px; }
+      .engage-card { padding: 22px; }
+      .engage-card h3 { font-size: 19px; }
+      .engage-card p { font-size: 14.5px; }
+      .engage-card .terminal { font-size: 11px; padding: 14px; }
+      .footer-section { margin-top: 96px; padding: 36px 0 28px 0; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; margin-bottom: 28px; }
+      .footer-disclaimer { font-size: 12px; padding-top: 22px; line-height: 1.55; }
+      .footer-meta { flex-direction: column; gap: 6px; font-size: 10px; }
+      .data-block { font-size: 11px; }
+      .data-block .row { font-size: 11px; }
+      .phase h3 { font-size: 21px; }
+      .phase .preview { font-size: 11px; padding: 10px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div class="page">
+
+    <header class="meta-strip" role="banner">
+      <div class="left">
+        <span class="name">PsycheForge</span>
+        <span class="sep">·</span>
+        <span>Triage v0.4</span>
+        <span class="sep">·</span>
+        <span>PoC, beta-only</span>
+        <span class="sep">·</span>
+        <span>2026</span>
+      </div>
+      <div class="right">
+        <span class="dot" aria-hidden="true">●</span>
+        <span>Beta open · DM for triage</span>
+      </div>
+    </header>
+
+    <main id="main">
+
+
+    <!-- §1 Hero -->
+    <section class="col-grid hero" id="claim">
+      <div>
+        <div class="section-marker">
+          <span class="glyph">§</span><span>1</span>&nbsp;&nbsp;<span class="title">The Claim</span>
+        </div>
+        <h1>
+          <span class="stop">Citation-grounded</span> triage<br>
+          for Solana DAO delegates.
+        </h1>
+        <p class="abstract">
+          Red flags, treasury impact, stakeholders, and the questions worth asking. For any Solana DAO governance proposal, in 30 seconds. The skill is hard-ruled to never recommend a vote.
+        </p>
+        <div class="cta-row">
+          <a href="#engage" class="primary">DM us a proposal URL <span class="arrow">→</span></a>
+          <a href="#sample">View sample triage</a>
+        </div>
+        <div class="cta-tertiary">
+          <a href="https://github.com/" target="_blank" rel="noopener">Read the open-source repo <span class="arrow">↗</span></a>
+        </div>
+      </div>
+      <aside class="margin">
+        <div class="note">
+          <span class="label">Coverage today</span>
+          Marinade, Jupiter, Jito, Sanctum,<br>generic Realms-anchored DAOs.
+        </div>
+        <div class="note">
+          <span class="label">Citation grounding</span>
+          <strong style="color: var(--ink); font-weight: 600;">100%</strong> across N=10 live proposals tested. Every claim cites the proposal text verbatim, or the claim does not appear.
+        </div>
+        <div class="note">
+          <span class="label">Delegate validation</span>
+          <strong style="color: var(--ink); font-weight: 600;">5/5 strong-yes</strong> on whether the triage caught something a quick read would miss.
+        </div>
+        <div class="note">
+          <span class="label">Pricing</span>
+          $25 / $50 / $100 monthly.<br>14-day pilot in exchange for one interview.
+        </div>
+      </aside>
+    </section>
+
+    <!-- §2 Sample -->
+    <section class="col-grid receipt" id="sample">
+      <div>
+        <div class="section-marker">
+          <span class="glyph">§</span><span>2</span>&nbsp;&nbsp;<span class="title">A Sample Triage</span>
+        </div>
+        <h2>Marinade MIP-21. Treasury authority change. 4 red flags, every claim cited.</h2>
+        <div class="quote">
+          <p>
+            <strong>MIP-21</strong> proposed transferring 3,350 mSOL ($586,932) from the DAO treasury to a Council wallet, redirecting protocol fees to that wallet, and committing to monthly MNDE repayments at "equivalent value."<sup><a href="#fn1">1</a></sup>
+          </p>
+          <p>
+            The triage flagged: <em>vague_kpi</em> (no quantified target for "supporting protocol growth"), <em>missing_milestone</em> (no timeline for when fees revert to DAO), <em>backdoor_permission</em> (Council gains ongoing revenue authority), and <em>technical_risk</em> (no specified valuation methodology for "equivalent MNDE value").<sup><a href="#fn2">2</a></sup>
+          </p>
+          <p>
+            Six proposal-specific delegate questions. Four stakeholders identified, each cited. Treasury direction <em>internal_transfer</em>, confidence <em>medium</em>. Output: a markdown summary a delegate can read in 30 seconds before opening Realms.
+          </p>
+        </div>
+        <div class="caveat">
+          One delegate from the validation cohort, after running this exact triage: <em>"The ambiguity around 'equivalent MNDE value' would have slipped past me on a quick read."</em> Five delegates ran it, five reported strong-yes value. <a href="#voices">See §5 Voices →</a>
+        </div>
+        <div class="read-more">
+          <a href="https://github.com/" target="_blank" rel="noopener">Read the full MIP-21 triage output ↗</a>
+        </div>
+        <div class="receipts-teaser">
+          <span class="teaser-line"></span>
+          <span class="teaser-text">Run it yourself: paste any Solana DAO proposal into the open-source pipeline, get the same structured output.</span>
+          <a href="#engage">try one →</a>
+        </div>
+      </div>
+      <aside class="margin">
+        <div class="fn" id="fn1">
+          <span class="fn-num">¹</span><span class="fn-label">Source proposal</span>
+          <div class="data-block">
+            <div class="addr">
+              <a href="https://forum.marinade.finance/t/mip-21-exchange-msol-from-the-dao-treasury-with-the-council-wallet-and-redirect-fees-to-the-council-wallet/1975" target="_blank" rel="noopener">forum.marinade.finance/t/mip-21 ↗</a>
+            </div>
+            <div class="row"><span class="key">DAO</span><span class="val">Marinade</span></div>
+            <div class="row"><span class="key">treasury direction</span><span class="val">internal_transfer</span></div>
+            <div class="row"><span class="key">vote</span><span class="val">99.6 / 0.4 passed</span></div>
+            <div class="row"><span class="key">analyzed</span><span class="val">2026-05-05</span></div>
+          </div>
+        </div>
+        <div class="fn" id="fn2">
+          <span class="fn-num">²</span><span class="fn-label">Triage findings</span>
+          <div class="data-block">
+            <div class="row"><span class="key">red_flags</span><span class="val">4</span></div>
+            <div class="row"><span class="key">stakeholders</span><span class="val">4 cited</span></div>
+            <div class="row"><span class="key">questions</span><span class="val">6 non-boilerplate</span></div>
+            <div class="row"><span class="key">citation rate</span><span class="val">100%</span></div>
+            <div class="row"><span class="key">runtime</span><span class="val">~30 seconds</span></div>
+          </div>
+        </div>
+        <div class="note">
+          <span class="label">No outcome, even retrospectively</span>
+          The 99.6 / 0.4 vote result is in the data block as post-vote fact, not as a prediction. The triage emits no outcome under any condition. Per hard rule §3.1.
+        </div>
+      </aside>
+    </section>
+
+    <!-- §3 Mechanism -->
+    <section class="col-grid section-block" id="mechanism">
+      <div>
+        <div class="section-marker">
+          <span class="glyph">§</span><span>3</span>&nbsp;&nbsp;<span class="title">Mechanism</span>
+        </div>
+        <h2>Proposal in. Structured triage out.</h2>
+        <p class="lede">
+          Two phases. The first reads end-to-end and scans systematically for risk categories. The second emits a JSON object with six required sections, every claim grounded in a verbatim citation. No on-chain step in the user-facing tier.
+        </p>
+
+        <div class="flow-diagram" aria-label="data flow">
+          <span class="flow-node input">PROPOSAL TEXT</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-node">§3.1 TRIAGE SKILL</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-node">§3.2 STRUCTURED OUTPUT</span>
+        </div>
+
+        <div class="phases">
+          <div class="phase">
+            <div class="num">§3.1</div>
+            <span class="tag">off-chain skill</span>
+            <h3>Triage</h3>
+            <p>Reads the full proposal including every appendix. Identifies stakeholders, locates monetary amounts, scans systematically for KPI measurability, milestone bounding, permission changes, supply effects, and off-chain dependencies. Buried permission changes get equal scrutiny to the main body.</p>
+            <div class="preview"><span class="key">step</span>:        Read end-to-end
+<span class="key">observation</span>: Treasury swap + fee redirect
+<span class="key">inference</span>:   Internal transfer with
+              ongoing authority shift</div>
+          </div>
+          <div class="phase">
+            <div class="num">§3.2</div>
+            <span class="tag">structured output</span>
+            <h3>Output</h3>
+            <p>JSON object with six required sections: TL;DR, treasury impact, red flags (categorized + cited + severity-rated), stakeholders, open questions, honest gaps. Vagueness in the source is itself surfaced as a finding. Output renders as markdown a delegate can read in 30 seconds.</p>
+            <div class="preview"><span class="key">"red_flags"</span>:    [<span class="ink">{4 cited}</span>],
+<span class="key">"stakeholders"</span>: [<span class="ink">{4 cited}</span>],
+<span class="key">"questions"</span>:    [<span class="ink">6 specific</span>],
+<span class="key">"confidence"</span>:   <span class="ink">"medium"</span></div>
+          </div>
+        </div>
+      </div>
+      <aside class="margin">
+        <div class="note">
+          <span class="label">Skill spec</span>
+          <a href="https://github.com/" target="_blank" rel="noopener">governance-triage SKILL.md ↗</a><br>
+          v0.4, calibrated against B-validation interviews 2026-05-05.
+        </div>
+        <div class="note">
+          <span class="label">Hard rule</span>
+          <em>No vote recommendation, ever.</em> Asserted in the skill prompt. Load-bearing for regulatory posture and epistemic honesty.
+        </div>
+        <div class="note">
+          <span class="label">Decision-support framing</span>
+          A red flag answers <em>"what would a careful delegate question?"</em>, not <em>"how could this be exploited?"</em>. The triage surfaces pressure points without treating every proposal as a potential attack.
+        </div>
+        <div class="note">
+          <span class="label">Why no on-chain step?</span>
+          A previous iteration committed predictions on-chain. At N=7 weighted accuracy was 51% (coin-flip). Paused as a public claim until N≥50. <a href="#status">See §7.</a>
+        </div>
+      </aside>
+    </section>
+
+    <!-- §4 Calibration -->
+    <section class="col-grid section-block" id="calibration">
+      <div>
+        <div class="section-marker">
+          <span class="glyph">§</span><span>4</span>&nbsp;&nbsp;<span class="title">Calibration</span>
+        </div>
+        <h2>How we prevent hallucination.</h2>
+        <p class="lede">
+          Hallucination in governance costs delegates real money. The triage carries three load-bearing constraints, encoded as hard rules in the skill prompt. A failure on any one invalidates the output. Citation rate across N=10 live proposals tested on Marinade, Jupiter, and Jito: <strong>100%</strong>.
+        </p>
+
+        <div class="axioms" aria-label="hard rules">
+          <ol>
+            <li><strong>Grounding.</strong> Every claim cites the proposal text verbatim, or the claim is omitted. <em>If the skill cannot point to a quote, the finding does not appear.</em></li>
+            <li><strong>No interpolation.</strong> Don't fill from general DAO knowledge or external context. <em>The triage analyzes what's in the proposal, not what should be.</em></li>
+            <li><strong>Vagueness is a finding.</strong> Don't paper over soft KPIs, open-ended scope, or missing milestones. <em>Surface them as <code>vague_kpi</code>, <code>unbounded_spend</code>, <code>missing_milestone</code>.</em></li>
+          </ol>
+          <span class="axiom-label">§4 · AXIOMS</span>
+        </div>
+
+        <p class="lede" style="margin-top: 8px;">
+          The eight categories the skill scans for, each with a verbatim-citation requirement:
+        </p>
+
+        <ul class="scenarios">
+          <li><span><em>vague_kpi</em>: success metrics are non-measurable, no baseline, no threshold</span><span class="verdict">flagged + cited</span></li>
+          <li><span><em>unbounded_spend</em>: budget open-ended, no dollar cap, no review trigger</span><span class="verdict">flagged + cited</span></li>
+          <li><span><em>missing_milestone</em>: disbursement not tied to deliverables or checkpoints</span><span class="verdict">flagged + cited</span></li>
+          <li><span><em>backdoor_permission</em>: authority change buried, omitted from summary, framed innocuously</span><span class="verdict">flagged + cited</span></li>
+          <li><span><em>centralization</em>: explicit concentration of stake, voting power, fee flow, executive authority</span><span class="verdict">flagged + cited</span></li>
+          <li><span><em>token_dilution</em>: any modification to supply trajectory, regardless of direction</span><span class="verdict">flagged + cited</span></li>
+          <li><span><em>technical_risk</em>: oracle dependency, off-chain execution risk, mechanism uncertainty</span><span class="verdict">flagged + cited</span></li>
+          <li><span><em>team_track_record</em>: proposer history materially relevant, undisclosed, or contested</span><span class="verdict">flagged + cited</span></li>
+        </ul>
+
+        <p class="lede" style="margin-top: 24px;">
+          Honest disclosure is preferred over confident guessing. When the skill cannot resolve a question, it degrades the <code>confidence</code> field and surfaces the gap as <em>open_question</em> or <em>honest_gap</em> rather than fabricating detail. The hard rules are load-bearing in this direction.
+        </p>
+
+        <div class="cta-tertiary" style="margin-top: 24px;">
+          <a href="https://github.com/" target="_blank" rel="noopener">Read the full skill prompt (governance-triage SKILL.md) <span class="arrow">↗</span></a>
+        </div>
+      </div>
+      <aside class="margin">
+        <div class="note">
+          <span class="label">Calibration discipline</span>
+          v0.3 attempted a 4-tier severity refinement. N=10 validation showed regression. Rolled back to v0.2 same week.
+        </div>
+        <div class="note">
+          <span class="label">v0.4 fixes</span>
+          Three corrections from delegate interviews: backdoor qualifier tightened, technical_risk dependency rule, decision-support tone.
+        </div>
+        <div class="note">
+          <span class="label">Severity rating</span>
+          Reflects what a thoughtful delegate would weigh against the proposal's stated benefits, not maximal-threat reading.
+        </div>
+        <div class="note">
+          <span class="label">Open red-team</span>
+          Adversarial proposals welcome. The buried-permission canary case is in the test fixtures.
+        </div>
+      </aside>
+    </section>
+
+    <!-- §5 Voices -->
+    <section class="col-grid section-block" id="voices">
+      <div>
+        <div class="section-marker">
+          <span class="glyph">§</span><span>5</span>&nbsp;&nbsp;<span class="title">Voices</span>
+        </div>
+        <h2>Five active delegates ran a real triage.</h2>
+        <p class="lede">
+          Five active Solana DAO delegates ran a PsycheForge triage of Marinade MIP-21 (the recent treasury authority proposal that passed 99.6 / 0.4) and answered four questions about whether the structured format actually helps decision-making. All five reported strong-yes value. Quotes verbatim, names withheld at delegates' request.
+        </p>
+
+        <div class="voice-stack">
+          <div class="voice">
+            <div class="pull">"The strongest part of the triage is surfacing hidden implementation assumptions that are easy to gloss over. The ambiguity around 'equivalent MNDE value' would have slipped past me on a quick read."</div>
+            <div class="attrib">Builder-perspective delegate · governance-conscious</div>
+          </div>
+          <div class="voice">
+            <div class="pull">"Governance proposals often sound economically reasonable while quietly weakening enforcement guarantees. The analysis did a good job exposing the implicit power transfer."</div>
+            <div class="attrib">Trust-architecture delegate</div>
+          </div>
+          <div class="voice">
+            <div class="pull">"The hard part isn't reading proposals. It's quickly spotting economic downside and incentive shifts. If the tool reliably surfaces that, it saves real time. I'd use it several times a week."</div>
+            <div class="attrib">Tokenomics-focused delegate</div>
+          </div>
+          <div class="voice">
+            <div class="pull">"Most delegates skim the majority of proposals. If the tool can consistently surface the actual decision-critical risks, that's valuable. Probably daily during active governance cycles."</div>
+            <div class="attrib">Multi-DAO active delegate</div>
+          </div>
+          <div class="voice">
+            <div class="pull">"During heavy governance cycles, helping people quickly understand 'why this proposal is controversial' is genuinely useful. Community sensemaking, not raw analysis."</div>
+            <div class="attrib">Community-builder delegate</div>
+          </div>
+        </div>
+
+        <div class="voices-stat">
+          <strong>5 / 5</strong> reported strong-yes on Q2 ("did this catch something you wouldn't have"). <strong>5 / 5</strong> priced subscription positively in the $20 to $150 monthly range, conditional on calibration discipline. <em>Aggregate report and full anonymized transcripts in the open repo.</em>
+        </div>
+      </div>
+      <aside class="margin">
+        <div class="note">
+          <span class="label">Validation kit</span>
+          <a href="https://github.com/" target="_blank" rel="noopener">b_validation_test_pack.md ↗</a><br>
+          The exact 5-question protocol delegates ran.
+        </div>
+        <div class="note">
+          <span class="label">Anonymization</span>
+          Names withheld at request. Role descriptors are accurate, derived from each delegate's stated focus area in the interview.
+        </div>
+        <div class="note">
+          <span class="label">N caveat</span>
+          5 interviews is a directional signal, not a statistical claim. We expect to learn things in the beta cohort that update the copy above.
+        </div>
+        <div class="note">
+          <span class="label">Conducted</span>
+          2026-05-05, asynchronous interviews, written responses only.
+        </div>
+      </aside>
+    </section>
+
+    <!-- §6 Tiers -->
+    <section class="col-grid section-block" id="tiers">
+      <div>
+        <div class="section-marker">
+          <span class="glyph">§</span><span>6</span>&nbsp;&nbsp;<span class="title">Tiers</span>
+        </div>
+        <h2>Three tiers. Same skill, same calibration. Different breadth.</h2>
+        <p class="lede">
+          Pricing is calibrated to delegate workflow intensity, not feature gates. Every tier returns the same triage quality on every proposal it covers. The difference is how many DAOs and how much surrounding context.
+        </p>
+
+        <div class="tier-cards">
+          <div class="tier-card">
+            <div class="tier-name">Lite</div>
+            <div class="tier-price">$25<span class="per">/ month</span></div>
+            <div class="tier-tagline">Retail delegate, weekly governance reading, sensemaking-leaning.</div>
+            <ul>
+              <li>1–2 DAOs of your choice</li>
+              <li>Full triage on every proposal in those DAOs</li>
+              <li>Citation-grounded, no hallucination</li>
+              <li>Markdown + JSON output</li>
+            </ul>
+            <div class="footer-line">For careful retail delegates</div>
+          </div>
+
+          <div class="tier-card premium">
+            <div class="badge">Most cited</div>
+            <div class="tier-name">Standard</div>
+            <div class="tier-price">$50<span class="per">/ month</span></div>
+            <div class="tier-tagline">Active delegate, treasury / authority / fee proposal focus, weekly+.</div>
+            <ul>
+              <li>Multi-DAO across active Solana governance</li>
+              <li>Everything in Lite</li>
+              <li>Priority on contested votes during active cycles</li>
+              <li>14-day pilot for early users</li>
+            </ul>
+            <div class="footer-line">For active multi-DAO delegates</div>
+          </div>
+
+          <div class="tier-card">
+            <div class="tier-name">Premium</div>
+            <div class="tier-price">$100<span class="per">/ month</span></div>
+            <div class="tier-tagline">Whale, treasury manager, yield researcher, daily during cycles.</div>
+            <ul>
+              <li>Comprehensive coverage across Solana DAOs</li>
+              <li>Everything in Standard</li>
+              <li>Alpha-grade context: on-chain stakeholder lookups, historical pattern surfacing</li>
+              <li>Direct line to the team</li>
+            </ul>
+            <div class="footer-line">For whales and treasury operators</div>
+          </div>
+        </div>
+
+        <div class="tiers-note">
+          What is <em>not</em> different across tiers: the citation-grounding requirement, the hard rule against vote recommendations, the decision-support framing. The skill is the same; the breadth of coverage and depth of context differ. A 14-day pilot is available for early users in exchange for one written interview at the end.
+        </div>
+      </div>
+      <aside class="margin">
+        <div class="note">
+          <span class="label">Validated</span>
+          Tier model adopted after 5 anonymized delegate interviews (2026-05-05). 5/5 priced subscription positively in $20 to $150 range.
+        </div>
+        <div class="note">
+          <span class="label">Free trial?</span>
+          14-day pilot, no charge, no card, in exchange for one short written interview at the end about whether the tool changed how you read proposals.
+        </div>
+        <div class="note">
+          <span class="label">Per-DAO pricing?</span>
+          Not adopted. The unit is delegate workflow intensity. DAO coverage scales with tier.
+        </div>
+        <div class="note">
+          <span class="label">What's not in any tier yet</span>
+          Vote-outcome predictions (deferred until N≥50 calibration). On-chain reputation history (built, paused as a marketing claim).
+        </div>
+      </aside>
+    </section>
+
+    <!-- §7 Status & Honesty -->
+    <section class="col-grid section-block" id="status">
+      <div>
+        <div class="section-marker">
+          <span class="glyph">§</span><span>7</span>&nbsp;&nbsp;<span class="title">Status</span>
+        </div>
+        <h2>What works. What doesn't. What's paused.</h2>
+        <p class="lede">
+          PsycheForge is a PoC. Customer discovery completed 2026-05-05 with 5 anonymized delegate interviews. Real value confirmed. No paying users yet. The public Lite tier is beta-only, not generally available. We expect to learn things in the beta that update the copy on this page.
+        </p>
+
+        <div class="status-cols">
+          <div class="status-col works">
+            <h3>Works</h3>
+            <ul>
+              <li>Triage skill produces grounded, cited analysis on real proposals</li>
+              <li>Citation grounding: 100% across N=10 live proposals tested</li>
+              <li>5 / 5 strong-yes from anonymized delegate validation cohort</li>
+              <li>Calibration discipline: v0.3 regression caught and rolled back same week</li>
+              <li>v0.4 incorporates three corrections from delegate feedback</li>
+              <li>Open-source: skill prompts, test fixtures, validation reports public</li>
+            </ul>
+          </div>
+          <div class="status-col doesnt">
+            <h3>Doesn't (yet)</h3>
+            <ul>
+              <li>Zero paying users</li>
+              <li>Public Lite tier not GA, beta-only</li>
+              <li>No automatic URL fetching for DAO forums</li>
+              <li>Multilingual stress-test still narrow</li>
+              <li>Some DAO coverage partial (Sanctum)</li>
+            </ul>
+          </div>
+          <div class="status-col gated">
+            <h3>Paused (honest disclosure)</h3>
+            <ul>
+              <li>Vote-outcome predictions: at N=7 weighted accuracy was 51% (coin-flip)</li>
+              <li>Coin-flip accuracy on contested votes does more damage than missing predictions</li>
+              <li>Returns as a public-facing claim only when N≥50 calibrated accuracy is demonstrable</li>
+              <li>On-chain reputation infrastructure: built, runs on devnet, paused as a marketing claim</li>
+              <li>Until then: triage only</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <aside class="margin">
+        <div class="note">
+          <span class="label">Risk register</span>
+          A: market validation (closed 2026-05-05, 5 interviews)<br>
+          B: prediction calibration (open, paused publicly until N≥50)<br>
+          C: regulatory (open, mainnet-blocker)
+        </div>
+        <div class="note">
+          <span class="label">Why this section?</span>
+          Honest disclosure is the brand. Predictions tried, didn't work, paused publicly. The infra exists but earning the claim back requires real calibration.
+        </div>
+        <div class="note">
+          <span class="label">PoC means</span>
+          real value confirmed in interviews, no paying users yet, beta-only. Each artifact is auditable in the open repo.
+        </div>
+        <div class="note">
+          <span class="label">Honest report</span>
+          <a href="https://github.com/" target="_blank" rel="noopener">batch_n7_devnet_report.md ↗</a><br>
+          The full retraction note on the prediction layer.
+        </div>
+      </aside>
+    </section>
+
+    <!-- §8 Engagement -->
+    <section class="col-grid section-block" id="engage">
+      <div>
+        <div class="section-marker">
+          <span class="glyph">§</span><span>8</span>&nbsp;&nbsp;<span class="title">Engagement</span>
+        </div>
+        <h2>Two minutes to a working triage on a proposal you actually care about.</h2>
+        <p class="lede">
+          Send a DM with the URL of a Solana DAO proposal you're currently weighing. We reply within 4 hours with a Lite-tier triage of that proposal, free, no commitment. If it changes how you read the proposal, the 14-day pilot is on us in exchange for one short interview at the end. If it doesn't change anything, no follow-up. We're not interested in selling tools that don't earn delegate trust.
+        </p>
+
+        <div class="engage-cards">
+          <div class="engage-card primary">
+            <div class="path-tag">Primary path</div>
+            <h3>DM us a proposal URL</h3>
+            <p>Send a Marinade, Jupiter, Jito, or Sanctum proposal link. Free Lite-tier triage back within 4 hours. No card, no commitment.</p>
+            <div class="terminal"><span class="comment"># on X</span>
+<span class="prompt">DM</span> <span class="cmd">@Psycheforglab</span>
+<span class="prompt">subject</span> <span class="cmd">"Triage request"</span>
+<span class="prompt">body</span> <span class="cmd">&lt;proposal-url&gt;</span>
+
+<span class="comment"># or via the GitHub repo</span>
+<span class="prompt">$</span> <span class="cmd">gh issue create --title "Triage: &lt;DAO&gt;-&lt;ID&gt;"</span></div>
+            <a class="open-link" href="https://x.com/Psycheforglab" target="_blank" rel="noopener">DM @Psycheforglab on X <span class="arrow">↗</span></a>
+          </div>
+
+          <div class="engage-card">
+            <h3>Run it yourself, open-source</h3>
+            <p>For builders. The whole pipeline is MIT-licensed: skill prompts, test fixtures, validation reports, the Lite-tier wrapper. Self-host with any OpenAI-compatible LLM backend.</p>
+            <div class="terminal"><span class="comment"># clone &amp; install (no system changes)</span>
+<span class="prompt">$</span> <span class="cmd">git clone github.com/psycheforge/psycheforge</span>
+<span class="prompt">$</span> <span class="cmd">./eval/setup_hermes_local.sh</span>
+
+<span class="comment"># run on any proposal</span>
+<span class="prompt">$</span> <span class="cmd">python eval/lite_pilot.py \
+    --proposal your_proposal.md</span></div>
+            <a class="open-link" href="https://github.com/" target="_blank" rel="noopener">Read the quick start <span class="arrow">↗</span></a>
+          </div>
+        </div>
+      </div>
+      <aside class="margin">
+        <div class="note">
+          <span class="label">DM target</span>
+          <a href="https://x.com/Psycheforglab" target="_blank" rel="noopener">@Psycheforglab on X ↗</a><br>
+          or open an issue on the GitHub repo.
+        </div>
+        <div class="note">
+          <span class="label">Reply window</span>
+          Within 4 hours during business days. Faster during active governance cycles.
+        </div>
+        <div class="note">
+          <span class="label">Open-source</span>
+          MIT. Skill prompts, test fixtures, validation reports, and the Lite-tier wrapper all public. Pricing and customer-discovery interview notes kept private.
+        </div>
+        <div class="note">
+          <span class="label">Beta scope</span>
+          Cohort is small and reviewed by hand. We expect the beta to update the copy on this page.
+        </div>
+      </aside>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-section" id="footer" role="contentinfo">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-name">PsycheForge</div>
+          <div class="brand-tagline">Structured triage for Solana DAO delegates.</div>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#sample">Sample triage</a></li>
+            <li><a href="#tiers">Tiers &amp; pricing</a></li>
+            <li><a href="#engage">DM for triage</a></li>
+            <li><a href="https://github.com/" target="_blank" rel="noopener">Open-source repo</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Method</h4>
+          <ul>
+            <li><a href="https://github.com/" target="_blank" rel="noopener">Triage skill spec</a></li>
+            <li><a href="https://github.com/" target="_blank" rel="noopener">Validation report</a></li>
+            <li><a href="https://github.com/" target="_blank" rel="noopener">Open risks</a></li>
+            <li><a href="https://github.com/" target="_blank" rel="noopener">Calibration log</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Internal research</h4>
+          <ul>
+            <li class="muted">Prediction layer paused</li>
+            <li class="muted">N=7 weighted accuracy: 51%</li>
+            <li class="muted">Returns at N≥50</li>
+            <li><a href="https://github.com/" target="_blank" rel="noopener">Honest disclosure ↗</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-disclaimer">
+        PsycheForge provides structured analysis of governance proposals, not investment or voting advice. The skill is hard-ruled to never recommend a vote. All governance decisions are the user's responsibility. Not affiliated with Anthropic, Nous Research, Marinade Finance, Jupiter, Jito, Sanctum, or the Solana Foundation.
+      </div>
+
+      <div class="footer-meta">
+        <span>MIT License · © 2026 PsycheForge</span>
+        <span>Triage v0.4 · PoC, beta-only</span>
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>

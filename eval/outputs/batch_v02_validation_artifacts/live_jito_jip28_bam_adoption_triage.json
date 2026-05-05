@@ -1,0 +1,94 @@
+{
+  "reasoning_trace": [
+    {
+      "step": "Read end-to-end",
+      "observation": "Proposal establishes tiered JitoSOL stake delegation to validators adopting BAM software, with eligibility criteria (3 epochs continuous operation, uptime within 3% of chain max, JIP-27 compliance) and tier activation based on adoption thresholds. Requests temporary six-month Steward parameter control. No direct treasury expenditure.",
+      "inference": "This is stake reallocation rather than treasury outflow. Need to verify whether tier thresholds, allocation amounts, and control assignment are specified."
+    },
+    {
+      "step": "Identify stakeholders",
+      "observation": "Author is drnick. Validators running BAM are beneficiaries. Jito Foundation mentioned as reporting party for BAM adoption verification. Directed Staking infrastructure administers program.",
+      "inference": "Proposer and affected groups are clear. Jito Foundation has oversight role."
+    },
+    {
+      "step": "Scan tier thresholds and allocation amounts",
+      "observation": "Proposal states 'tiered delegation triggers scaling with adoption metrics' and 'Each tier activates upon BAM stakeweight reaching specified thresholds' but provides no numeric thresholds or JitoSOL allocation amounts per tier.",
+      "inference": "Critical parameters are missing. Delegates cannot evaluate economic impact without knowing how much stake moves at each tier. Emit vague_kpi red flag."
+    },
+    {
+      "step": "Scan permission changes",
+      "observation": "Proposal text: 'The proposal requests six-month temporary control of Steward parameters enabling responsive stake cap management' with automatic revocation unless renewed. WHO exercises this control is not specified.",
+      "inference": "This grants operational authority over stake caps but to an unnamed entity. Per severity calibration, this is high severity (NEW/unspecified control). Emit backdoor_permission red flag."
+    },
+    {
+      "step": "Scan JIP-27 dependency",
+      "observation": "Text states 'Contingency: This JIP depends on JIP-27 passage.' JIP-27 specifications are not included in proposal text. No fallback or modification handling described.",
+      "inference": "If JIP-27 fails, changes, or defines different infrastructure, this proposal's execution could break. JIP-27 details needed for full evaluation."
+    },
+    {
+      "step": "Assess monetary impact",
+      "observation": "Proposal explicitly states 'Cost: No direct DAO expenditure.' Stake delegation reallocates existing JitoSOL resources rather than spending treasury funds.",
+      "inference": "Treasury direction is 'none' - no outflow, inflow, or net transfer of funds out of treasury."
+    }
+  ],
+  "summary": "JIP-28 allocates JitoSOL stake to validators running BAM software via tiered delegation based on adoption thresholds. Requests temporary six-month Steward parameter control. Depends on JIP-27. No direct treasury expenditure.",
+  "stakeholders": [
+    {
+      "name": "drnick",
+      "role": "proposer",
+      "citation": "Author: drnick"
+    },
+    {
+      "name": "validators",
+      "role": "beneficiary",
+      "citation": "allocating JitoSOL stake to validators running BAM software"
+    },
+    {
+      "name": "Jito Foundation",
+      "role": "reviewer",
+      "citation": "BAM adoption verified via StakeNet and Jito Foundation reporting"
+    }
+  ],
+  "treasury_impact": {
+    "direction": "none",
+    "amount_usd": null,
+    "confidence": "high",
+    "citation": "Cost: No direct DAO expenditure"
+  },
+  "red_flags": [
+    {
+      "category": "vague_kpi",
+      "detail": "Tier activation thresholds and JitoSOL allocation amounts per tier are not specified. Proposal references 'specified thresholds' and 'tiered delegation triggers' but provides no numeric values.",
+      "citation": "Each tier activates upon BAM stakeweight reaching specified thresholds for two consecutive epochs",
+      "severity": "high"
+    },
+    {
+      "category": "backdoor_permission",
+      "detail": "Proposal requests six-month temporary control of Steward parameters but does not specify which entity, multisig, keypair, or role will exercise this control.",
+      "citation": "The proposal requests six-month temporary control of Steward parameters enabling responsive stake cap management during the JIP-27/JIP-28 transition period",
+      "severity": "high"
+    },
+    {
+      "category": "other",
+      "detail": "Proposal depends on JIP-27 passage but does not include JIP-27 specifications, reference its infrastructure requirements, or define fallback behavior if JIP-27 fails or is modified.",
+      "citation": "Contingency: This JIP depends on JIP-27 passage",
+      "severity": "medium"
+    }
+  ],
+  "questions_to_ask": [
+    "What are the specific BAM stakeweight thresholds (in % or absolute stake) and corresponding JitoSOL allocation amounts for each tier?",
+    "Which entity, multisig, or role will exercise the temporary six-month Steward parameter control requested in this proposal?",
+    "What total amount of JitoSOL stake from DAO holdings will be directed through this program at full adoption across all tiers?",
+    "If JIP-27 is rejected or substantially modified after this proposal passes, what is the fallback execution path?",
+    "What verification mechanism prevents validators from operating BAM for only three epochs to qualify, then ceasing operation while retaining delegation?",
+    "What are the renewal criteria and governance process for extending Steward parameter control beyond the initial six-month period?"
+  ],
+  "confidence": {
+    "overall": "medium",
+    "unreadable_sections": [
+      "Tier activation thresholds and JitoSOL allocation amounts (referenced as 'specified thresholds' but not provided in proposal text)",
+      "JIP-27 specifications and infrastructure requirements (referenced as dependency but not included)",
+      "Identity of entity receiving temporary Steward parameter control"
+    ]
+  }
+}

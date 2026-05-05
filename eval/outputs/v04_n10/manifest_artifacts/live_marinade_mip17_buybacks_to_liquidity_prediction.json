@@ -1,0 +1,13 @@
+{
+  "predicted_outcome": 0,
+  "confidence_bps": 7000,
+  "reasoning_citation": "Treasury_impact.direction=internal_transfer with no backdoor_permission flag triggers Prior A (treasury-untouched proposals tend to pass). All red_flags are process-only at low/medium severity (vague_kpi:medium, missing_milestone:medium, token_dilution:low, technical_risk:low) — none are high severity and none describe a hidden authority change. Per v0.2 calibration, process-only medium flags do not flip a prediction to reject absent a high-severity backdoor_permission or ≥3 stacked high flags. Confidence capped by triage.confidence.overall=medium (max 8000) and held at 7000 to reflect MIP-16 unreadable dependency.",
+  "key_triage_signals": [
+    "treasury_impact.direction:internal_transfer",
+    "red_flag:vague_kpi:medium",
+    "red_flag:missing_milestone:medium",
+    "red_flag:token_dilution:low",
+    "red_flag:technical_risk:low",
+    "triage.confidence.overall:medium"
+  ]
+}

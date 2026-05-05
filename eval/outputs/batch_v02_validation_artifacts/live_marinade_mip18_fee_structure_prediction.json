@@ -1,0 +1,11 @@
+{
+  "predicted_outcome": 0,
+  "confidence_bps": 6200,
+  "reasoning_citation": "Treasury impact is none. Single high-severity vague_kpi flag (missing conditional fee rate) present, but no backdoor_permission concerns and no ≥3 stacked high-severity flags. Prior A: treasury-untouched proposals with process-only flags tend to pass. Previous vote showed strong approval sentiment per triage. Confidence capped at medium.",
+  "key_triage_signals": [
+    "treasury_impact.direction:none",
+    "red_flag:vague_kpi:high",
+    "confidence.overall:medium",
+    "reasoning_trace:previous_vote_approval_sentiment"
+  ]
+}

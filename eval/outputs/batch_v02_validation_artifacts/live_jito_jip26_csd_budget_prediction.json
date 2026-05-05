@@ -1,0 +1,13 @@
+{
+  "predicted_outcome": 0,
+  "confidence_bps": 5300,
+  "reasoning_citation": "Triage identifies treasury_impact.direction=outflow (50k JitoSOL, ~$12.5m scale) with three medium-severity red_flags: vague_kpi (no threshold for price linkage), missing_milestone (upfront transfer with no gating), token_dilution (circulating supply impact). No backdoor_permission or high-severity flags present. Existing multisig structure (stakeholders[2]: JIP-17 4/6 counterparty) and buyback's token-holder alignment suggest approval lean, but large sum with weak accountability creates genuine uncertainty. Confidence capped by triage.confidence.overall=medium.",
+  "key_triage_signals": [
+    "treasury_impact:outflow",
+    "red_flag:vague_kpi:medium",
+    "red_flag:missing_milestone:medium",
+    "red_flag:token_dilution:medium",
+    "triage.confidence.overall:medium",
+    "stakeholders[2].role:counterparty"
+  ]
+}

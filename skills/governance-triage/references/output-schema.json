@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://psycheforge.xyz/schemas/governance-triage-output.json",
+  "title": "GovernanceTriageOutput",
+  "description": "Structured triage output for a single Solana DAO proposal. Every non-empty field must be grounded in the provided proposal text via a citation.",
+  "type": "object",
+  "required": [
+    "reasoning_trace",
+    "summary",
+    "stakeholders",
+    "treasury_impact",
+    "red_flags",
+    "questions_to_ask",
+    "confidence"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "reasoning_trace": {
+      "type": "array",
+      "minItems": 3,
+      "description": "Chain-of-thought. MUST be filled BEFORE other fields, not post-hoc. Each step records what was read and what was inferred.",
+      "items": {
+        "type": "object",
+        "required": ["step", "observation", "inference"],
+        "additionalProperties": false,
+        "properties": {
+          "step": { "type": "string" },
+          "observation": {
+            "type": "string",
+            "description": "Direct quote or close paraphrase from the proposal text."
+          },
+          "inference": {
+            "type": "string",
+            "description": "What this implies for the delegate, and why."
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 400,
+      "description": "Plain-language TL;DR. MUST NOT contain any vote recommendation."
+    },
+    "stakeholders": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "role", "citation"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["proposer", "beneficiary", "counterparty", "affected_group", "reviewer"]
+          },
+          "citation": {
+            "type": "string",
+            "description": "Verbatim quote from proposal text, or 'source_url#section'."
+          }
+        }
+      }
+    },
+    "treasury_impact": {
+      "type": "object",
+      "required": ["direction", "amount_usd", "confidence", "citation"],
+      "additionalProperties": false,
+      "properties": {
+        "direction": {
+          "type": "string",
+          "enum": ["outflow", "inflow", "internal_transfer", "none", "unknown"]
+        },
+        "amount_usd": {
+          "type": ["number", "null"],
+          "description": "Null when direction is 'none' or 'unknown'."
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["high", "medium", "low"]
+        },
+        "citation": { "type": "string" }
+      }
+    },
+    "red_flags": {
+      "type": "array",
+      "description": "Empty array is valid ONLY if every category was evaluated and found clean. Vagueness IS a flag — do not paper over it.",
+      "items": {
+        "type": "object",
+        "required": ["category", "detail", "citation", "severity"],
+        "additionalProperties": false,
+        "properties": {
+          "category": {
+            "type": "string",
+            "enum": [
+              "vague_kpi",
+              "unbounded_spend",
+              "backdoor_permission",
+              "missing_milestone",
+              "team_track_record",
+              "token_dilution",
+              "centralization",
+              "technical_risk",
+              "other"
+            ]
+          },
+          "detail": { "type": "string" },
+          "citation": { "type": "string" },
+          "severity": {
+            "type": "string",
+            "enum": ["low", "medium", "high"]
+          }
+        }
+      }
+    },
+    "questions_to_ask": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 6,
+      "description": "Non-obvious, proposal-specific questions the delegate should ask in the forum or Discord. Not boilerplate.",
+      "items": { "type": "string" }
+    },
+    "confidence": {
+      "type": "object",
+      "required": ["overall", "unreadable_sections"],
+      "additionalProperties": false,
+      "properties": {
+        "overall": {
+          "type": "string",
+          "enum": ["high", "medium", "low"]
+        },
+        "unreadable_sections": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Parts that could not be analyzed (external docs, code references, linked specs not in the proposal text)."
+        }
+      }
+    }
+  }
+}

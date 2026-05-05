@@ -1,0 +1,116 @@
+{
+  "reasoning_trace": [
+    {
+      "step": "Read end-to-end",
+      "observation": "Proposal has two components: (1) one-time swaps totaling 3,350 mSOL from DAO treasury to Council wallet in exchange for 15,346,639 MNDE; (2) ongoing redirection of protocol fees to Council wallet with monthly MNDE value transfers back to DAO treasury.",
+      "inference": "First component is equal-value asset swap (internal transfer). Second component is material change in revenue flows with open-ended timeline and repayment mechanism."
+    },
+    {
+      "step": "Identify stakeholders",
+      "observation": "Author listed as Cerba. Marinade Labs proposes the transfer. Council wallet receives mSOL. DAO treasury exchanges assets and loses fee flow.",
+      "inference": "Cerba is proposer, Council wallet/Marinade Labs is beneficiary, DAO treasury is counterparty losing revenue stream control."
+    },
+    {
+      "step": "Locate monetary amounts",
+      "observation": "Initial swap: 2,279 mSOL ($437,000) for 9,741,000 MNDE ($437,000). Follow-up swap: 1,071 mSOL ($149,932) for 5,605,639 MNDE. Protocol fees amount unspecified.",
+      "inference": "Total swaps: 3,350 mSOL ($586,932) for 15,346,639 MNDE ($586,932). Equal value = internal_transfer for the swaps. Fee redirection is separate ongoing outflow of unknown amount."
+    },
+    {
+      "step": "Scan for KPI measurability",
+      "observation": "Proposal mentions 'covering expenses and growing protocol TVL' and 'supporting protocol growth' but provides no numeric targets, baselines, or success thresholds.",
+      "inference": "No measurable KPIs defined. Cannot evaluate if Marinade Labs delivers value justifying the fee redirection. Emit vague_kpi red flag."
+    },
+    {
+      "step": "Scan for milestone bounding",
+      "observation": "Fee redirection described as open-ended: 'This monthly transfer would cease once fees redirect back to the DAO treasury.' No timeline, conditions, or deliverable milestones specified.",
+      "inference": "No bounded timeline or reversion conditions. Emit missing_milestone red flag for open-ended fee redirection."
+    },
+    {
+      "step": "Scan for permission changes",
+      "observation": "Proposal requests 'redirecting protocol fees to the Council Wallet' - changing revenue flow from DAO treasury to Council wallet (established entity from MIP-15 context).",
+      "inference": "Material change granting Council control over protocol revenue stream. Council is existing cited entity, so medium severity per calibration guidance. Emit backdoor_permission red flag."
+    },
+    {
+      "step": "Scan for conversion/price risk",
+      "observation": "Monthly transfers described as 'equivalent MNDE value back to the DAO treasury' with no specification of valuation methodology, oracle, or calculation mechanism.",
+      "inference": "Price volatility could cause treasury value divergence if conversion mechanism unclear. Emit technical_risk red flag for unspecified valuation methodology."
+    },
+    {
+      "step": "Compose questions",
+      "observation": "Critical operational details missing: conversion mechanism, reversion conditions, failure handling, performance expectations.",
+      "inference": "Delegates need clarity on these mechanics before voting."
+    },
+    {
+      "step": "Assess confidence",
+      "observation": "Core swap mechanics (amounts, parties) are clear. Fee redirection operational details underspecified. All proposal text is readable.",
+      "inference": "Medium confidence overall. No unreadable sections, but missing operational specification reduces certainty about execution."
+    }
+  ],
+  "summary": "Marinade Labs proposes swapping 3,350 mSOL ($586,932) from DAO treasury to Council wallet for 15,346,639 MNDE, plus redirecting protocol fees to Council with monthly MNDE repayments to maintain treasury value. No timeline for fee reversion or performance KPIs specified.",
+  "stakeholders": [
+    {
+      "name": "Cerba",
+      "role": "proposer",
+      "citation": "**Author:** Cerba"
+    },
+    {
+      "name": "Marinade Labs / Council wallet",
+      "role": "beneficiary",
+      "citation": "Marinade Labs proposes transferring accumulated mSOL from the DAO treasury (2,279 mSOL, valued at $437,000) to the Council wallet."
+    },
+    {
+      "name": "DAO Treasury",
+      "role": "counterparty",
+      "citation": "the Council wallet would transfer 9,741,000 MNDE tokens ($437,000 value) back to the DAO Treasury"
+    },
+    {
+      "name": "MNDE token holders",
+      "role": "affected_group",
+      "citation": "Selling MNDE to fund operations would create significant selling pressure on the token"
+    }
+  ],
+  "treasury_impact": {
+    "direction": "internal_transfer",
+    "amount_usd": null,
+    "confidence": "medium",
+    "citation": "Marinade Labs proposes transferring accumulated mSOL from the DAO treasury (2,279 mSOL, valued at $437,000) to the Council wallet. In exchange, the Council wallet would transfer 9,741,000 MNDE tokens ($437,000 value) back to the DAO Treasury. [...] Additional mSOL accumulated over 12 days (1,071 mSOL, $149,932) would transfer to Council in exchange for 5,605,639 MNDE"
+  },
+  "red_flags": [
+    {
+      "category": "vague_kpi",
+      "detail": "Proposal mentions 'covering expenses and growing protocol TVL' and 'supporting protocol growth' as rationale for fee redirection, but provides no numeric targets, baselines, or measurable success criteria.",
+      "citation": "This approach allows Marinade Labs to avoid selling MNDE while covering expenses and growing protocol TVL. [...] allowing Marinade Labs to fund operations supporting protocol growth",
+      "severity": "high"
+    },
+    {
+      "category": "missing_milestone",
+      "detail": "Fee redirection has no specified timeline, reversion conditions, or deliverable milestones. Only states it will cease 'once fees redirect back to the DAO treasury' with no criteria for when that occurs.",
+      "citation": "This monthly transfer would cease once fees redirect back to the DAO treasury.",
+      "severity": "high"
+    },
+    {
+      "category": "backdoor_permission",
+      "detail": "Proposal grants Council wallet control over protocol revenue stream by redirecting fees from DAO treasury. Council is existing entity from MIP-15 but this represents significant ongoing authority over revenues.",
+      "citation": "Additionally, the proposal suggests redirecting protocol fees to the Council Wallet.",
+      "severity": "medium"
+    },
+    {
+      "category": "technical_risk",
+      "detail": "Monthly MNDE repayments are described as 'equivalent MNDE value' without specifying the valuation methodology, oracle source, or calculation mechanism. Price volatility could cause treasury value divergence.",
+      "citation": "Monthly, the Council wallet would transfer equivalent MNDE value back to the DAO treasury, maintaining notional treasury value as if revenues were accumulated normally.",
+      "severity": "medium"
+    }
+  ],
+  "questions_to_ask": [
+    "What is the exact mechanism for calculating 'equivalent MNDE value' in the monthly transfers - spot price, TWAP over what period, which oracle/DEX, and what happens if the oracle fails?",
+    "Under what specific conditions (timeline, DAO vote, performance metrics, or other trigger) would protocol fees redirect back to the DAO treasury?",
+    "If the Council wallet's MNDE balance falls below the required monthly transfer amount, what is the failure/remediation process?",
+    "What measurable deliverables or KPIs (e.g., TVL growth %, revenue targets, user growth) justify the ongoing fee redirection, and what underperformance threshold would trigger early reversion?",
+    "Is there a cap on the total cumulative value of fees that can be redirected before automatic reversion, or is it truly open-ended?",
+    "What governance mechanism allows the DAO to revoke the fee redirection if Marinade Labs performance deteriorates or if monthly MNDE transfers are missed?"
+  ],
+  "confidence": {
+    "overall": "medium",
+    "unreadable_sections": []
+  }
+}

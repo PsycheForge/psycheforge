@@ -1,0 +1,12 @@
+{
+  "predicted_outcome": 1,
+  "confidence_bps": 7000,
+  "reasoning_citation": "Triage surfaces two high-severity red_flags (vague_kpi: conditional fee percentage unspecified; backdoor_permission: calculation authority undefined) against a fee structure proposal. The missing fee percentage makes treasury_impact unknown - delegates cannot evaluate net cost. Communities reject proposals with critical blank parameters as they constitute blank-check authority grants. Confidence capped at triage.confidence.overall=medium.",
+  "key_triage_signals": [
+    "red_flag:vague_kpi:high",
+    "red_flag:backdoor_permission:high",
+    "treasury_impact:unknown",
+    "red_flag:technical_risk:medium",
+    "triage.confidence.overall:medium"
+  ]
+}

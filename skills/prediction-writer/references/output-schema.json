@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://psycheforge.xyz/schemas/prediction-writer-output.json",
+  "title": "PredictionWriterOutput",
+  "description": "Falsifiable prediction about a Solana DAO proposal's vote outcome, grounded in a governance-triage JSON. Committable to the reputation program's submit_prediction instruction.",
+  "type": "object",
+  "required": [
+    "predicted_outcome",
+    "confidence_bps",
+    "reasoning_citation",
+    "key_triage_signals"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "predicted_outcome": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 7,
+      "description": "Index 0..num_choices-1. Caller enforces the num_choices upper bound before submitting on-chain; schema allows up to 7 to match the reputation program's u8 / [u16; 8] cap."
+    },
+    "confidence_bps": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 10000,
+      "description": "Self-reported confidence, basis points. Hard Rule #2 in SKILL.md caps this by triage.confidence.overall: low→≤6000, medium→≤8000, high→≤9500."
+    },
+    "reasoning_citation": {
+      "type": "string",
+      "minLength": 50,
+      "maxLength": 800,
+      "description": "1-4 sentence justification grounded in triage fields. Not boilerplate. No recommendation language."
+    },
+    "key_triage_signals": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 6,
+      "description": "References to specific triage fields that drove the prediction. Format '<field_path>:<value>' (e.g. 'red_flag:backdoor_permission:high').",
+      "items": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 120
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "predicted_outcome": 1,
+  "confidence_bps": 7200,
+  "reasoning_citation": "Triage identifies high-severity backdoor_permission: proposal requests six-month Steward parameter control without naming the entity that will exercise this authority. High-severity vague_kpi (missing tier thresholds and allocation amounts) compounds the accountability gap. Although treasury_impact is none, the unspecified control grant meets Prior A exception criterion: communities reject treasury-neutral proposals when high-severity backdoor_permission is present. Confidence capped by triage.confidence.overall=medium.",
+  "key_triage_signals": [
+    "red_flag:backdoor_permission:high",
+    "red_flag:vague_kpi:high",
+    "treasury_impact:none",
+    "triage.confidence.overall:medium",
+    "red_flag:other:medium (JIP-27 dependency)"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "predicted_outcome": 0,
+  "confidence_bps": 6500,
+  "reasoning_citation": "Triage reveals treasury_impact.direction=internal_transfer with no direct outflow and zero high-severity red_flags. Four medium-severity process flags (vague_kpi, undefined execution authority, token_dilution via paused buybacks, missing_milestone) create accountability gaps but fall within the Prior A tolerance zone - calibrated against N=7 live batch, Solana DAO communities approve policy-adjustment proposals when no treasury drain or high-severity backdoor_permission is present. The token_dilution flag stems from pausing buybacks rather than supply inflation, which DAOs historically treat as reversible policy rather than protocol capture.",
+  "key_triage_signals": [
+    "treasury_impact.direction:internal_transfer",
+    "red_flag:vague_kpi:medium",
+    "red_flag:other:medium (execution authority undefined)",
+    "red_flag:token_dilution:medium",
+    "red_flag:missing_milestone:medium",
+    "confidence.overall:medium"
+  ]
+}

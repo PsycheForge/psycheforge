@@ -1,0 +1,12 @@
+{
+  "predicted_outcome": 0,
+  "confidence_bps": 5500,
+  "reasoning_citation": "Triage reveals $12.5m treasury outflow with five medium-severity process flags (vague_kpi, missing_milestone, centralization, technical_risk, token_dilution) but no high-severity governance capture signals. CSD has demonstrated execution capability ($3.2m in buybacks completed per reasoning_trace). Prior B mixed zone: large grant with weak accountability normally correlates with rejection, but existing track record and absence of backdoor_permission flags create contradictory signals. Scale-up from $3.2m to $12.5m without staged disbursement constrains confidence. Triage.confidence.overall=medium.",
+  "key_triage_signals": [
+    "treasury_impact:outflow:12500000",
+    "red_flag:vague_kpi:medium",
+    "red_flag:missing_milestone:medium",
+    "reasoning_trace[0]:CSD executed $3.2m in buybacks to date",
+    "triage.confidence.overall:medium"
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "reasoning_trace": [
+    {
+      "step": "Read end-to-end",
+      "observation": "Proposal by helloiamvu to pause MNDE buyback program (initiated under MIP-11) and instead accumulate mSOL using protocol performance fees. References MIP-16 for eventual deployment to liquidity pools. Implementation: pause buybacks one epoch after approval.",
+      "inference": "This is a policy/mechanism change, not a grant. Need to verify if amounts are specified, if KPIs are measurable, and if supply trajectory is affected."
+    },
+    {
+      "step": "Identify stakeholders",
+      "observation": "Author is helloiamvu. Proposal affects MNDE holders (via removal of buyback pressure) and references MIP-11 and MIP-16 as related mechanisms.",
+      "inference": "Proposer: helloiamvu. Affected group: MNDE holders. No explicit beneficiaries or counterparties named."
+    },
+    {
+      "step": "Locate monetary amounts",
+      "observation": "Proposal states '50% of protocol performance fees (collected in SOL)' were used for buybacks under MIP-11, and now proposes 'Retain 100% of protocol performance fees'. No absolute amounts in USD, SOL, or MNDE are provided.",
+      "inference": "Treasury impact direction is internal reallocation (SOL retained as mSOL rather than spent on MNDE buybacks). No specific amount quantified. Mark as internal_transfer with null amount."
+    },
+    {
+      "step": "Scan KPIs",
+      "observation": "Success metrics: 'enable deeper MNDE/mSOL liquidity', 'Lower slippage for traders', 'Attract new buyers', 'Support MNDE's broader utility'. No numeric thresholds, baselines, or targets provided.",
+      "inference": "Non-measurable goals. Emit vague_kpi red_flag with medium severity."
+    },
+    {
+      "step": "Scan milestones",
+      "observation": "Proposal says 'accumulated mSOL may be deployed to liquidity pools as outlined in MIP-16'. The word 'may' is conditional. No timeline or binding commitment for deployment.",
+      "inference": "Deployment is discretionary and lacks timeline. Emit missing_milestone red_flag with low severity since this is a foundational/enabling proposal rather than a direct spend."
+    },
+    {
+      "step": "Scan token supply effects",
+      "observation": "Proposal pauses MNDE buybacks initiated under MIP-11. Buybacks typically remove tokens from circulation via market purchases. Pausing them means tokens that would have been removed remain in circulation.",
+      "inference": "This changes MNDE supply trajectory by removing a reduction mechanism. Per skill calibration, any supply trajectory modification triggers token_dilution. Severity medium due to lack of quantified impact on total supply percentage."
+    },
+    {
+      "step": "Scan permission changes",
+      "observation": "Proposal references 'deployment into MNDE/mSOL liquidity pools, starting with those defined in MIP-16.' Does not specify who controls deployment timing or parameters. MIP-16 is cited as existing framework.",
+      "inference": "Execution authority unclear but references existing MIP-16. Not a new unspecified authority grant. Does not meet threshold for backdoor_permission flag given MIP-16 citation."
+    },
+    {
+      "step": "Scan off-chain dependencies",
+      "observation": "Implementation requires canceling TWAP orders on Jupiter, halting buybacks one epoch after approval, minting mSOL from retained SOL, and eventual deployment per MIP-16.",
+      "inference": "Multiple execution steps required. No clear owner for each step identified in proposal text."
+    }
+  ],
+  "summary": "Marinade DAO proposes pausing MNDE buybacks under MIP-11 and instead retaining 100% of protocol fees in SOL to mint mSOL for MNDE/mSOL liquidity pools per MIP-16. No quantified liquidity targets or deployment timeline provided.",
+  "stakeholders": [
+    {
+      "name": "helloiamvu",
+      "role": "proposer",
+      "citation": "**Author:** helloiamvu"
+    },
+    {
+      "name": "MNDE holders",
+      "role": "affected_group",
+      "citation": "While this initiative aligned value accrual to MNDE holders, the DAO has identified a higher-priority challenge"
+    }
+  ],
+  "treasury_impact": {
+    "direction": "internal_transfer",
+    "amount_usd": null,
+    "confidence": "low",
+    "citation": "**Retain 100% of protocol performance fees** (in SOL) in the DAO treasury"
+  },
+  "red_flags": [
+    {
+      "category": "vague_kpi",
+      "detail": "Success metrics are non-measurable. Proposal aims to 'enable deeper MNDE/mSOL liquidity' and 'Lower slippage' without numeric baselines, thresholds, or target depths.",
+      "citation": "Deeper liquidity is a prerequisite for improved MNDE market access. Enhancing liquidity depth is expected to: Lower slippage for traders and integrators; Attract new buyers deterred by thin books",
+      "severity": "medium"
+    },
+    {
+      "category": "missing_milestone",
+      "detail": "No timeline or binding commitment for deploying accumulated mSOL. Proposal uses conditional language ('may be deployed') with no deadline.",
+      "citation": "**Mint mSOL** from these SOL funds as appropriate, enabling deployment into MNDE/mSOL liquidity pools",
+      "severity": "low"
+    },
+    {
+      "category": "token_dilution",
+      "detail": "Pausing MNDE buybacks removes a supply-reduction mechanism, effectively increasing circulating supply trajectory relative to MIP-11 baseline. No quantified impact on percentage of total supply provided.",
+      "citation": "MIP-11 introduced a mechanism where the DAO used 50% of protocol performance fees (collected in SOL) to perform monthly MNDE buybacks via TWAP orders. ... **Pause all MNDE buybacks** initiated under MIP-11",
+      "severity": "medium"
+    }
+  ],
+  "questions_to_ask": [
+    "What is the monthly SOL volume from protocol performance fees, and what percentage of total MNDE supply did the buybacks under MIP-11 remove each month?",
+    "Has MIP-16 passed, and if so, what specific liquidity pools, amounts, and deployment parameters does it authorize?",
+    "Who controls the timing and parameters for deploying accumulated mSOL into liquidity pools, and what governance approval is required?",
+    "What numeric liquidity depth target in USD or MNDE would define success for this initiative?",
+    "If accumulated mSOL remains undeployed beyond a certain timeframe, what recourse or review mechanism does the DAO have?"
+  ],
+  "confidence": {
+    "overall": "medium",
+    "unreadable_sections": [
+      "MIP-16 deployment specifics (referenced but not included)",
+      "MIP-11 historical buyback volumes and MNDE supply impact"
+    ]
+  }
+}

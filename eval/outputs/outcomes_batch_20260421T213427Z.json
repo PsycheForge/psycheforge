@@ -1,0 +1,37 @@
+{
+  "df78d598e2626a88e240ebefe31ff94916ebf172251402cebec21701ef70b082": {
+    "final_outcome": 0,
+    "distribution": [9960, 40],
+    "difficulty_bps": 812
+  },
+  "dac93ad4440f04700e77f6c6068fc5eeb61c617ec22eedfeb5fa5ba24123f3e8": {
+    "final_outcome": 0,
+    "distribution": [10000, 0],
+    "difficulty_bps": 0
+  },
+  "af78bb01872a7f2cfd79caf3c7584c2463ae3db6c5d0863232c0799bc42ba6d3": {
+    "final_outcome": 0,
+    "distribution": [8380, 1620],
+    "difficulty_bps": 6390
+  },
+  "2170987a6d3a65354348c4dd8cf41df08a03132ed2164c073439223513d32216": {
+    "final_outcome": 0,
+    "distribution": [9960, 40],
+    "difficulty_bps": 812
+  },
+  "99cd81d0fd322c564892182121fbc80a2e8c3ca2bcece1e4521a45cd419b9612": {
+    "final_outcome": 0,
+    "distribution": [7530, 2470],
+    "difficulty_bps": 8064
+  },
+  "2eb38a4b7be05caba64a45960aa7bb459a7e0673d2e991b30c7f54fae07a487a": {
+    "final_outcome": 0,
+    "distribution": [9800, 200],
+    "difficulty_bps": 1620
+  },
+  "549299fa4f17a1a2da36946449ceb10c8004f6230fd2f09465f91d455a7ed87d": {
+    "final_outcome": 0,
+    "distribution": [9500, 500],
+    "difficulty_bps": 2860
+  }
+}

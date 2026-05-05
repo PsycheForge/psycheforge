@@ -1,0 +1,13 @@
+{
+  "predicted_outcome": 1,
+  "confidence_bps": 6500,
+  "reasoning_citation": "Large treasury outflow (100M MNDE allocation) paired with two high-severity accountability flags: vague_kpi (no numeric targets) and missing_milestone (no interim disbursement gates). Prior B pattern applies — large grants with weak accountability mechanisms typically fail in Solana DAO governance. Foundation structure undefined (medium backdoor_permission flag), creating additional governance gap. Triage confidence medium, capping prediction confidence at 8000 bps per Hard Rule #2.",
+  "key_triage_signals": [
+    "treasury_impact.direction:outflow",
+    "treasury_impact.amount:100M_MNDE",
+    "red_flag:vague_kpi:high",
+    "red_flag:missing_milestone:high",
+    "red_flag:backdoor_permission:medium",
+    "triage.confidence.overall:medium"
+  ]
+}

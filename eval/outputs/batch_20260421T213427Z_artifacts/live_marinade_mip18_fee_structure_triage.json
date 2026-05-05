@@ -1,0 +1,92 @@
+{
+  "reasoning_trace": [
+    {
+      "step": "Read end-to-end",
+      "observation": "MIP-18 modifies Marinade's fee structure by removing a fixed 9.5% performance fee and replacing it with a conditional fee charged only when outperforming the Solana Staking Rate, plus adding a uniform 20 basis point unstake fee across all products.",
+      "inference": "This is a parameter change affecting DAO revenue model, not a direct treasury spend or inflow. Need to verify if the conditional fee rate is specified and if KPIs for 'outperformance' are measurable."
+    },
+    {
+      "step": "Scan KPIs",
+      "observation": "The proposal states objectives as 'TVL growth and staker acquisition' and 'optimal staking yields matching or exceeding self-delegation returns' with no numeric baselines, thresholds, or measurement methodology.",
+      "inference": "Non-measurable success criteria. Emit vague_kpi red_flag."
+    },
+    {
+      "step": "Identify monetary amounts",
+      "observation": "Proposal specifies removing 9.5% performance fee and adding 20 basis point unstake fee. The conditional performance fee rate when Marinade outperforms is mentioned but never quantified.",
+      "inference": "Critical parameter missing. The proposal changes fee structure but doesn't specify the replacement performance fee rate. Emit technical_risk red_flag."
+    },
+    {
+      "step": "Check implementation controls",
+      "observation": "No implementation timeline provided. Proposal states 'Vote went live on Realms December 22, 2025' but includes no technical specification, review period, or rollback mechanism.",
+      "inference": "Missing implementation milestones. Emit missing_milestone red_flag."
+    },
+    {
+      "step": "Assess treasury impact",
+      "observation": "Proposal notes 'Revenue-reality gap: The DAO approved 9.5% fees but actual capture falls short.' Changes revenue collection mechanism but specifies no discrete treasury transaction.",
+      "inference": "Direction is 'none' - this is a fee parameter change, not a spend or inflow event. Future revenue impact depends on unspecified conditional fee rate and market conditions."
+    }
+  ],
+  "summary": "Marinade Finance fee restructuring: removes fixed 9.5% performance fee, adds conditional fee only when outperforming Solana Staking Rate (rate unspecified), and implements uniform 20 bps unstake fee across all products. Re-vote after prior quorum failure.",
+  "stakeholders": [
+    {
+      "name": "helloiamvu",
+      "role": "proposer",
+      "citation": "**Author:** helloiamvu"
+    },
+    {
+      "name": "Marinade stakers",
+      "role": "affected_group",
+      "citation": "stakers increasingly prioritize APY and select providers offering optimal net returns"
+    },
+    {
+      "name": "Marinade DAO treasury",
+      "role": "affected_group",
+      "citation": "Revenue-reality gap: The DAO approved 9.5% fees but actual capture falls short"
+    }
+  ],
+  "treasury_impact": {
+    "direction": "none",
+    "amount_usd": null,
+    "confidence": "high",
+    "citation": "This proposal modifies the fee structure from MIP-5 by removing the fixed 9.5% performance fee and replacing it with 'a conditional fee that is charged only when Marinade outperforms the Solana Staking Rate.'"
+  },
+  "red_flags": [
+    {
+      "category": "vague_kpi",
+      "detail": "Success criteria are non-measurable: 'TVL growth and staker acquisition' and 'optimal staking yields' have no numeric baselines, thresholds, or measurement methodology.",
+      "citation": "Marinade's core mission centers on TVL growth and staker acquisition. [...] The objective delivers optimal staking yields matching or exceeding self-delegation returns.",
+      "severity": "medium"
+    },
+    {
+      "category": "technical_risk",
+      "detail": "The conditional performance fee rate is never specified. Proposal describes when the fee applies but not the percentage or basis point amount.",
+      "citation": "This proposal modifies the fee structure from MIP-5 by removing the fixed 9.5% performance fee and replacing it with 'a conditional fee that is charged only when Marinade outperforms the Solana Staking Rate.'",
+      "severity": "high"
+    },
+    {
+      "category": "technical_risk",
+      "detail": "Solana Staking Rate calculation methodology not specified. SSR is defined conceptually as network-wide rewards excluding MEV, but no formula, data source, or update frequency provided.",
+      "citation": "SSR represents 'network-wide staking rewards derived from inflation and transaction fees (including priority fees).' MEV is explicitly excluded",
+      "severity": "medium"
+    },
+    {
+      "category": "missing_milestone",
+      "detail": "No implementation timeline, technical specification, audit requirement, or gradual rollout plan provided despite significant fee logic changes.",
+      "citation": "**Voting Status:** Vote went live on Realms December 22, 2025.",
+      "severity": "medium"
+    }
+  ],
+  "questions_to_ask": [
+    "What is the exact percentage or basis point rate for the conditional performance fee charged when Marinade outperforms SSR?",
+    "How is the Solana Staking Rate calculated in practice—what data source, update frequency, and formula will be used?",
+    "What is the technical implementation timeline, and will the code undergo third-party audit before deployment?",
+    "What was the actual vote participation rate and yes/no approval percentage when the previous vote failed quorum?",
+    "What is the projected treasury revenue impact under different market scenarios (e.g., Marinade outperforms 50%, 75%, 100% of epochs)?"
+  ],
+  "confidence": {
+    "overall": "medium",
+    "unreadable_sections": [
+      "MIP-5 fee structure (referenced but not included in proposal text)"
+    ]
+  }
+}

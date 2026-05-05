@@ -1,0 +1,11 @@
+{
+  "predicted_outcome": 0,
+  "confidence_bps": 7500,
+  "reasoning_citation": "Triage identifies one high-severity red flag (token_dilution: 30% total supply burn) but zero governance capture concerns (no backdoor_permission or centralization flags). Token burns differ from typical treasury outflows—they destroy holdings rather than transfer to counterparties, eliminating counterparty risk while creating deflationary pressure favorable to existing holders. The massive treasury reduction (564M to ~264M MNDE) is material, but the two-stage deliberative process and high triage confidence, combined with absence of permission or bundling risks, align with approval.",
+  "key_triage_signals": [
+    "red_flag:token_dilution:high",
+    "treasury_impact.direction:outflow",
+    "treasury_impact.amount_usd:null",
+    "confidence.overall:high"
+  ]
+}

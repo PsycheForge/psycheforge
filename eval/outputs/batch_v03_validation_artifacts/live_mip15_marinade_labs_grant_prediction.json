@@ -1,0 +1,12 @@
+{
+  "predicted_outcome": 0,
+  "confidence_bps": 5500,
+  "reasoning_citation": "Four medium-severity flags (vague_kpi, missing_milestone, backdoor_permission, token_dilution) on 100M MNDE outflow match Prior B pattern: large grant + weak accountability + positive track record = mixed signals. Triage reasoning explicitly cites 'proven track record' and 'past MNDE allocations'. In Solana DAO culture, operational grants to established core-infrastructure teams tend to pass despite process weaknesses when no high-severity backdoor is present. Fee activation creates compensating inflows. Confidence reflects genuine uncertainty.",
+  "key_triage_signals": [
+    "treasury_impact:outflow",
+    "red_flag:vague_kpi:medium",
+    "red_flag:missing_milestone:medium",
+    "red_flag:backdoor_permission:medium",
+    "reasoning_trace:proven_track_record"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "predicted_outcome": 0,
+  "confidence_bps": 6000,
+  "reasoning_citation": "Triage surfaces three medium-severity process flags (vague_kpi, missing_milestone, token_dilution) against operational funding following fee-structure changes. No high-severity governance or security risks identified. Matches skill prior 'treasury_impact.direction=outflow with soft KPIs → mixed prior' indicating contested territory. Quarterly reporting and 1-year cliff provide baseline accountability despite measurement gaps. Medium-severity flags without existential blockers trend toward marginal approval. Confidence moderate due to triage.confidence.overall=medium and three unreadable dependency sections.",
+  "key_triage_signals": [
+    "red_flag:vague_kpi:medium",
+    "red_flag:missing_milestone:medium",
+    "red_flag:token_dilution:medium",
+    "treasury_impact:outflow",
+    "triage.confidence.overall:medium"
+  ]
+}

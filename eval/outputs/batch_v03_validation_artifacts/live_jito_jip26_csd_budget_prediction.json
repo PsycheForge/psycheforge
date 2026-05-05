@@ -1,0 +1,13 @@
+{
+  "predicted_outcome": 0,
+  "confidence_bps": 6200,
+  "reasoning_citation": "Triage surfaces medium-severity process flags (vague_kpi, missing_milestone) against a $12.5m outflow, fitting Prior B's 'direct outflow + soft KPIs' mixed pattern. However, three mitigating signals converge: proposal extends existing JIP-17 CSD operations with demonstrated $3.2m execution track record; treasury_impact funds buybacks that reduce circulating supply (token_dilution flag is directionally favorable); no backdoor_permission or high-severity governance capture concerns present. Large treasury grants with moderate accountability gaps are contested, but established-team buyback programs historically pass. Confidence reflects Prior B mixed-prior guidance.",
+  "key_triage_signals": [
+    "treasury_impact:outflow:12500000",
+    "red_flag:vague_kpi:medium",
+    "red_flag:missing_milestone:medium",
+    "red_flag:token_dilution:medium",
+    "summary:extends JIP-17 operations",
+    "triage.confidence.overall:medium"
+  ]
+}

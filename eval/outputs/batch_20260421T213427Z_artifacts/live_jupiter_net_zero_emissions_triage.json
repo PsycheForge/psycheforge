@@ -1,0 +1,137 @@
+{
+  "reasoning_trace": [
+    {
+      "step": "Read end-to-end",
+      "observation": "Proposal presents binary vote for net-zero JUP emissions. Option 1 continues planned 700M Jupuary airdrop plus team and Mercurial vesting. Option 2 postpones Jupuary, replaces team onchain vesting with 'JUP credits', offsets Mercurial vesting via Jupiter company market purchases.",
+      "inference": "Governance parameter change affecting token supply. Treasury impact under Option 2 (titular proposal): DAO retains 700M+ tokens. Primary risks involve off-chain dependencies and corporate financial commitments."
+    },
+    {
+      "step": "Identify stakeholders",
+      "observation": "Author: Kash. Affected: Jupiter team members (emissions paused), Jupuary recipients (700M tokens postponed), Mercurial token holders/investors (5% supply, offset mechanism), current stakers (voting bloc).",
+      "inference": "Conflicting stakeholder interests. Team takes credit risk with off-chain 'JUP credits'. Jupuary recipients face indefinite postponement. Mercurial holders get accelerated vesting with tracking."
+    },
+    {
+      "step": "Locate monetary amounts",
+      "observation": "700M Jupuary tokens, ~1.2B total emissions reduced to 'effectively zero' under Option 2, 5% total supply to Mercurial, 50M/quarter ASR unchanged.",
+      "inference": "Under Option 2, DAO treasury retains 700M+ tokens. Mercurial tokens distributed then offset by Jupiter company market purchases (not DAO spending). Net treasury impact: effectively zero emissions as stated."
+    },
+    {
+      "step": "Scan KPI measurability",
+      "observation": "Jupuary postponement states 'Revisit when market conditions improve' with no quantitative threshold or timeline.",
+      "inference": "Vague KPI. No measurable criteria for when to revisit 700M token distribution. Cannot hold accountable to timeline."
+    },
+    {
+      "step": "Scan milestone bounding",
+      "observation": "Jupuary postponement has no defined conditions, milestones, or triggers for future consideration beyond 'when market conditions improve'.",
+      "inference": "Missing milestone. 700M tokens could remain locked indefinitely without clear revisit process."
+    },
+    {
+      "step": "Scan centralization risk",
+      "observation": "Jupiter company 'absorbs team member token sales directly' and purchases 'equivalent tokens for Jupiter treasury when tracked wallets sell'. Jupiter becomes counterparty for all team emissions and Mercurial offset purchases.",
+      "inference": "Severe centralization. Jupiter's corporate financial health is single point of failure for team credits and Mercurial offset commitments. No diversification or cap."
+    },
+    {
+      "step": "Scan technical risk",
+      "observation": "Mercurial offset tracks 'approximately 300 wallets' to detect sales and trigger offset purchases.",
+      "inference": "Technical risk. Tracking fails if users employ mixers, privacy tools, or OTC trades. 'Approximately' suggests imprecise tracking."
+    },
+    {
+      "step": "Scan governance structure",
+      "observation": "Proposal bundles three distinct emission sources (Jupuary, team vesting, Mercurial obligations) into single binary vote. Rationale: 'Half measures don't move markets – bundling required for decisive market signal'.",
+      "inference": "Governance risk. Delegates cannot vote granularly on components. Reduces governance precision for market impact theater."
+    },
+    {
+      "step": "Assess financial commitment bounds",
+      "observation": "Jupiter commits to purchase 'equivalent tokens' when Mercurial stakeholders sell. No cap, budget limit, or maximum exposure specified.",
+      "inference": "Unbounded commitment. If all Mercurial holders (5% total supply) dump simultaneously, Jupiter must purchase at prevailing market price. Uncapped exposure stresses Jupiter's balance sheet."
+    }
+  ],
+  "summary": "Binary vote to achieve net-zero JUP emissions. Option 2 postpones 700M Jupuary airdrop indefinitely, pauses team vesting (replaced with off-chain 'JUP credits'), and offsets Mercurial stakeholder vesting via Jupiter company market purchases. Bundles three emission sources into single vote.",
+  "stakeholders": [
+    {
+      "name": "Kash",
+      "role": "proposer",
+      "citation": "Author: Kash"
+    },
+    {
+      "name": "Jupiter team members",
+      "role": "affected_group",
+      "citation": "Cease onchain token emissions to team members"
+    },
+    {
+      "name": "Jupuary recipients",
+      "role": "affected_group",
+      "citation": "Return all 700 million tokens to Community Cold Multisig"
+    },
+    {
+      "name": "Mercurial token holders and investors",
+      "role": "affected_group",
+      "citation": "Mercurial Stakeholders Vesting – 5% of total supply distributed to Mercurial token holders and investors"
+    },
+    {
+      "name": "Jupiter (company)",
+      "role": "counterparty",
+      "citation": "Jupiter absorbs team member token sales directly"
+    },
+    {
+      "name": "Current JUP stakers",
+      "role": "affected_group",
+      "citation": "Only 29% of current stakers participated in prior Jupuary vote"
+    }
+  ],
+  "treasury_impact": {
+    "direction": "none",
+    "amount_usd": null,
+    "confidence": "medium",
+    "citation": "Reduces emissions from approximately 1.2 billion to effectively zero tokens"
+  },
+  "red_flags": [
+    {
+      "category": "vague_kpi",
+      "detail": "Jupuary postponement condition is 'when market conditions improve' with no quantitative threshold, baseline, or timeline specified.",
+      "citation": "Revisit when market conditions improve",
+      "severity": "medium"
+    },
+    {
+      "category": "missing_milestone",
+      "detail": "No defined criteria, triggers, or governance mechanism specified for revisiting the postponed 700M Jupuary token distribution.",
+      "citation": "Preserve user snapshot for future distribution",
+      "severity": "medium"
+    },
+    {
+      "category": "centralization",
+      "detail": "Jupiter company becomes sole counterparty for all team token sales and sole purchaser for Mercurial offset tokens. Corporate solvency is single point of failure for multiple large financial commitments. No cap or diversification specified.",
+      "citation": "Jupiter absorbs team member token sales directly; Purchase equivalent tokens for Jupiter treasury when tracked wallets sell or move tokens to exchanges",
+      "severity": "high"
+    },
+    {
+      "category": "technical_risk",
+      "detail": "Mercurial offset relies on tracking 'approximately 300 wallets'. Tracking could fail if holders use mixers, privacy protocols, or conduct OTC trades off-chain. Imprecise language ('approximately') suggests tracking uncertainty.",
+      "citation": "Track approximately 300 wallets holding '99% of allocated $JUP'",
+      "severity": "medium"
+    },
+    {
+      "category": "other",
+      "detail": "Proposal bundles three distinct emission sources (Jupuary user rewards, team vesting, Mercurial stakeholder obligations) into a single binary vote, preventing delegates from approving some components while rejecting others.",
+      "citation": "'Half measures don't move markets' – bundling required for decisive market signal",
+      "severity": "medium"
+    }
+  ],
+  "questions_to_ask": [
+    "What specific quantitative metrics or thresholds define 'when market conditions improve' to trigger a DAO vote to revisit the postponed 700M Jupuary distribution?",
+    "What happens to team member 'JUP credits' if Jupiter (the company) becomes insolvent, is acquired, or otherwise unable to honor off-chain credit obligations?",
+    "If Mercurial stakeholders use privacy tools, mixers, or conduct large OTC sales off-exchange, how will the offset tracking detect these transactions and trigger purchases?",
+    "What is the maximum financial commitment (cap or budget) for Jupiter's obligation to purchase Mercurial offset tokens if all holders dump 5% of total supply simultaneously?",
+    "Why were three structurally different emission sources bundled into a single binary vote rather than presented as separate proposals with independent rationales?",
+    "What governance mechanism allows the DAO to revisit the 700M postponed Jupuary tokens—does it require a new proposal, or is there an automatic trigger condition?"
+  ],
+  "confidence": {
+    "overall": "medium",
+    "unreadable_sections": [
+      "No USD amounts provided for token valuations or Jupiter company's financial capacity",
+      "Total JUP supply not specified (needed to calculate absolute Mercurial token count from 5% figure)",
+      "JUP credits system implementation details not provided",
+      "Wallet tracking methodology and technical implementation not detailed"
+    ]
+  }
+}

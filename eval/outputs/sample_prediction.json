@@ -1,0 +1,12 @@
+{
+  "predicted_outcome": 1,
+  "confidence_bps": 7200,
+  "reasoning_citation": "Triage surfaces three high-severity red_flags (backdoor_permission, centralization, bundling anti-pattern) against a proposal framed as maintenance. When multiple governance-key flags are at high severity, contested rejection is the base-rate outcome.",
+  "key_triage_signals": [
+    "red_flag:backdoor_permission:high",
+    "red_flag:centralization:high",
+    "red_flag:other:high (bundling)",
+    "treasury_impact:none",
+    "confidence.overall:medium"
+  ]
+}

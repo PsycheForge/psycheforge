@@ -1,0 +1,128 @@
+{
+  "reasoning_trace": [
+    {
+      "step": "Read end-to-end",
+      "observation": "JIP-26 requests 50,000 JitoSOL from Jito DAO treasury to extend the Cryptoeconomics subDAO (CSD) budget for executing JTO buybacks equivalent to 100% of Jito Network revenue (~$12.5m). Funds go to the existing CSD 4/6 multisig from JIP-17. Includes quarterly reporting and open-source requirement.",
+      "inference": "Treasury outflow to an internal subDAO. Need to verify KPI specificity, milestone bounding, and whether the buyback authority/scope expansion is fully disclosed."
+    },
+    {
+      "step": "Identify stakeholders",
+      "observation": "Author is 'drnick'. Beneficiary is the CSD operating under the JIP-17 4/6 multisig. JTO holders are the affected group via buyback price linkage.",
+      "inference": "Single proposer, internal subDAO beneficiary, no external counterparty named. Multisig signers themselves are not enumerated in this text."
+    },
+    {
+      "step": "Locate monetary amounts",
+      "observation": "Two figures: '50,000 JitoSOL' (the request) and 'roughly $12.5m' (described as ~100% of Jito Network revenue and the buyback target). $3.2M of historical buybacks is also cited.",
+      "inference": "Direction is outflow from DAO treasury to the CSD multisig. The 50,000 JitoSOL is the disbursement; $12.5m is the buyback throughput target, not a separate spend. JitoSOL/USD price is not stated in proposal text — USD value of the 50,000 JitoSOL is not directly cited."
+    },
+    {
+      "step": "Scan KPI measurability",
+      "observation": "Key Outcomes list 'Vault and JTO Auction v1 smart contracts delivery', 'Monthly TWAP buybacks maintaining revenue-to-JTO price linkage', 'POL research paper with implementation recommendations', 'Strengthened data infrastructure'. No numeric thresholds (e.g., minimum buyback frequency, vault TVL targets, paper deadline, infra uptime).",
+      "inference": "Deliverables are named but not quantified. 'Monthly' is the only measurable cadence. Emit vague_kpi at medium severity — qualitative outcomes without thresholds."
+    },
+    {
+      "step": "Scan milestone bounding",
+      "observation": "The full 50,000 JitoSOL transfers 'upon passage' to the CSD multisig. Reporting is quarterly but disbursement is not tranched against milestones. No clawback or checkpoint condition is described.",
+      "inference": "Lump-sum transfer with retrospective reporting only. Emit missing_milestone at medium severity."
+    },
+    {
+      "step": "Scan permission / role changes",
+      "observation": "Funds are governed by the 'existing 4/6 multisig established in JIP-17'. No new authority, no new signer set, no upgrade-authority changes described. The buyback mandate (100% of revenue) is stated explicitly in the Abstract.",
+      "inference": "No HIDDEN authority change — the multisig and its scope are explicitly summary-mentioned and reference a prior governance act (JIP-17). backdoor_permission does NOT apply. However, transferring 50,000 JitoSOL to a 4/6 multisig with no on-proposal disclosure of signer identities and no tranching is an explicit concentration of executable treasury power. Emit centralization at medium severity."
+    },
+    {
+      "step": "Scan token-supply effects",
+      "observation": "Proposal funds JTO buybacks at scale (~$12.5m equivalent throughput) and references ongoing TWAP buybacks plus future Vault and Auction mechanisms.",
+      "inference": "Buybacks reduce circulating JTO (supply-trajectory change). token_dilution trigger is mandatory regardless of direction. $12.5m relative to JTO market cap is not stated in proposal text; the 50,000 JitoSOL disbursement itself is the bounded spend. Severity medium — material supply-side mechanic without proposal-stated percentage of supply."
+    },
+    {
+      "step": "Scan off-chain dependencies and technical risk",
+      "observation": "Execution depends on CSD delivering Vault and JTO Auction v1 smart contracts, TWAP infrastructure, and a POL research paper. Code is to be open-sourced under MIT-style license but not yet delivered. No audit requirement is stated.",
+      "inference": "Smart-contract delivery risk is independent of the centralization flag (different mechanism). Emit technical_risk at medium — unaudited contracts pending and no audit gate cited."
+    },
+    {
+      "step": "Compose questions",
+      "observation": "Open items: signer identity of the 4/6, USD valuation of 50k JitoSOL at proposal time, audit posture for Vault/Auction, runway math behind 'next quarter', clawback if mechanisms slip, and how 'revenue-to-JTO price linkage' is measured.",
+      "inference": "Frame 4–6 concrete delegate questions."
+    },
+    {
+      "step": "Assess confidence",
+      "observation": "Proposal text is concise; appendices, JIP-17 multisig signer list, JitoSOL/USD reference price, and CSD historical performance breakdown are not included.",
+      "inference": "Overall confidence medium. List unreadable sections."
+    }
+  ],
+  "summary": "JIP-26 requests 50,000 JitoSOL transferred to the existing CSD 4/6 multisig (per JIP-17) to extend funding for JTO buybacks targeting ~100% of Jito Network revenue (~$12.5m), plus Vault, TWAP, and JTO Auction development. Reporting is quarterly; outputs MIT-licensed.",
+  "stakeholders": [
+    {
+      "name": "drnick",
+      "role": "proposer",
+      "citation": "**Author:** drnick"
+    },
+    {
+      "name": "Cryptoeconomics subDAO (CSD)",
+      "role": "beneficiary",
+      "citation": "the DAO transfers 50,000 JitoSOL to the CSD multi-sig, governed by its existing 4/6 multisig established in JIP-17"
+    },
+    {
+      "name": "JTO holders",
+      "role": "affected_group",
+      "citation": "Monthly TWAP buybacks maintaining revenue-to-JTO price linkage"
+    }
+  ],
+  "treasury_impact": {
+    "direction": "outflow",
+    "amount_usd": null,
+    "confidence": "medium",
+    "citation": "50,000 JitoSOL for JTO buybacks"
+  },
+  "red_flags": [
+    {
+      "category": "vague_kpi",
+      "detail": "Key Outcomes name deliverables (Vault/Auction v1, TWAP buybacks, POL paper, data infra) but specify no numeric thresholds, deadlines beyond 'Q1–Q2 2026', or definition of 'revenue-to-JTO price linkage'.",
+      "citation": "Vault and JTO Auction v1 smart contracts delivery; Monthly TWAP buybacks maintaining revenue-to-JTO price linkage; POL research paper with implementation recommendations; Strengthened data infrastructure for future automated buyback algorithms",
+      "severity": "medium"
+    },
+    {
+      "category": "missing_milestone",
+      "detail": "Full 50,000 JitoSOL transfers upon passage to the CSD multisig with only retrospective quarterly reporting — no tranching, no checkpoint disbursement, no clawback condition tied to Vault/Auction delivery.",
+      "citation": "Upon passage, the DAO transfers 50,000 JitoSOL to the CSD multi-sig ... Requirements include quarterly progress reports covering buyback execution, treasury balances, and development milestones.",
+      "severity": "medium"
+    },
+    {
+      "category": "centralization",
+      "detail": "50,000 JitoSOL is concentrated under a 4/6 multisig with discretionary buyback execution authority. Signer identities are not disclosed in the proposal text and no revocation/sunset condition is described.",
+      "citation": "governed by its existing 4/6 multisig established in JIP-17",
+      "severity": "medium"
+    },
+    {
+      "category": "token_dilution",
+      "detail": "Mandatory supply-trajectory flag: proposal scales JTO buybacks toward ~100% of network revenue (~$12.5m), reducing circulating JTO. Magnitude relative to JTO supply is not stated in the proposal, and price-impact assumptions for TWAP execution are not provided.",
+      "citation": "50,000 JitoSOL in order to empower the CSD to execute buybacks equivalent to 100% of Jito Network revenue (roughly $12.5m)",
+      "severity": "medium"
+    },
+    {
+      "category": "technical_risk",
+      "detail": "Vault and JTO Auction v1 smart contracts are still under development with delivery targeted Q1–Q2 2026. No audit requirement, audit timeline, or pre-deployment review gate is stated, and the funding is disbursed before contracts ship.",
+      "citation": "Vault and Auction contract finalization (Q1–Q2 2026)",
+      "severity": "medium"
+    }
+  ],
+  "questions_to_ask": [
+    "Who are the six signers of the CSD 4/6 multisig referenced from JIP-17, and have any rotated since JIP-17 passed?",
+    "What is the JitoSOL/USD reference price assumed for the 50,000 JitoSOL request, and how is the DAO protected if JitoSOL appreciates substantially before deployment?",
+    "Will Vault and JTO Auction v1 contracts be audited before mainnet deployment, by whom, and is any portion of the 50,000 JitoSOL conditioned on audit completion?",
+    "Can the unspent JitoSOL balance be recalled to the DAO treasury if Vault/Auction delivery slips past Q2 2026 or if buyback execution pauses?",
+    "How is 'revenue-to-JTO price linkage' measured and reported — is there a specific metric (e.g., buyback $ per epoch / network revenue $ per epoch) the CSD commits to in the quarterly reports?",
+    "What is the runway math behind the 'exhausted within the next quarter' claim — current CSD JitoSOL balance, monthly burn, and projected exhaustion date?"
+  ],
+  "confidence": {
+    "overall": "medium",
+    "unreadable_sections": [
+      "JIP-17 multisig signer identities and rotation history (referenced but not included)",
+      "JitoSOL/USD reference price at proposal time (USD value of 50,000 JitoSOL not directly stated)",
+      "CSD current treasury balance and burn rate underlying the 'next quarter' exhaustion claim",
+      "Audit plan and deployment gating for Vault and JTO Auction v1 contracts",
+      "Forum source URL contents beyond the provided proposal text"
+    ]
+  }
+}

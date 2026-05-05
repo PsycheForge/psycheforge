@@ -1,0 +1,13 @@
+{
+  "predicted_outcome": 0,
+  "confidence_bps": 7000,
+  "reasoning_citation": "Triage shows treasury_impact.direction=none with no backdoor_permission flag, placing this in Prior A territory where the default leans approve. The single high-severity flag (token_dilution) is mandatory-trigger framing for any supply change; triage explicitly notes the net effect is deflationary, which communities typically receive favorably rather than as a drain. Remaining flags are technical_risk:medium and vague_kpi:low — process-only signals that do not flip the prediction under Prior A. Authority use is explicit and not buried (reasoning_trace step on permission changes). triage.confidence.overall=high permits confidence above the medium cap; held at 7000 because the follow-up execution proposal is listed in unreadable_sections, inheriting that blind spot.",
+  "key_triage_signals": [
+    "treasury_impact.direction:none",
+    "red_flag:token_dilution:high (deflationary)",
+    "red_flag:technical_risk:medium",
+    "red_flag:vague_kpi:low",
+    "confidence.overall:high",
+    "confidence.unreadable_sections:execution_proposal"
+  ]
+}

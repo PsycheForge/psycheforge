@@ -1,0 +1,45 @@
+.env
+.env.local
+.env.*.local
+.venv/
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+.pytest_cache/
+eval/runs/
+
+# Secrets / credentials: NEVER commit
+gh-secret.txt
+gh-secret*
+*.token
+*.secret
+*-token.txt
+*-secret.txt
+.secrets/
+.credentials
+.netrc
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+
+# Anchor / Solana
+onchain/target/
+onchain/.anchor/
+onchain/node_modules/
+onchain/test-ledger/
+onchain/yarn.lock
+onchain/package-lock.json
+
+# Hermes Agent (project-local clone, ~hundreds of MB)
+.hermes-agent/
+
+# Claude Code project settings (developer-local permission list)
+.claude/
+
+# Internal strategy docs — kept out of the public repo
+docs/open-risks-internal.md
+docs/customer-discovery-template.md
+docs/strategy/
+eval/outputs/interviews/

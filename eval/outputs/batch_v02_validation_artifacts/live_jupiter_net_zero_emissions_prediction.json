@@ -1,0 +1,13 @@
+{
+  "predicted_outcome": 0,
+  "confidence_bps": 5500,
+  "reasoning_citation": "Core token economics proposal by Kash affecting 1.2B JUP (~10% supply). Two HIGH flags (token_dilution, unbounded_spend) plus four MEDIUM flags present. Calibration guidance indicates Solana communities tolerate process/implementation concerns on emission decisions when no backdoor_permission exists. Treasury_impact vote-dependent (unknown) not direct drain. Triage confidence=medium and multiple unreadable sections cap prediction confidence. Contested major-supply decision with genuine uncertainty.",
+  "key_triage_signals": [
+    "red_flag:token_dilution:high",
+    "red_flag:unbounded_spend:high",
+    "red_flags:6 total (2 high + 4 medium)",
+    "treasury_impact:unknown",
+    "stakeholders[0].name:Kash",
+    "triage.confidence.overall:medium"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "predicted_outcome": 1,
+  "confidence_bps": 6500,
+  "reasoning_citation": "Triage surfaces two high-severity red_flags (backdoor_permission for indefinite fee redirection with no reversion timeline; centralization for unenforced manual monthly transfers) bundled with an mSOL/MNDE swap. The backdoor_permission flag represents a major governance change buried in operational details. When multiple high-severity governance flags are present and the triage summary explicitly highlights the permission change, rejection is the base-rate outcome in DAOs with active triage scrutiny. Confidence limited by triage.confidence.overall:medium and 4 unreadable sections including technical implementation details.",
+  "key_triage_signals": [
+    "red_flag:backdoor_permission:high",
+    "red_flag:centralization:high",
+    "red_flag:vague_kpi:medium",
+    "red_flag:technical_risk:medium",
+    "triage.confidence.overall:medium",
+    "unreadable_sections:4"
+  ]
+}

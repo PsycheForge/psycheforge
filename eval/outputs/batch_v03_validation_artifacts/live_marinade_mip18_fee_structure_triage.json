@@ -1,0 +1,100 @@
+{
+  "reasoning_trace": [
+    {
+      "step": "Read end-to-end",
+      "observation": "Proposal modifies Marinade's fee structure by removing a fixed 9.5% performance fee and replacing it with a conditional fee triggered when Marinade APY exceeds the Solana Staking Rate (SSR). Also adds a uniform 20 basis point unstake fee across all products. No appendices included.",
+      "inference": "This is a parameter change affecting revenue collection mechanisms. Need to verify if fee amounts are fully specified and who controls implementation."
+    },
+    {
+      "step": "Identify stakeholders",
+      "observation": "Author is helloiamvu. Proposal affects Marinade stakers (who pay fees) and the DAO treasury (which receives fee revenue). No external counterparties named.",
+      "inference": "Three stakeholders: proposer and two affected groups. No grants, external contracts, or third-party beneficiaries."
+    },
+    {
+      "step": "Locate monetary amounts",
+      "observation": "Proposal specifies removing 9.5% performance fee and adding 20 bps (0.20%) unstake fee. The conditional performance fee percentage when triggered is never specified.",
+      "inference": "Treasury impact direction is unknown - removes one fee, adds two others (one with unspecified rate). Net effect depends on performance, unstake volume, and the missing conditional fee percentage."
+    },
+    {
+      "step": "Scan for vague parameters",
+      "observation": "The conditional performance fee percentage is never stated. Proposal says fee applies 'only when Marinade outperforms' but doesn't define the rate charged when this condition is met.",
+      "inference": "Critical parameter missing. Cannot assess treasury impact or user cost without knowing the conditional fee percentage. This is a high-severity vague_kpi issue - delegates are voting on an undefined fee."
+    },
+    {
+      "step": "Scan for permission and authority",
+      "observation": "No specification of who calculates SSR, determines when conditional fees trigger, sets the conditional fee percentage, or has authority to adjust parameters post-approval.",
+      "inference": "Implementation authority is undefined. This creates potential for unilateral parameter control after governance approval. High-severity backdoor_permission flag - new authority with unspecified scope."
+    },
+    {
+      "step": "Scan for technical dependencies",
+      "observation": "SSR defined conceptually as 'network-wide staking rewards derived from inflation and transaction fees' but calculation methodology, data sources, oracle specifications, and verification mechanisms are absent.",
+      "inference": "Critical technical implementation details missing. Different calculation methods could materially change when fees trigger and by how much. Medium-severity technical_risk."
+    }
+  ],
+  "summary": "Marinade fee revamp removes fixed 9.5% performance fee, adds conditional fee when outperforming chain-wide staking rate, and imposes 20 bps unstake fee. Conditional fee percentage unspecified; calculation authority undefined.",
+  "stakeholders": [
+    {
+      "name": "helloiamvu",
+      "role": "proposer",
+      "citation": "Author: helloiamvu"
+    },
+    {
+      "name": "Marinade stakers",
+      "role": "affected_group",
+      "citation": "stakers increasingly prioritize APY and select providers offering optimal net returns"
+    },
+    {
+      "name": "Marinade DAO treasury",
+      "role": "affected_group",
+      "citation": "aligning DAO revenue with demonstrated outperformance"
+    }
+  ],
+  "treasury_impact": {
+    "direction": "unknown",
+    "amount_usd": null,
+    "confidence": "low",
+    "citation": "removes the current 9.5% performance fee from Marinade Native and mSOL rewards [...] conditional fee that is charged only when Marinade outperforms the Solana Staking Rate [...] 20 basis points (0.20%) unstake fee - conditional fee percentage not specified, making net impact incalculable"
+  },
+  "red_flags": [
+    {
+      "category": "vague_kpi",
+      "detail": "Conditional performance fee percentage is never specified. Proposal authorizes charging fees when outperforming SSR but doesn't define the rate, making treasury impact and user cost impossible to evaluate.",
+      "citation": "conditional fee that is charged only when Marinade outperforms the Solana Staking Rate [...] New performance fee applies only when Marinade APY exceeds the Solana Staking Rate",
+      "severity": "high"
+    },
+    {
+      "category": "backdoor_permission",
+      "detail": "No specification of who has authority to calculate SSR, determine when conditional fees trigger, set the conditional fee percentage, or adjust parameters post-approval. New authority granted with undefined scope.",
+      "citation": "Solana Staking Rate (SSR) Definition: SSR represents network-wide staking rewards derived from inflation and transaction fees (including priority fees)",
+      "severity": "high"
+    },
+    {
+      "category": "technical_risk",
+      "detail": "SSR calculation methodology not specified. No oracle, data source, verification mechanism, or dispute resolution process defined. Different calculation approaches could materially change when fees trigger and revenue outcomes.",
+      "citation": "network-wide staking rewards derived from inflation and transaction fees (including priority fees). MEV is explicitly excluded",
+      "severity": "medium"
+    },
+    {
+      "category": "missing_milestone",
+      "detail": "No implementation timeline, test period, or review checkpoint specified. No staged rollout or validation phase before full deployment across all Marinade products.",
+      "citation": "Vote went live on Realms December 22, 2025",
+      "severity": "low"
+    }
+  ],
+  "questions_to_ask": [
+    "What is the percentage rate for the conditional performance fee when Marinade APY exceeds SSR?",
+    "Who has the authority to calculate SSR, determine when fees trigger, and set or adjust the conditional fee percentage?",
+    "What specific data sources, oracles, and calculation methodology will be used to compute SSR and Marinade APY for comparison?",
+    "Is there a cap on the conditional performance fee, or can the rate be changed without further governance approval?",
+    "What is the projected annual DAO revenue under this structure compared to the current 9.5% fixed fee, under various performance scenarios?",
+    "Will there be a test period, audit, or gradual rollout before full implementation across Marinade Native, mSOL, and Marinade Select?"
+  ],
+  "confidence": {
+    "overall": "medium",
+    "unreadable_sections": [
+      "Conditional performance fee percentage (not specified in proposal text)",
+      "SSR calculation methodology and authority structure (not defined in proposal text)",
+      "Implementation specification and technical architecture (not included in proposal text)"
+    ]
+  }
+}

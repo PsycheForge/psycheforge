@@ -1,0 +1,141 @@
+{
+  "reasoning_trace": [
+    {
+      "step": "Read end-to-end",
+      "observation": "Proposal bundles three JUP token emission sources (700M Jupuary airdrop, team vesting, 5% supply Mercurial stakeholder vesting) into a single vote with two options. Option 1 continues planned emissions; Option 2 implements 'net-zero' through postponement, pause, and offset mechanisms.",
+      "inference": "Complex token-supply modification with multiple off-chain dependencies. Need to evaluate treasury direction, token dilution implications, and implementation specificity."
+    },
+    {
+      "step": "Identify stakeholders",
+      "observation": "Author is Kash. Affected parties include Jupuary recipients (users/stakers), team members receiving vesting, Mercurial stakeholders, Jupiter entity (becomes counterparty), Community Cold Multisig (custodian), and ParaFi (locked governance participation).",
+      "inference": "Multiple beneficiaries with conflicting interests. Jupiter entity takes on financial obligation for offsets."
+    },
+    {
+      "step": "Scan treasury impact",
+      "observation": "Option 1: 700M JUP outflow to Jupuary recipients. Option 2: 700M tokens returned to Community Cold Multisig, but Jupiter entity commits to purchasing tokens for Mercurial offsets and absorbing team sales. No dollar amounts specified for Jupiter's offset commitments.",
+      "inference": "Treasury direction is vote-dependent. Option 2 creates unbounded off-chain financial obligation for Jupiter entity. Cannot determine total USD impact without knowing future sale volumes and prices."
+    },
+    {
+      "step": "Scan token-supply effects",
+      "observation": "Option 2 reduces emissions 'from approximately 1.2 billion to effectively zero tokens' through postponement (700M), team pause (unspecified amount), and Mercurial acceleration with offsets (~5% supply). 1.2B represents over 10% of circulating supply.",
+      "inference": "Mandatory token_dilution flag required per skill rules. Severity: high (>5% of supply affected). This is a supply-reducing modification, but still qualifies as dilution risk category per skill definition."
+    },
+    {
+      "step": "Scan KPIs and milestones",
+      "observation": "Success measured as 'net-zero emissions' (countable) and 'decisive market signal' (vague). Team pause is 'indefinitely', Jupuary revisit when 'market conditions improve' (no threshold), Mercurial offset continues 'throughout the year' (no review milestones).",
+      "inference": "Term definitions are vague. Indefinite pause and unbounded offset commitments lack success criteria or termination conditions. Emit vague_kpi and missing_milestone flags."
+    },
+    {
+      "step": "Scan off-chain dependencies",
+      "observation": "Option 2 requires: tracking ~300 wallets, purchasing offset tokens 'on-chain or at CEX', operating 'JUP credits' accounting system against Jupiter balance sheet, Jupiter acting as direct counterparty for team sales.",
+      "inference": "Heavy reliance on Jupiter entity operational capacity and capital allocation. No oversight mechanism or audit process described."
+    },
+    {
+      "step": "Assess implementation specificity",
+      "observation": "Community Cold Multisig mentioned as custodian but composition not specified. Dollar value of offset commitment not quantified. 'JUP credits' valuation and redemption mechanics not detailed. Wallet tracking methodology not described.",
+      "inference": "Multiple implementation gaps. Cannot verify feasibility or cost without additional documentation."
+    }
+  ],
+  "summary": "Bundles Jupuary (700M JUP), team vesting, and Mercurial stakeholder emissions (~1.2B total) into two-option vote. Option 1 continues planned distributions. Option 2 postpones Jupuary, pauses team emissions with 'JUP credit' substitution, and accelerates Mercurial vesting with offset purchases by Jupiter entity.",
+  "stakeholders": [
+    {
+      "name": "Kash",
+      "role": "proposer",
+      "citation": "**Author:** Kash"
+    },
+    {
+      "name": "Jupuary recipients (users/stakers)",
+      "role": "beneficiary",
+      "citation": "**Jupuary** – Annual airdrop rewarding loyal users/stakers with governance power"
+    },
+    {
+      "name": "Team members",
+      "role": "beneficiary",
+      "citation": "**Team Vesting** – Token deliveries to team members for ecosystem growth incentive alignment"
+    },
+    {
+      "name": "Mercurial Stakeholders",
+      "role": "beneficiary",
+      "citation": "**Mercurial Stakeholders Vesting** – 5% of total supply distributed to Mercurial token holders and investors"
+    },
+    {
+      "name": "Jupiter entity",
+      "role": "counterparty",
+      "citation": "Jupiter absorbs team member token sales directly"
+    },
+    {
+      "name": "Community Cold Multisig",
+      "role": "affected_group",
+      "citation": "Return all 700 million tokens to Community Cold Multisig"
+    },
+    {
+      "name": "ParaFi",
+      "role": "affected_group",
+      "citation": "**ParaFi Voting:** Locked $35M token allocation unavailable for governance"
+    }
+  ],
+  "treasury_impact": {
+    "direction": "unknown",
+    "amount_usd": null,
+    "confidence": "low",
+    "citation": "Vote-dependent: Option 1 distributes 700M JUP ('Distribution commences ~2 weeks after, beginning with 200M $JUP'); Option 2 returns to treasury ('Return all 700 million tokens to Community Cold Multisig') but commits Jupiter entity to unquantified offset purchases ('Purchase equivalent tokens for Jupiter treasury when tracked wallets sell'). No USD valuation provided for any scenario."
+  },
+  "red_flags": [
+    {
+      "category": "token_dilution",
+      "detail": "Modifies emission trajectory for approximately 1.2 billion JUP tokens (over 10% of circulating supply) through postponement, indefinite pause, and accelerated vesting with offsets. Skill mandates flagging any supply-trajectory change regardless of direction.",
+      "citation": "**Net Impact:** Reduces emissions from approximately 1.2 billion to effectively zero tokens.",
+      "severity": "high"
+    },
+    {
+      "category": "unbounded_spend",
+      "detail": "No dollar cap on Jupiter entity's commitment to purchase tokens offsetting Mercurial stakeholder sales. Obligation continues 'throughout the year' with price exposure determined by future market conditions and sale timing of ~300 wallets.",
+      "citation": "Purchase equivalent tokens for Jupiter treasury when tracked wallets sell or move tokens to exchanges. Continue offsetting throughout the year",
+      "severity": "high"
+    },
+    {
+      "category": "vague_kpi",
+      "detail": "Jupuary postponement revisit trigger defined as 'when market conditions improve' with no quantified threshold (price target, volatility metric, or time-based review). Team emissions pause is 'indefinitely' with no success criteria or termination conditions.",
+      "citation": "Revisit when market conditions improve... Team Reserve emissions paused indefinitely",
+      "severity": "medium"
+    },
+    {
+      "category": "missing_milestone",
+      "detail": "Mercurial offset program lacks review checkpoints, spending caps, or performance evaluation milestones. JUP credits system has no described valuation, redemption rules, or audit mechanism.",
+      "citation": "Continue offsetting throughout the year... Provide 'JUP credits' against Jupiter balance sheet instead",
+      "severity": "medium"
+    },
+    {
+      "category": "technical_risk",
+      "detail": "Off-chain wallet tracking of ~300 addresses and CEX sale detection required for offset execution. No described methodology for identifying exchange deposits or preventing double-counting. Single point of failure if tracking system malfunctions.",
+      "citation": "Track approximately 300 wallets holding '99% of allocated $JUP'... Purchase equivalent tokens for Jupiter treasury when tracked wallets sell or move tokens to exchanges",
+      "severity": "medium"
+    },
+    {
+      "category": "centralization",
+      "detail": "Community Cold Multisig composition and signing threshold not specified. 700M JUP tokens (7% of implied supply) will be custodied by unidentified keyholders with no described operational security or governance structure.",
+      "citation": "Returned Jupuary Tokens: Secured in Community Cold Multisig, inaccessible without future DAO vote",
+      "severity": "medium"
+    }
+  ],
+  "questions_to_ask": [
+    "What is the exact composition, signing threshold, and operational security setup for the Community Cold Multisig that will hold 700M returned Jupuary tokens?",
+    "How will Jupiter entity fund the Mercurial offset purchases - from DAO treasury, from protocol revenue, or from team/investor capital?",
+    "What specific metric (JUP price, market cap, 30-day volatility, treasury size) defines 'market conditions improve' for revisiting postponed Jupuary, and what threshold triggers a new DAO vote?",
+    "If a tracked Mercurial wallet sells 10M JUP during a price spike, is Jupiter committed to purchasing 10M JUP at that elevated price, and what is the maximum dollar exposure per transaction?",
+    "How are 'JUP credits' valued (locked rate, floating rate, discount to market), can team members redeem them on-demand, and who audits the balance sheet?",
+    "What happens if Jupiter entity cannot fulfill offset purchase obligations due to capital constraints or market liquidity issues - does the DAO backstop, or do Mercurial stakeholders receive uncompensated dilution?"
+  ],
+  "confidence": {
+    "overall": "medium",
+    "unreadable_sections": [
+      "Community Cold Multisig composition and signing threshold",
+      "Specific addresses for ~300 tracked Mercurial wallets",
+      "Total JUP supply (implied 10B but not stated)",
+      "Team vesting schedule amounts and timing",
+      "JUP credits valuation and redemption mechanics",
+      "Jupiter balance sheet details and capital allocation authority",
+      "Mercurial offset tracking methodology and CEX detection system"
+    ]
+  }
+}

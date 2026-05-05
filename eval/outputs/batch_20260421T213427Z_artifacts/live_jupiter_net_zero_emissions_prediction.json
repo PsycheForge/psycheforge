@@ -1,0 +1,12 @@
+{
+  "predicted_outcome": 0,
+  "confidence_bps": 5500,
+  "reasoning_citation": "Triage identifies one high-severity flag (centralization: Jupiter sole counterparty for credits and offsets) and four medium-severity flags including bundling anti-pattern. The bundling forces delegates into all-or-nothing acceptance across three emission sources. Treasury_impact:none indicates DAO retains 700M tokens. However, current stakers—the voting bloc—benefit directly from anti-dilution positioning. Disclosed (not buried) centralization risk may be acceptable cost for zero emissions framing. Genuine contest with slight edge to passage based on voting bloc interests. Confidence capped by triage.confidence.overall:medium with significant unreadable sections.",
+  "key_triage_signals": [
+    "red_flag:centralization:high",
+    "red_flag:other:medium (bundling)",
+    "red_flag:vague_kpi:medium",
+    "treasury_impact:none",
+    "triage.confidence.overall:medium"
+  ]
+}

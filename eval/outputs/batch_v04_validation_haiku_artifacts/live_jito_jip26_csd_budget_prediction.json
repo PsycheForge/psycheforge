@@ -1,0 +1,12 @@
+{
+  "predicted_outcome": 0,
+  "confidence_bps": 5500,
+  "reasoning_citation": "Triage surfaces vague_kpi and missing_milestone (medium severity) against 50,000 JitoSOL outflow (~$12.5M). CSD prior execution ($3.2M to date) and explicit authority structure (JIP-17 multisig) are positive signals; no high-severity permission flags detected. Large outflow with soft KPIs indicates mixed outcome; CSD's demonstrated execution and absence of high-severity governance-capture flags support an approval prediction. Confidence moderate per triage medium-confidence cap and substantial accountability gaps.",
+  "key_triage_signals": [
+    "treasury_impact.direction:outflow",
+    "red_flag:vague_kpi:medium",
+    "red_flag:missing_milestone:medium",
+    "reasoning_trace[1].inference:CSD prior execution track record ($3.2M)",
+    "confidence.overall:medium"
+  ]
+}

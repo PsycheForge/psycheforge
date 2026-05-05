@@ -1,0 +1,13 @@
+{
+  "predicted_outcome": 0,
+  "confidence_bps": 7000,
+  "reasoning_citation": "treasury_impact.direction:none with no backdoor_permission flag triggers Prior A (treasury-untouched defaults to approve). All three red_flags are process-only (vague_kpi:medium, technical_risk:medium, missing_milestone:low) — none reach high severity and only one is medium-stacked, well below the ≥3 high-severity threshold required to flip the prior. reasoning_trace explicitly notes 'Clean on this axis' for permissions and centralization. Confidence capped at 8000 by triage.confidence.overall:medium and held to 7000 because unreadable_sections include the conditional fee rate and SSR computation source — material specification gaps the delegate base could weigh either direction.",
+  "key_triage_signals": [
+    "treasury_impact.direction:none",
+    "red_flag:vague_kpi:medium",
+    "red_flag:technical_risk:medium",
+    "red_flag:missing_milestone:low",
+    "triage.confidence.overall:medium",
+    "no_backdoor_permission_flag:true"
+  ]
+}

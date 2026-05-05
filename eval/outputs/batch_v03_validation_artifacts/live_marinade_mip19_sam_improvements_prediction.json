@@ -1,0 +1,13 @@
+{
+  "predicted_outcome": 0,
+  "confidence_bps": 7000,
+  "reasoning_citation": "Treasury_impact:none with no high-severity flags. Four red flags present (vague_kpi, centralization, missing_milestone, technical_risk) at medium/low severity. Centralization concern (validator cap 4%→15% TVL) is material but insufficient to overcome Prior A default toward approve when treasury-untouched and implementation delegated to established team (Marinade Labs). Process-only flags are historically tolerated in this zone. Confidence capped by triage.confidence.overall:medium.",
+  "key_triage_signals": [
+    "treasury_impact.direction:none",
+    "red_flag:centralization:medium",
+    "red_flag:vague_kpi:medium",
+    "red_flag:technical_risk:medium",
+    "triage.confidence.overall:medium",
+    "stakeholders[1].role:counterparty (Marinade Labs)"
+  ]
+}

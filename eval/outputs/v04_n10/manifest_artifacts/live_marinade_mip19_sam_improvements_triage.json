@@ -1,0 +1,142 @@
+{
+  "reasoning_trace": [
+    {
+      "step": "Read end-to-end",
+      "observation": "MIP-19 is a four-part SAM (Stake Auction Marketplace) mechanism update from author 'kron' dated Dec 16, 2025: (1) bid-priority for stake ordering, (2) Bond Risk Reduction Mechanism, (3) removing MNDE Enhanced Stake feature, (4) raising per-validator cap from 4% to 15% of TVL. No budget table, no grant amounts, no multisig changes mentioned. Implementation delegated to Marinade Labs.",
+      "inference": "This is a parameter and mechanism change proposal, not a treasury spend. Treasury impact likely 'none' or 'unknown'. Need to scan for permission scope (who at Marinade Labs decides rollout pace), KPI specificity, supply effects (MNDE Enhanced Stake removal), and concentration effects (15% cap)."
+    },
+    {
+      "step": "Identify stakeholders",
+      "observation": "Named: 'kron' as author. 'Marinade Labs' is the implementing party ('mandates Marinade Labs implement changes'). Affected groups: 'stakers', 'validators', 'locked MNDE holders' (whose Enhanced Stake feature is being removed). No reviewers, multisig signers, or counterparties named in the text.",
+      "inference": "Stakeholders: kron (proposer), Marinade Labs (counterparty/implementer), stakers, validators, locked MNDE holders (affected_group — feature removal)."
+    },
+    {
+      "step": "Locate monetary amounts",
+      "observation": "No currency figures, no USD or SOL amounts, no grant or compensation values appear in the proposal. Only percentages: 4% current cap, 15% proposed cap, 2% pre-MIP-10. References to 'staker APY' and 're-delegation costs' are qualitative.",
+      "inference": "Treasury direction = 'none'. amount_usd = null. Confidence high — text is unambiguously absent of treasury transfers."
+    },
+    {
+      "step": "Scan KPI measurability",
+      "observation": "Stated benefits: 'Boost Marinade APY through improved efficiency', 'improving staker APY', 'enhanced SAM performance and superior staker returns', 'reducing wasteful re-delegation costs'. No baseline APY cited, no target delta, no measurement window, no rollback threshold. Bond Risk Reduction Mechanism cites 'Monitoring over two quarters identified inefficiency' but does not quantify the inefficiency or the post-change target.",
+      "inference": "KPIs are directional/qualitative. Emit vague_kpi at medium severity — a careful delegate would want a measurable APY uplift target and a baseline before/after, especially since the same proposal removes a feature (MNDE Enhanced Stake) and raises caps simultaneously, making attribution hard."
+    },
+    {
+      "step": "Scan milestone bounding",
+      "observation": "Cap increase 'authorizes Marinade Labs gradual cap increases across at least two rounds' — phrasing is open-ended ('at least two'), with no defined trigger between rounds, no checkpoint metric, no per-round ceiling, and no timeline. The other three changes have no phased rollout described at all.",
+      "inference": "Emit missing_milestone medium — the only bounded element ('two rounds') has no inter-round gating criteria; delegate cannot tell what conditions advance from round 1 to round 2 or stop the rollout."
+    },
+    {
+      "step": "Scan permission / role changes",
+      "observation": "Proposal explicitly states 'this proposal mandates Marinade Labs implement changes' and 'authorizes Marinade Labs gradual cap increases.' Marinade Labs is named openly in the summary and proposal sections — the authority delegation is explicit, not buried. Scope of Marinade Labs' discretion (pacing of cap rounds, parameter tuning of bid-priority and bond mechanism) is broad but visible.",
+      "inference": "Does NOT meet backdoor_permission HIDDEN qualifier — authority grant is summary-mentioned. Use centralization category instead. Severity medium: discretion over rollout pacing of a 4%→15% cap (nearly 4x) is substantive but bounded by stated direction and existing ASO/Country concentration limits ('ASO and Country concentration limits remain unchanged')."
+    },
+    {
+      "step": "Scan token-supply effects",
+      "observation": "Proposal removes MNDE Enhanced Stake — a utility sink for locked MNDE. No emission, vesting, burn, buyback, or supply-trajectory change is described. The change reduces a use-case for locking MNDE but does not alter MNDE supply or unlock schedule.",
+      "inference": "No supply-trajectory modification. token_dilution trigger does not fire. However, the utility reduction for locked MNDE holders is a stakeholder concern — captured under affected_group, not as token_dilution."
+    },
+    {
+      "step": "Scan concentration effects",
+      "observation": "Per-validator cap moves from 4% to 15% of TVL — a 3.75x increase. Stated rationale: top performers should not be 'artificially fragmented'. No floor on minimum number of validators, no cap on how quickly a single validator could reach 15%, no mention of how this interacts with Solana-level Nakamoto coefficient or Marinade's own decentralization commitments beyond 'ASO and Country concentration limits remain unchanged'.",
+      "inference": "Emit centralization high — at 15%, theoretically as few as 7 validators could hold majority of Marinade TVL (vs ~25 at 4%). This is the single largest delegate-question in the proposal and a careful delegate would weigh stake-concentration risk against APY gains."
+    },
+    {
+      "step": "Scan technical risk",
+      "observation": "Bid-priority mechanism introduces a new payment formula ('Payment equals the difference between actual bid and current active stake payment'). Bond Risk Reduction Mechanism is a new on-chain accounting flow. Neither has linked spec, audit reference, or test-network evidence in the proposal text.",
+      "inference": "Emit technical_risk medium — two new mechanisms with no audit/spec link in the text. Per relative-severity rule: this is INDEPENDENT from the centralization-high cap-increase flag (different mechanism), so not demoted; capped at medium because no specific failure mode is identified, only absence of cited verification."
+    },
+    {
+      "step": "Compose questions",
+      "observation": "Highest-leverage open items: (a) target APY delta and baseline; (b) cap-rollout gating; (c) concentration safeguards beyond ASO/Country; (d) audit/test status of new mechanisms; (e) treatment of locked MNDE holders losing Enhanced Stake utility; (f) bond-evasion edge cases.",
+      "inference": "Six concrete forum-ready questions composable from the gaps above."
+    },
+    {
+      "step": "Assess confidence",
+      "observation": "Proposal text is self-contained on intent but references no linked specs, no audit reports, no parameter tables for the bid-priority payment formula, and no Realms vote IDs.",
+      "inference": "Overall confidence medium. Unreadable: the actual bid-priority pricing formula details, the Bond Risk Reduction Mechanism on-chain spec, and any phased-rollout schedule that may exist outside the proposal text."
+    }
+  ],
+  "summary": "MIP-19 updates Marinade's SAM with four changes: bid-based stake-priority ordering, a Bond Risk Reduction Mechanism, removal of the unused MNDE Enhanced Stake feature, and raising per-validator cap from 4% to 15% of TVL via at-least-two rollout rounds executed by Marinade Labs. No treasury spend.",
+  "stakeholders": [
+    {
+      "name": "kron",
+      "role": "proposer",
+      "citation": "**Author:** kron"
+    },
+    {
+      "name": "Marinade Labs",
+      "role": "counterparty",
+      "citation": "this proposal mandates Marinade Labs implement changes"
+    },
+    {
+      "name": "Validators",
+      "role": "affected_group",
+      "citation": "Allow validators to win stake priority in the auction"
+    },
+    {
+      "name": "Stakers",
+      "role": "affected_group",
+      "citation": "guaranteeing stakers receive optimal market APY"
+    },
+    {
+      "name": "Locked MNDE holders",
+      "role": "affected_group",
+      "citation": "MNDE Enhanced Stake allows locked MNDE holders to increase validator maximum stake caps"
+    }
+  ],
+  "treasury_impact": {
+    "direction": "none",
+    "amount_usd": null,
+    "confidence": "high",
+    "citation": "If passed, this proposal mandates Marinade Labs implement changes so that: 1. Allow validators to win stake priority in the auction ... 2. Introduce a Bond Risk Reduction Mechanism ... 3. Abandon MNDE Enhanced Stake ... 4. Increase maximum Stake a single Validator can obtain to 15% of TVL"
+  },
+  "red_flags": [
+    {
+      "category": "centralization",
+      "detail": "Per-validator cap rises from 4% to 15% of TVL (3.75x), enabling theoretical majority concentration among as few as ~7 validators. Only ASO and Country limits explicitly preserved; no validator-count floor or per-round ceiling stated.",
+      "citation": "Increase maximum Stake a single Validator can obtain to 15% of TVL ... ASO and Country concentration limits remain unchanged.",
+      "severity": "high"
+    },
+    {
+      "category": "vague_kpi",
+      "detail": "Success criteria are directional ('boost APY', 'improved efficiency', 'superior staker returns') with no baseline APY, no target delta, no measurement window, and no rollback condition. Bundling four changes into one proposal further obscures attribution of any future APY change.",
+      "citation": "Boost Marinade APY through improved efficiency ... ultimately delivering enhanced SAM performance and superior staker returns.",
+      "severity": "medium"
+    },
+    {
+      "category": "missing_milestone",
+      "detail": "Cap rollout is bounded only as 'at least two rounds' with no inter-round gating metric, no per-round ceiling, and no timeline. The other three mechanism changes have no phased rollout described.",
+      "citation": "This proposal authorizes Marinade Labs gradual cap increases across at least two rounds.",
+      "severity": "medium"
+    },
+    {
+      "category": "centralization",
+      "detail": "Implementation discretion (rollout pacing, bid-priority payment parameters, bond-mechanism thresholds) delegated to Marinade Labs without forum-checkpoint requirement or revocation mechanism stated in this proposal.",
+      "citation": "this proposal mandates Marinade Labs implement changes ... This proposal authorizes Marinade Labs gradual cap increases",
+      "severity": "medium"
+    },
+    {
+      "category": "technical_risk",
+      "detail": "Two new mechanisms (bid-priority payment formula and Bond Risk Reduction Mechanism) are introduced without an audit link, spec reference, or test-network evidence in the proposal text. Independent of cap-increase flag — different mechanism.",
+      "citation": "Payment equals the difference between actual bid and current active stake payment.",
+      "severity": "medium"
+    }
+  ],
+  "questions_to_ask": [
+    "What baseline staker APY and target uplift (in bps) does Marinade Labs commit to measuring before vs after MIP-19, and over what window — and how will the contribution of each of the four bundled changes be attributed?",
+    "What metric or condition gates advancing from round 1 to round 2 of the cap rollout, and what condition would pause or reverse the rollout before reaching 15%?",
+    "Beyond ASO and Country limits, are there constraints on how many validators can simultaneously sit at or near the 15% cap, or on the resulting Nakamoto coefficient of Marinade-delegated stake?",
+    "Has the bid-priority payment formula and the Bond Risk Reduction Mechanism been audited or test-net validated, and where are the specs and audit reports linked?",
+    "Locked MNDE holders lose the Enhanced Stake utility under change (3) — is any compensating utility, rebate, or unlock option offered, or is the feature simply deprecated?",
+    "How is the bond-evasion 'uneconomical' claim quantified — at what bid level and stake size does re-entry stop being profitable, and what monitoring will detect repeat offenders?"
+  ],
+  "confidence": {
+    "overall": "medium",
+    "unreadable_sections": [
+      "Detailed bid-priority pricing formula parameters beyond the one-sentence description",
+      "Bond Risk Reduction Mechanism on-chain implementation spec and threshold values",
+      "Any phased-rollout schedule, audit reports, or test-network results that may exist in linked materials not included in the proposal text",
+      "Realms vote ID and quorum/threshold parameters for this specific proposal"
+    ]
+  }
+}

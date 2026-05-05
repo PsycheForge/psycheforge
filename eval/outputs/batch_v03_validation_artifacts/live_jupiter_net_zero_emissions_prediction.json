@@ -1,0 +1,13 @@
+{
+  "predicted_outcome": 1,
+  "confidence_bps": 6500,
+  "reasoning_citation": "Triage surfaces two high-severity red flags (unbounded_spend, token_dilution affecting ~12% of supply) against a referendum proposal with unknown conditional treasury impact. Option 2 commits Jupiter to uncapped Mercurial buybacks throughout the year and unlimited team credit accumulation with no governance checkpoints or balance sheet limits. When treasury_impact.direction is unknown (not none/internal_transfer) and two high-severity flags stack with three medium-severity operational concerns (vague_kpi, centralization, off-chain dependencies), complex operational proposals with substantial uncapped financial commitments historically face rejection in Solana DAO governance. Confidence capped at 6500 per Prior E (referendum-style contested vote) and triage.confidence.overall=medium.",
+  "key_triage_signals": [
+    "red_flag:unbounded_spend:high",
+    "red_flag:token_dilution:high",
+    "treasury_impact:unknown",
+    "red_flag:vague_kpi:medium",
+    "red_flag:centralization:medium",
+    "triage.confidence.overall:medium"
+  ]
+}

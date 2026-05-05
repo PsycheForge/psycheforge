@@ -1,0 +1,114 @@
+{
+  "reasoning_trace": [
+    {
+      "step": "Read end-to-end",
+      "observation": "MIP-18 modifies MIP-5 fee structure: removes fixed 9.5% performance fee, replaces with conditional fee triggered only when Marinade APY > Solana Staking Rate (SSR), and unifies a 20 bps unstake fee across Native, mSOL, and Select. SSR defined as inflation + tx fees + priority fees, excluding MEV.",
+      "inference": "Parameter change to fee mechanics. No treasury disbursement. Need to scan for measurability of outperformance, oracle/computation source for SSR, conditional fee rate specification, and authority/upgrade implications."
+    },
+    {
+      "step": "Identify stakeholders",
+      "observation": "Author cited as 'helloiamvu'. No counterparties, beneficiaries, reviewers, or external recipients named. Affected groups implicit: Marinade Native stakers, mSOL holders, Marinade Select users, MNDE governance (DAO revenue).",
+      "inference": "Single named stakeholder (proposer). Affected groups citable from product list in Proposal section."
+    },
+    {
+      "step": "Locate monetary amounts",
+      "observation": "No USD amounts, no token transfers, no grants. Only rate parameters: 9.5% (deprecated), 20 bps unstake fee, and an unspecified conditional performance fee rate.",
+      "inference": "treasury_impact.direction = none; amount_usd = null. The conditional fee rate omission is itself a finding."
+    },
+    {
+      "step": "Scan KPI measurability",
+      "observation": "Stated objective is 'optimal staking yields matching or exceeding self-delegation returns' and remaining 'competitive in all market conditions'. No numeric targets for TVL growth, net APY uplift, expected DAO revenue under modeled SSR scenarios, or threshold defining competitive parity.",
+      "inference": "Outperformance vs SSR is mechanically measurable per-epoch, but the proposal sets no success thresholds or revenue projections. Emit vague_kpi at medium severity — softer than a grant because the trigger condition itself is objective, but no targets means no way to evaluate success post-implementation."
+    },
+    {
+      "step": "Scan milestone bounding",
+      "observation": "No phased rollout, no effective date, no review checkpoint, no sunset/revisit clause.",
+      "inference": "Emit missing_milestone at low-medium severity — parameter changes don't disburse funds so missing_milestone is less acute, but absence of a review window for a revenue-mechanism change is a legitimate delegate question."
+    },
+    {
+      "step": "Scan permission / role changes",
+      "observation": "No mention of upgrade authority, multisig changes, admin keys, role grants, or program ownership changes. Nothing in the text expands or rotates control.",
+      "inference": "No backdoor_permission flag. No centralization flag. Clean on this axis."
+    },
+    {
+      "step": "Scan token-supply effects",
+      "observation": "Proposal modifies fee capture from staking rewards and unstake events. Does not modify MNDE emissions, mSOL supply mechanics, vesting, burns, buybacks, or airdrops. Net effect is a redistribution between user yield and DAO revenue.",
+      "inference": "Mandatory token_dilution trigger does NOT apply — fee-structure changes are not on the supply-trajectory list (emissions, vesting, burns, buybacks, airdrops, offsets). No flag."
+    },
+    {
+      "step": "Scan off-chain dependencies and technical_risk",
+      "observation": "SSR is defined conceptually ('network-wide staking rewards from inflation and tx fees including priority fees, excluding MEV') but the proposal does not specify: who computes SSR, on what cadence, via what oracle or on-chain program, with what dispute mechanism, or how the conditional fee rate is set. The conditional fee percentage itself is not stated.",
+      "inference": "Emit technical_risk at medium severity — independent vector (oracle/computation specification gap), not paired with a HIGH governance flag, so demotion rule does not apply. Also relates to vague_kpi but distinct: KPI gap is about success measurement, technical gap is about mechanism specification."
+    },
+    {
+      "step": "Compose questions",
+      "observation": "Specifications materially absent: conditional fee rate value, SSR computation source, rollout timing, expected revenue delta, review checkpoint.",
+      "inference": "Generate 5 proposal-specific questions targeting these gaps."
+    },
+    {
+      "step": "Assess confidence",
+      "observation": "Proposal text is short and self-contained for what it states; gaps are absences rather than ambiguities. No external links resolved (per skill scope). MIP-5 referenced but not included.",
+      "inference": "Overall confidence medium — high on what's stated, but several material parameters absent. Note MIP-5 not included as unreadable section."
+    }
+  ],
+  "summary": "MIP-18 revises Marinade's fee structure: removes the fixed 9.5% performance fee, replaces it with a conditional fee charged only when Marinade APY exceeds the Solana Staking Rate (inflation + tx + priority fees, MEV excluded), and unifies a 20 bps unstake fee across Native, mSOL, and Select. No treasury disbursement.",
+  "stakeholders": [
+    {
+      "name": "helloiamvu",
+      "role": "proposer",
+      "citation": "Author: helloiamvu"
+    },
+    {
+      "name": "Marinade Native, mSOL, and Marinade Select users",
+      "role": "affected_group",
+      "citation": "20 basis points (0.20%) unstake fee applied uniformly across: Marinade Native, mSOL, Marinade Select"
+    },
+    {
+      "name": "Marinade DAO (MNDE governance)",
+      "role": "affected_group",
+      "citation": "aligning DAO revenue with demonstrated outperformance"
+    }
+  ],
+  "treasury_impact": {
+    "direction": "none",
+    "amount_usd": null,
+    "confidence": "high",
+    "citation": "Three primary changes: 1. Deprecate Fixed Performance Fee ... 2. Introduce Conditional Performance Fee ... 3. Unify Unstake Fee"
+  },
+  "red_flags": [
+    {
+      "category": "vague_kpi",
+      "detail": "Outperformance vs SSR is mechanically measurable, but the proposal sets no numeric targets — no expected TVL impact, no projected DAO revenue under modeled SSR scenarios, no threshold defining acceptable competitive parity. Success cannot be evaluated post-implementation.",
+      "citation": "deliver optimal staking yields matching or exceeding self-delegation returns ... Marinade remains competitive in all market conditions and only charges when it outperforms the chain-wide baseline",
+      "severity": "medium"
+    },
+    {
+      "category": "technical_risk",
+      "detail": "SSR is defined conceptually but the proposal does not specify the computation source (on-chain program, oracle, off-chain attestation), update cadence, or dispute mechanism. The conditional performance fee rate itself is not stated as a number. Independent specification gap, not paired with a governance flag.",
+      "citation": "SSR represents \"network-wide staking rewards derived from inflation and transaction fees (including priority fees).\" MEV is explicitly excluded",
+      "severity": "medium"
+    },
+    {
+      "category": "missing_milestone",
+      "detail": "No effective date, phased rollout, review checkpoint, or sunset clause. A revenue-mechanism change with no scheduled revisit window leaves the DAO without a structured opportunity to recalibrate if observed capture diverges from intent.",
+      "citation": "Three primary changes: 1. Deprecate Fixed Performance Fee ... 2. Introduce Conditional Performance Fee ... 3. Unify Unstake Fee",
+      "severity": "low"
+    }
+  ],
+  "questions_to_ask": [
+    "What is the numeric rate of the conditional performance fee when Marinade APY exceeds SSR — is it the prior 9.5%, a new value, or determined by a separate parameter?",
+    "Who computes the Solana Staking Rate, on what cadence, and through what mechanism (on-chain program, oracle, off-chain attestation), and is there a dispute or correction process if the computed SSR is contested?",
+    "What is the projected change in DAO revenue under representative scenarios (e.g., low-reward epochs where Marinade matches SSR vs. high-reward epochs with material outperformance), and what TVL or staker-acquisition uplift is required to offset any expected revenue reduction?",
+    "When does the new fee structure take effect, and is there a review checkpoint (e.g., 6 or 12 months post-implementation) at which the DAO will reassess realized capture vs. expectations?",
+    "How is the 20 bps unstake fee expected to interact with delayed-unstake vs. immediate-unstake flows, and does it apply to validator-initiated unstakes or only user-initiated exits?"
+  ],
+  "confidence": {
+    "overall": "medium",
+    "unreadable_sections": [
+      "MIP-5 (referenced as the prior fee structure but not included in the proposal text)",
+      "Conditional performance fee rate (not specified in the proposal text)",
+      "SSR computation methodology and source (defined conceptually only)",
+      "Realms vote thread and any updates from the December 22, 2025 revision beyond what's in the abstract"
+    ]
+  }
+}

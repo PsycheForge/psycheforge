@@ -1,0 +1,75 @@
+{
+  "reasoning_trace": [
+    {
+      "step": "Read end-to-end",
+      "observation": "MIP-18 proposes three fee structure changes for Marinade Finance: (1) remove the fixed 9.5% performance fee, (2) introduce a conditional performance fee charged only when Marinade outperforms the Solana Staking Rate, and (3) implement a unified 20 basis point unstake fee across all products.",
+      "inference": "This is a parameter change to the fee collection mechanism, not a treasury spend or one-time fund transfer. Need to verify if the conditional fee rate is specified and whether implementation authority is clear."
+    },
+    {
+      "step": "Identify stakeholders",
+      "observation": "Proposal author is 'helloiamvu'. The proposal affects Marinade stakers (who will experience the new fee structure) and the DAO itself (whose revenue model changes). No external counterparties, reviewers, or specific beneficiaries are named.",
+      "inference": "Stakeholder roles are: proposer (helloiamvu) and affected groups (stakers, DAO). No implementation team or review committee specified."
+    },
+    {
+      "step": "Locate monetary amounts",
+      "observation": "The proposal mentions removing '9.5% performance fee' and adding '20 basis points (0.20%) unstake fee'. No specific USD amounts are provided. These are percentage-based fee rates on user transactions.",
+      "inference": "This modifies ongoing fee collection mechanisms rather than moving specific funds from treasury. Treasury impact direction is 'none' for a specific transaction, though it affects future revenue streams."
+    },
+    {
+      "step": "Scan for vague KPIs",
+      "observation": "The proposal introduces 'a conditional fee that is charged only when Marinade outperforms the Solana Staking Rate' but never specifies the percentage rate of this conditional performance fee. The 20bps unstake fee rate is specified, but the core conditional fee rate is missing.",
+      "inference": "Critical vagueness: the rate of the conditional performance fee is completely unspecified. Emit vague_kpi red flag with high severity."
+    },
+    {
+      "step": "Scan for permission changes",
+      "observation": "No explicit changes to upgrade authority, multisig composition, or admin keys are mentioned. The proposal states 'Vote went live on Realms' but does not specify who will implement the parameter changes or what authority structure will execute them.",
+      "inference": "Implementation authority is not explicitly stated, but this appears to be a standard governance parameter adjustment where passed votes authorize execution. No new permissions granted to external parties. No backdoor_permission flag needed."
+    },
+    {
+      "step": "Scan for token supply effects",
+      "observation": "The proposal modifies fee rates but contains no mention of MNDE or mSOL token emissions, burns, vesting schedules, buybacks, or any supply trajectory changes.",
+      "inference": "No token_dilution flag needed - this is purely a fee structure change."
+    }
+  ],
+  "summary": "MIP-18 removes Marinade's fixed 9.5% performance fee and introduces a conditional fee applied only when Marinade outperforms the Solana Staking Rate, plus a unified 20 basis point unstake fee across all products. Aims to align DAO revenue with demonstrated value while maintaining yield competitiveness.",
+  "stakeholders": [
+    {
+      "name": "helloiamvu",
+      "role": "proposer",
+      "citation": "**Author:** helloiamvu"
+    },
+    {
+      "name": "Marinade stakers",
+      "role": "affected_group",
+      "citation": "The proposal identifies that stakers increasingly prioritize APY and select providers offering optimal net returns."
+    }
+  ],
+  "treasury_impact": {
+    "direction": "none",
+    "amount_usd": null,
+    "confidence": "high",
+    "citation": "This proposal modifies the fee structure from MIP-5 by removing the fixed 9.5% performance fee and replacing it with \"a conditional fee that is charged only when Marinade outperforms the Solana Staking Rate.\""
+  },
+  "red_flags": [
+    {
+      "category": "vague_kpi",
+      "detail": "The conditional performance fee rate is not specified. The proposal states fees apply 'only when Marinade outperforms the Solana Staking Rate' but never provides the percentage rate for this fee, making the actual fee amount unpredictable and unauditable.",
+      "citation": "New performance fee applies only when Marinade APY exceeds the Solana Staking Rate",
+      "severity": "high"
+    }
+  ],
+  "questions_to_ask": [
+    "What is the specific percentage rate for the conditional performance fee when Marinade outperforms the Solana Staking Rate?",
+    "How will the Solana Staking Rate baseline be calculated and sourced - which oracle or on-chain data feed will provide this reference rate?",
+    "Will the conditional performance fee have a cap or range (e.g., 5-10% of excess returns over SSR)?",
+    "What is the projected DAO revenue under this model compared to the current 9.5% fixed fee structure over the next 12 months?",
+    "The proposal mentions the previous vote 'failed to meet quorum despite strong approval sentiment' - what quorum threshold must this revote achieve?",
+    "Who has the authority to implement these fee parameter changes after the vote passes, and what is the timeline for implementation?"
+  ],
+  "confidence": {
+    "overall": "medium",
+    "unreadable_sections": [
+      "The conditional performance fee rate is completely omitted from the proposal text, which is the core parameter being introduced."
+    ]
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "reasoning_trace": [
+    {
+      "step": "Read end-to-end",
+      "observation": "MIP-14 proposes a two-stage opinion-then-execute vote on burning 5–50% of MNDE total supply (1B hard cap, no reminting). Opinion vote offers 7 options (0%, 5%, 10%, 20%, 30%, 40%, 50%). Outcome section confirms 30% was selected by community vote, reducing total supply to 700M and treasury to approximately 264M MNDE.",
+      "inference": "Clear governance structure with irreversible supply reduction of 300M MNDE (30% of total). Burn mechanism is straightforward; executable on Realms. Triggers mandatory token_dilution flag per skill calibration (>5% of supply)."
+    },
+    {
+      "step": "Identify stakeholders",
+      "observation": "Proposer: fisiroky. Affected group: all MNDE token holders (treasury holds 564M, circulating ~430M). Executor: Marinade Foundation Council multisig (executes vote outcome via Realms). Vote mechanism: multi-choice poll.",
+      "inference": "Governance structure is transparent. No unnamed beneficiaries or counterparties beyond treasury and community. Council multisig role is established and precedented."
+    },
+    {
+      "step": "Locate monetary amounts and classify treasury impact",
+      "observation": "Proposal contains token amounts, not USD. 30% of 1B MNDE supply = 300M MNDE burned. Treasury reduces from 564M to 264M MNDE (if burn sourced from treasury holdings). Burn is permanent; hard cap enforced, reminting disabled.",
+      "inference": "Direction: outflow (tokens destroyed). Amount: 300M MNDE represents 30% of total supply, exceeding >5% threshold. This is internal_transfer / deflation, not an external payment. Amount_usd: null (MNDE pricing not provided in proposal)."
+    },
+    {
+      "step": "Scan risk categories: KPI clarity, permissions, supply trajectory",
+      "observation": "KPIs: burn options are explicit percentages (0%, 5%, 10%, 20%, 30%, 40%, 50%), not vague. Rationale hinges on FDV-to-market-cap ratio improvement, but no numeric baselines or post-burn measurement criteria specified. Permissions: no new authorities granted; Marinade Foundation Council role unchanged. Supply: token_dilution is the core category — irreversible 300M token reduction acknowledged in Risks section.",
+      "inference": "No vague_kpi flag (vote options explicit), but FDV improvement rationale lacks measurable success criteria — surfaces as delegate question, not red flag. No permission changes or centralization introduced. token_dilution flag required and mandatory."
+    },
+    {
+      "step": "Evaluate irreversibility, opportunity cost, technical risk",
+      "observation": "Risks section explicitly acknowledges 'Irreversibility: Burned tokens cannot be re-minted; excessive burning constrains future flexibility' and 'Opportunity Cost: Burned tokens become unavailable for ecosystem growth grants or partnerships.' Burn implementation is standard (on-chain token destruction via Realms), low technical complexity.",
+      "inference": "Irreversibility and opportunity cost are surfaced and transparent — not hidden risks. Technical risk is low (burn is well-established on Solana). No additional red-flag categories triggered. These risks inform delegate questions."
+    },
+    {
+      "step": "Compose delegate questions",
+      "observation": "Proposal lacks: (1) post-burn measurement plan for FDV/market-cap ratio; (2) timeline specificity for execution vote; (3) quantified treasury runway assurance; (4) tie-breaking rule if opinion vote results are split. These are non-obvious points a careful delegate should clarify before voting opinion-stage.",
+      "inference": "Form 4 concrete, proposal-specific questions. Not boilerplate; grounded in proposal gaps and risk acknowledgments."
+    },
+    {
+      "step": "Assess confidence and unreadable sections",
+      "observation": "Full proposal text provided, including Abstract, Background, Rationale, Implementation, Risks, and Outcome. No truncations, external links, or appendices. Figures are specific (1B cap, 564M treasury, 30% voted burn). No code or technical specifications requiring external context.",
+      "inference": "High confidence. All material information is present and readable. No unreadable or deferred sections."
+    }
+  ],
+  "summary": "MIP-14 proposes a two-stage opinion-then-execute vote to burn 5–50% of MNDE total supply (1B hard cap). Community voted for 30% reduction (300M tokens), reducing total supply to 700M and treasury from 564M to 264M MNDE. Burn aims to address treasury overhang (56.4% of supply) and improve FDV-to-market-cap ratio while signaling commitment to sustainable tokenomics.",
+  "stakeholders": [
+    {
+      "name": "fisiroky",
+      "role": "proposer",
+      "citation": "Author: fisiroky"
+    },
+    {
+      "name": "Marinade DAO community / MNDE token holders",
+      "role": "affected_group",
+      "citation": "The community voted, and **30% of total MNDE supply** was selected for burning."
+    },
+    {
+      "name": "Marinade Foundation Council multisig",
+      "role": "reviewer",
+      "citation": "Upon burn instruction proposal approval, the Marinade Foundation Council multisig follows the vote and executes the transaction and burn hash on official channels."
+    }
+  ],
+  "treasury_impact": {
+    "direction": "outflow",
+    "amount_usd": null,
+    "confidence": "high",
+    "citation": "The community voted, and **30% of total MNDE supply** was selected for burning. Circulating supply roughly 430M MNDE. Reduce the total supply to **950 million–500 million** and decrease treasury holdings to **[264M for 30% burn]**."
+  },
+  "red_flags": [
+    {
+      "category": "token_dilution",
+      "detail": "Permanent irreversible reduction of 300M MNDE (30% of 1B total supply) from DAO treasury. Burn removes capital unavailable for future ecosystem grants, partnerships, liquidity incentives, or strategic optionality. Magnitude (30%) far exceeds >5% skill threshold.",
+      "citation": "Irreversibility: Burned tokens cannot be re-minted; excessive burning constrains future flexibility. Opportunity Cost: Burned tokens become unavailable for ecosystem growth grants or partnerships. The community voted, and **30% of total MNDE supply** was selected for burning.",
+      "severity": "high"
+    }
+  ],
+  "questions_to_ask": [
+    "The Risks section emphasizes that 'Informed Decision-Making requires thorough discourse and educational materials' — will the DAO extend the opinion-vote timeline beyond standard windows to ensure sufficient deliberation on this irreversible decision?",
+    "The rationale assumes burning improves FDV-to-market-cap and market sentiment, but does not specify post-burn measurement criteria. Will the execution-vote proposal (stage 2) include a documented plan to measure on-chain outcomes (DEX volume, token velocity, holder concentration changes) validating this thesis?",
+    "Reducing treasury holdings from 564M to 264M MNDE constrains future deployment capacity. Can the DAO articulate a 2–3 year roadmap of planned ecosystem grants, liquidity incentives, and operational expenses to confirm this runway is sufficient?",
+    "If the opinion vote results are split (e.g., 30% option receives 23% of total votes, 20% option receives 22%), what tie-breaking mechanism or secondary vote will determine the execution amount?"
+  ],
+  "confidence": {
+    "overall": "high",
+    "unreadable_sections": []
+  }
+}

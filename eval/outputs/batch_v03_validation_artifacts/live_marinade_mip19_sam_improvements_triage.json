@@ -1,0 +1,119 @@
+{
+  "reasoning_trace": [
+    {
+      "step": "Read end-to-end",
+      "observation": "MIP-19 proposes four changes to Marinade's SAM mechanism: (1) bid-based stake priority, (2) Bond Risk Reduction Mechanism, (3) remove MNDE Enhanced Stake, (4) increase validator cap from 4% to 15% of TVL. Author is kron. Implementation delegated to Marinade Labs.",
+      "inference": "This is a parameter/mechanism change proposal, not a spending proposal. No direct treasury impact. Need to verify implementation authority and technical risk."
+    },
+    {
+      "step": "Identify stakeholders",
+      "observation": "Author: kron. Implementation: 'mandates Marinade Labs implement changes'. Affected parties: validators (new auction rules), stakers (APY impact claimed), MNDE holders (Enhanced Stake feature being removed).",
+      "inference": "Marinade Labs is the implementer/counterparty. Multiple affected stakeholder groups."
+    },
+    {
+      "step": "Locate monetary amounts",
+      "observation": "No USD or token amounts mentioned. No treasury outflows or inflows. This is purely a parameter/mechanism change.",
+      "inference": "Treasury impact direction: none."
+    },
+    {
+      "step": "Scan KPIs and success criteria",
+      "observation": "Proposal uses language like 'boost Marinade APY', 'improved efficiency', 'enhanced SAM performance', 'superior staker returns' with no numeric targets, baselines, or thresholds provided.",
+      "inference": "Success criteria are non-measurable. Emit vague_kpi red flag with medium severity."
+    },
+    {
+      "step": "Scan permission and authority changes",
+      "observation": "Proposal 'mandates Marinade Labs implement changes' and 'authorizes Marinade Labs gradual cap increases across at least two rounds'. Marinade Labs is established operating organization with public track record.",
+      "inference": "Normal execution authority for operating team implementing DAO-approved parameter changes. Authority scope is bounded (15% cap limit, gradual rollout). Not a backdoor permission concern per v0.3 calibration - this is routine parameter adjustment by established team."
+    },
+    {
+      "step": "Scan centralization risk",
+      "observation": "Current validator cap: 4% of TVL (MIP-10). Proposed: 15% of TVL. This is a 3.75x increase allowing single validator to control 15% of Marinade stake.",
+      "inference": "Material centralization risk increase. Single validator downtime or commission change would impact large portion of pool. Emit centralization red flag with medium severity."
+    },
+    {
+      "step": "Scan implementation plan",
+      "observation": "No implementation timeline provided. Cap increases described as 'gradual...across at least two rounds' but no schedule, intermediate values, or checkpoints specified. New mechanisms (Bond Risk Reduction, bid-based priority) introduced with no mention of security audits, testing, or code review.",
+      "inference": "Missing implementation timeline (emit missing_milestone, low severity). Technical changes without security process mention (emit technical_risk, medium severity)."
+    },
+    {
+      "step": "Assess confidence",
+      "observation": "Core proposal structure is clear. However, implementation details (timeline, intermediate caps, audit process, code changes) are unspecified and delegated to Marinade Labs with minimal detail.",
+      "inference": "Overall confidence: medium. Critical details about execution are missing from proposal text."
+    }
+  ],
+  "summary": "MIP-19 updates Marinade's SAM mechanism with four changes: bid-based validator stake priority, Bond Risk Reduction Mechanism to penalize underbonded validators, removal of unused MNDE Enhanced Stake feature, and gradual increase of per-validator stake cap from 4% to 15% of TVL. Implementation delegated to Marinade Labs.",
+  "stakeholders": [
+    {
+      "name": "kron",
+      "role": "proposer",
+      "citation": "Author: kron"
+    },
+    {
+      "name": "Marinade Labs",
+      "role": "counterparty",
+      "citation": "This proposal mandates Marinade Labs implement changes"
+    },
+    {
+      "name": "Validators",
+      "role": "affected_group",
+      "citation": "Allow validators to win stake priority in the auction"
+    },
+    {
+      "name": "Stakers",
+      "role": "affected_group",
+      "citation": "SAM was constructed to direct Solana stake toward validators delivering superior returns, guaranteeing stakers receive optimal market APY"
+    },
+    {
+      "name": "MNDE holders",
+      "role": "affected_group",
+      "citation": "Abandon MNDE Enhanced Stake...MNDE Enhanced Stake allows locked MNDE holders to increase validator maximum stake caps"
+    }
+  ],
+  "treasury_impact": {
+    "direction": "none",
+    "amount_usd": null,
+    "confidence": "high",
+    "citation": "No treasury amounts mentioned; this is a parameter adjustment proposal"
+  },
+  "red_flags": [
+    {
+      "category": "vague_kpi",
+      "detail": "Success criteria are non-measurable. Proposal claims changes will 'boost Marinade APY', 'improved efficiency', 'enhanced SAM performance', and 'superior staker returns' without providing numeric targets, baselines, or thresholds to evaluate success.",
+      "citation": "boost Marinade APY through improved efficiency...ultimately delivering enhanced SAM performance and superior staker returns",
+      "severity": "medium"
+    },
+    {
+      "category": "centralization",
+      "detail": "Validator stake cap increases from 4% to 15% of TVL (3.75x increase), allowing a single validator to control 15% of Marinade's total stake. Single validator downtime or commission change would impact a large portion of pool APY.",
+      "citation": "Increase maximum Stake a single Validator can obtain to 15% of TVL...Current State: Validators capped at 4% of TVL (MIP-10)",
+      "severity": "medium"
+    },
+    {
+      "category": "missing_milestone",
+      "detail": "No implementation timeline provided. Cap increases described as 'gradual...across at least two rounds' but no schedule, dates, or intermediate cap values specified.",
+      "citation": "This proposal authorizes Marinade Labs gradual cap increases across at least two rounds",
+      "severity": "low"
+    },
+    {
+      "category": "technical_risk",
+      "detail": "Proposal introduces new technical mechanisms (Bond Risk Reduction Mechanism, bid-based stake priority) with no mention of security audits, testing procedures, code review, or implementation specifications.",
+      "citation": "This proposal mandates Marinade Labs implement changes so that: (1) Allow validators to win stake priority...(2) Introduce a Bond Risk Reduction Mechanism",
+      "severity": "medium"
+    }
+  ],
+  "questions_to_ask": [
+    "What numeric APY improvement (in basis points) would constitute measurable success for this proposal, and what is the baseline current APY?",
+    "What is the implementation timeline for each of the four mechanism changes?",
+    "What are the specific intermediate validator cap values and the schedule for each round of increases from 4% to 15%?",
+    "Will the Bond Risk Reduction Mechanism and auction priority changes undergo independent security audits before deployment, and if so, by whom?",
+    "How will the DAO monitor whether the 15% cap increase delivers the promised APY improvements versus introducing unacceptable concentration risk?",
+    "If a validator reaching 15% of TVL experiences extended downtime or increases commission, what percentage of overall pool APY would be at risk and what are the contingency plans?"
+  ],
+  "confidence": {
+    "overall": "medium",
+    "unreadable_sections": [
+      "Implementation specifications and technical architecture for new mechanisms not provided",
+      "Intermediate validator cap values and rollout timeline left to Marinade Labs discretion without detailed plan"
+    ]
+  }
+}

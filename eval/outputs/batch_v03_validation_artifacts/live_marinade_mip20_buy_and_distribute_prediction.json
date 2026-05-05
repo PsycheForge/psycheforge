@@ -1,0 +1,13 @@
+{
+  "predicted_outcome": 1,
+  "confidence_bps": 6000,
+  "reasoning_citation": "Triage surfaces two high-severity flags (backdoor_permission, unbounded_spend) against a proposal requesting fundamental tokenomics changes with zero implementation specification. The backdoor_permission flag highlights completely undefined execution authority for buyback wallet control and market operations. Combined with unbounded treasury commitment ('Protocol revenue' with no cap) and low triage confidence due to multiple critical omissions, the proposal lacks the minimum detail threshold observed in passing governance votes. Confidence capped at 6000 bps per Hard Rule #2 (triage.confidence.overall:low).",
+  "key_triage_signals": [
+    "red_flag:backdoor_permission:high",
+    "red_flag:unbounded_spend:high",
+    "treasury_impact:outflow",
+    "triage.confidence.overall:low",
+    "red_flag:token_dilution:medium",
+    "red_flag:vague_kpi:medium"
+  ]
+}

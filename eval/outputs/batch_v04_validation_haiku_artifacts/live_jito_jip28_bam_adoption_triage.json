@@ -1,0 +1,120 @@
+{
+  "reasoning_trace": [
+    {
+      "step": "Read end-to-end",
+      "observation": "JIP-28 proposes a tiered delegation model that extends JIP-27 (Directed Staking framework). It allocates JitoSOL stake to validators running BAM (Block Assembly Marketplace) software based on adoption metrics. Structure: Abstract → Motivation → Key Specifications (delegation criteria, tiered activation, governance, temporary pool control) → Benefits → Risks & Mitigation. No appendices with buried authority changes.",
+      "inference": "Core mechanism is stake reallocation to BAM adopters within an existing governance framework (JIP-27). Treasury impact is internal_transfer (no direct DAO cash outflow). Primary risks are governance clarity, parameter control scope, and technical dependency on JIP-27."
+    },
+    {
+      "step": "Identify stakeholders",
+      "observation": "Proposer: drnick. Beneficiaries: validators operating BAM continuously for 3+ epochs and meeting JIP-27 criteria. Affected groups: JitoSOL stakers (stake reallocation). Reviewers/administrators: Jito Foundation (BAM adoption verification via StakeNet).",
+      "inference": "Distributed beneficiary group (qualifying validators) with clear entry criteria. Foundation role is administrative, not discretionary. Transparency moderately strong; validator qualification criteria explicitly stated."
+    },
+    {
+      "step": "Locate monetary amounts and treasury impact",
+      "observation": "'No direct DAO expenditure' stated. Proposal is a stake reallocation mechanism, not a cash grant. JitoSOL is allocated to validators pro rata; this is internal_transfer within the DAO's existing JitoSOL pool.",
+      "inference": "Treasury direction: internal_transfer. No outflow or inflow. Amount_usd: null (no monetary value to quantify; only stake reallocation). Confidence: high on structure, medium on exact delegation amounts (depends on BAM adoption velocity)."
+    },
+    {
+      "step": "Scan KPIs and milestone bounding",
+      "observation": "Tiering mechanism: 'Each tier activates upon BAM stakeweight reaching specified thresholds for two consecutive epochs.' Qualifying validators must: operate BAM 3+ epochs, maintain uptime within 3% of chain max, meet JIP-27 criteria. Distributions pro rata. No explicit disbursement hold-backs or stage-gate reviews mentioned.",
+      "inference": "KPIs are present (BAM stakeweight thresholds, uptime 3%, continuous operation 3 epochs) but thresholds are NOT specified in this proposal text ('specified thresholds' is vague). Automatic activation upon reaching thresholds creates risk of unclear on-chain logic. Emit vague_kpi flag for unspecified tier thresholds."
+    },
+    {
+      "step": "Scan permission and role changes",
+      "observation": "'Temporary Pool Management Control: The proposal requests six-month temporary control of Steward parameters enabling responsive stake cap management during the JIP-27/JIP-28 transition period, with automatic revocation unless renewed.' This grants authority to manage stake cap for 6 months, explicitly stated in the body with auto-revocation language.",
+      "inference": "Authority change is EXPLICIT and summary-mentioned (not hidden). This is a time-bounded delegation with auto-sunset. Qualifies as centralization (concentration of executive control), not backdoor_permission. Severity: medium (explicit, time-bounded, auto-revocation unless renewed, but authority scope is 'responsive' and vague — needs clarification on who holds this control and what 'responsive' permits)."
+    },
+    {
+      "step": "Scan token supply and dilution effects",
+      "observation": "No new token issuance, no emission schedule change, no vesting acceleration. Proposal reallocates existing JitoSOL stake from general pool to BAM-adopting validators. No mention of buybacks, burns, or supply trajectory changes.",
+      "inference": "No token_dilution flag warranted. Stake reallocation does not modify supply trajectory."
+    },
+    {
+      "step": "Scan off-chain dependencies",
+      "observation": "BAM adoption verified via 'StakeNet and Jito Foundation reporting'. Epoch snapshots determine eligible validators. Depends on JIP-27 passage ('This JIP depends on JIP-27 passage').",
+      "inference": "Two off-chain dependencies: (1) StakeNet + Foundation reporting for BAM adoption verification — method/frequency not specified; (2) JIP-27 must pass first. Emit vague_kpi or other flag: BAM adoption verification method is not detailed (what counts as 'operating BAM'? How is it verified on-chain vs. off-chain?)."
+    },
+    {
+      "step": "Assess governance and escalation",
+      "observation": "'Parameters remain governable via future JIPs.' Auto-revocation of temporary control in 6 months unless renewed via governance. No mention of multi-sig, Council, or admin keys.",
+      "inference": "Governance controls are weak but present (future JIP renewal required). The 6-month auto-sunset is a safeguard. However, 'responsive stake cap management' during transition is operationally vague — who decides what 'responsive' means? Emit vague_kpi for lack of operational clarity."
+    },
+    {
+      "step": "Assess technical risk",
+      "observation": "Proposal leverages JIP-27 infrastructure (Directed Staking). No mention of new smart contracts, new on-chain logic, or security audits. Tiered activation is conditional on 'BAM stakeweight reaching specified thresholds' — logic not specified in proposal text.",
+      "inference": "Technical risk: LOW (relies on existing JIP-27 infrastructure, no new code in proposal). However, the on-chain logic for tier activation and stakeweight measurement is not detailed — this is an operational/clarity gap, not a security gap. Do not emit technical_risk flag; instead, note in questions that tier activation logic should be detailed."
+    }
+  ],
+  "summary": "JIP-28 extends the JIP-27 Directed Staking framework with tiered BAM adoption incentives. JitoSOL stake is reallocated pro rata to validators running BAM continuously for 3+ epochs and meeting uptime/MEV criteria. Proposal requests six-month temporary Steward parameter control for stake cap management, auto-revoking unless renewed. No direct treasury outflow; internal stake reallocation.",
+  "stakeholders": [
+    {
+      "name": "drnick",
+      "role": "proposer",
+      "citation": "Author: drnick"
+    },
+    {
+      "name": "BAM-adopting validators",
+      "role": "beneficiary",
+      "citation": "allocating JitoSOL stake to validators running BAM software"
+    },
+    {
+      "name": "JitoSOL stakers",
+      "role": "affected_group",
+      "citation": "Distributions allocated pro rata to qualifying validators"
+    },
+    {
+      "name": "Jito Foundation",
+      "role": "reviewer",
+      "citation": "BAM adoption verified via StakeNet and Jito Foundation reporting"
+    }
+  ],
+  "treasury_impact": {
+    "direction": "internal_transfer",
+    "amount_usd": null,
+    "confidence": "high",
+    "citation": "No direct DAO expenditure. / Distributions allocated pro rata to qualifying validators"
+  },
+  "red_flags": [
+    {
+      "category": "vague_kpi",
+      "detail": "Tier activation thresholds are referenced but not specified. Proposal states 'Each tier activates upon BAM stakeweight reaching specified thresholds for two consecutive epochs' without providing the threshold values.",
+      "citation": "Each tier activates upon BAM stakeweight reaching specified thresholds for two consecutive epochs.",
+      "severity": "medium"
+    },
+    {
+      "category": "vague_kpi",
+      "detail": "BAM adoption verification methodology is not detailed. Proposal states verification occurs 'via StakeNet and Jito Foundation reporting' but does not specify criteria for 'operating BAM continuously', measurement frequency, or validation criteria.",
+      "citation": "BAM adoption verified via StakeNet and Jito Foundation reporting / Eligible validators must operate BAM continuously for minimum three epochs",
+      "severity": "medium"
+    },
+    {
+      "category": "centralization",
+      "detail": "Six-month temporary control of Steward parameters for 'responsive stake cap management' is granted without defining scope or decision criteria. Authority is explicitly stated and time-bounded with auto-revocation, but operational discretion is vague.",
+      "citation": "The proposal requests six-month temporary control of Steward parameters enabling responsive stake cap management during the JIP-27/JIP-28 transition period, with automatic revocation unless renewed.",
+      "severity": "medium"
+    },
+    {
+      "category": "other",
+      "detail": "Proposal depends on JIP-27 passage. Validation of this proposal's utility cannot be completed without reviewing JIP-27 text and confirming its passage status.",
+      "citation": "This JIP depends on JIP-27 passage.",
+      "severity": "low"
+    }
+  ],
+  "questions_to_ask": [
+    "What are the specific BAM stakeweight threshold values for each tier? Are these hardcoded on-chain or subject to governance override, and through which mechanism?",
+    "How does Jito Foundation verify 'continuous BAM operation for 3+ epochs'? What on-chain or off-chain signals confirm this, and who has authority to dispute or challenge the verification?",
+    "What actions qualify as 'responsive stake cap management' within the six-month temporary control window? What are the bounds or veto criteria?",
+    "If a validator meets uptime and MEV criteria but is flagged by the Foundation as non-compliant with BAM software requirements mid-epoch, are they retroactively removed from distributions for that epoch?",
+    "After JIP-27 passes, will the tier activation logic and threshold values be published in an auditable, publicly-readable format (code reference, specification doc) before execution?"
+  ],
+  "confidence": {
+    "overall": "medium",
+    "unreadable_sections": [
+      "JIP-27 Directed Staking framework details (not included in proposal text; critical dependency)",
+      "Specific tier threshold values (referenced as 'specified thresholds' but not provided)",
+      "Steward parameter definitions and existing JIP-27 governance scope (needed to evaluate 'responsive' control)",
+      "StakeNet BAM adoption verification method and on-chain/off-chain signal definitions"
+    ]
+  }
+}

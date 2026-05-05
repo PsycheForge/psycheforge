@@ -1,0 +1,12 @@
+{
+  "predicted_outcome": 0,
+  "confidence_bps": 5500,
+  "reasoning_citation": "Triage classifies treasury_impact as internal_transfer (equal-value swap), with no HIGH-severity backdoor_permission flag present. Per calibrated priors, Solana DAO communities tolerate process-only red flags when no direct treasury drain is at stake. Two HIGH-severity flags (vague_kpi, missing_milestone) on the fee redirection component create uncertainty, but do not meet the ≥3 HIGH threshold required to override the approve-default in this zone. Open-ended fee mechanism merits concern but falls short of rejection signal under calibration.",
+  "key_triage_signals": [
+    "treasury_impact:internal_transfer",
+    "red_flag:vague_kpi:high",
+    "red_flag:missing_milestone:high",
+    "red_flag:backdoor_permission:medium",
+    "triage.confidence.overall:medium"
+  ]
+}

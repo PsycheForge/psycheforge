@@ -1,0 +1,11 @@
+{
+  "predicted_outcome": 0,
+  "confidence_bps": 7000,
+  "reasoning_citation": "Triage flags high-severity backdoor_permission (unnamed Steward controller) but with auto-revocation default, matching the JIP-28 delegated-execution pattern that communities treat as operational delegation rather than capture. Treasury impact is internal_transfer with no outflow. The vague_kpi medium flag (missing tier thresholds) is process-only and insufficient to flip the prediction when no treasury drain is present. Prior A applies: treasury-untouched proposals default toward approve. Confidence capped at triage.confidence.overall=medium.",
+  "key_triage_signals": [
+    "treasury_impact.direction:internal_transfer",
+    "red_flag:backdoor_permission:high (auto-revocation)",
+    "red_flag:vague_kpi:medium",
+    "confidence.overall:medium"
+  ]
+}

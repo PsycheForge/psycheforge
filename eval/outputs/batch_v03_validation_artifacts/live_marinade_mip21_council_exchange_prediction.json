@@ -1,0 +1,12 @@
+{
+  "predicted_outcome": 0,
+  "confidence_bps": 6500,
+  "reasoning_citation": "treasury_impact.direction is internal_transfer (mSOL-for-MNDE swap), not net outflow. No red_flag at high severity. Four medium-severity flags (vague_kpi, missing_milestone, backdoor_permission, centralization) raise process concerns, but Prior A calibration shows Solana DAOs tolerate these when no direct treasury drain occurs. The backdoor_permission flag (fee redirection) is medium, not high — insufficient to flip prediction without ≥3 high-severity stack. Confidence moderated by triage.confidence.overall=medium and the unbounded fee-redirection term flagged in missing_milestone.",
+  "key_triage_signals": [
+    "treasury_impact:internal_transfer:587000",
+    "red_flag:backdoor_permission:medium",
+    "red_flag:missing_milestone:medium",
+    "red_flag:centralization:medium",
+    "triage.confidence.overall:medium"
+  ]
+}

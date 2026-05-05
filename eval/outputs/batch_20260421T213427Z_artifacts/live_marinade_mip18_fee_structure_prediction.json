@@ -1,0 +1,13 @@
+{
+  "predicted_outcome": 1,
+  "confidence_bps": 6500,
+  "reasoning_citation": "Triage surfaces a high-severity technical_risk red_flag: the conditional performance fee rate replacing the fixed 9.5% fee is never specified in the proposal text. Combined with medium-severity flags for unspecified SSR calculation methodology, vague KPIs, and missing implementation milestones, delegates reviewing the triage analysis lack the critical parameter needed to evaluate the fee structure change. The proposal reached re-vote without addressing this gap, suggesting the issue may not be widely recognized, but delegates who read the triage are likely to reject rather than approve a parameter change with the parameter value missing. Confidence capped at triage.confidence.overall=medium.",
+  "key_triage_signals": [
+    "red_flags:technical_risk:high (missing conditional fee rate)",
+    "red_flags:technical_risk:medium (SSR calculation)",
+    "red_flags:vague_kpi:medium",
+    "red_flags:missing_milestone:medium",
+    "treasury_impact:none",
+    "confidence.overall:medium"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "predicted_outcome": 0,
+  "confidence_bps": 7200,
+  "reasoning_citation": "Internal_transfer with no high-severity governance flags. Vague_kpi and centralization flags are medium severity (process concerns). No backdoor_permission or technical risk flagged. Temporary Steward control is explicit, time-bounded, auto-revoking. Prior A applies: internal_transfer + no HIGH-severity flags → approve. Confidence capped at triage.confidence.overall=medium due to JIP-27 dependency and unspecified thresholds.",
+  "key_triage_signals": [
+    "treasury_impact:internal_transfer",
+    "red_flags:vague_kpi:medium",
+    "red_flags:centralization:medium",
+    "red_flags:no_backdoor_permission",
+    "confidence.overall:medium",
+    "reasoning_trace:authority_explicit_not_hidden"
+  ]
+}

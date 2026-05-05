@@ -1,0 +1,13 @@
+{
+  "predicted_outcome": 0,
+  "confidence_bps": 6800,
+  "reasoning_citation": "Per Prior A, treasury_impact.direction=none with high triage confidence and no backdoor_permission high-severity flag defaults toward approve. The centralization flag is medium-severity with explicit auto-revocation and is summary-mentioned (not buried), and remaining flags are process-only at medium/low (vague_kpi:medium, missing_milestone:low, technical_risk:low, other:low) — none stack to the ≥3 high-severity threshold that would flip the prediction. JIP-27 dependency and unreadable_sections (tier thresholds, recipient entity) cap confidence below the medium-tier ceiling of 8000.",
+  "key_triage_signals": [
+    "treasury_impact.direction:none",
+    "treasury_impact.confidence:high",
+    "red_flag:centralization:medium (auto-revoking, summary-mentioned)",
+    "red_flag:vague_kpi:medium",
+    "triage.confidence.overall:medium",
+    "confidence.unreadable_sections:4_items"
+  ]
+}

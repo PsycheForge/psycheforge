@@ -1,0 +1,12 @@
+{
+  "predicted_outcome": 1,
+  "confidence_bps": 5500,
+  "reasoning_citation": "Triage identifies high-severity unbounded_spend red flag with no maximum JitoSOL allocation cap and missing tier thresholds, preventing financial exposure assessment. Combined with medium-severity backdoor_permission for undefined Steward parameter control and absent measurable success criteria. When critical financial details are missing at high severity and permission scope is undefined, rejection is the base-rate outcome in DAOs with active triage review. Confidence capped by triage.confidence.overall=low due to multiple unreadable sections.",
+  "key_triage_signals": [
+    "red_flag:unbounded_spend:high",
+    "red_flag:backdoor_permission:medium",
+    "red_flag:vague_kpi:medium",
+    "treasury_impact:none",
+    "triage.confidence.overall:low"
+  ]
+}

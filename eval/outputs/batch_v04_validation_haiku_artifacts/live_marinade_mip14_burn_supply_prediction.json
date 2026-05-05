@@ -1,0 +1,13 @@
+{
+  "predicted_outcome": 0,
+  "confidence_bps": 7000,
+  "reasoning_citation": "High-severity token_dilution flag reflects 300M permanent burn (30% of supply); Risks section explicitly acknowledges irreversibility and opportunity cost. No hidden permissions or bundling detected. Community pre-voted 30% in opinion-stage; execution vote now seeks binary confirmation. Transparent treasury impact + pre-vote coherence favor approval. Confidence accounts for material irreversibility risk despite high triage.confidence.overall.",
+  "key_triage_signals": [
+    "red_flag:token_dilution:high",
+    "treasury_impact:direction:outflow",
+    "treasury_impact:amount:300M MNDE (30% supply)",
+    "triage.confidence.overall:high",
+    "red_flags.length:1",
+    "unreadable_sections:0"
+  ]
+}

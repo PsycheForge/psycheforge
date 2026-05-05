@@ -1,0 +1,115 @@
+{
+  "reasoning_trace": [
+    {
+      "step": "Read end-to-end",
+      "observation": "Proposal is 3 short paragraphs proposing to replace MNDE burn mechanism with buy-and-distribute. Protocol revenue buys MNDE (possibly weekly), VeMNDE holders claim proportional rewards. The note explicitly states the proposal lacks formal MIP sections and key specifics.",
+      "inference": "Extremely brief proposal with major tokenomics implications but minimal detail. High likelihood of multiple red flags for vagueness, missing milestones, and undefined authority structures."
+    },
+    {
+      "step": "Identify stakeholders",
+      "observation": "Author is berkantsc. VeMNDE holders are repeatedly mentioned as beneficiaries. No other parties named - no implementation team, no multisig, no reviewers.",
+      "inference": "Only two clear stakeholders: proposer and VeMNDE holders as affected group. Absence of implementation authority is notable."
+    },
+    {
+      "step": "Locate monetary amounts",
+      "observation": "Proposal states 'Protocol revenue will buy back MNDE' but provides no specific amounts, percentages, or caps. The note confirms 'exact buyback budget' is not included.",
+      "inference": "Treasury outflow (protocol revenue spent on buybacks and distributed) but unquantifiable. This triggers unbounded_spend red flag. Amount remains null due to zero specification."
+    },
+    {
+      "step": "Scan for permission/authority changes",
+      "observation": "Proposal describes buyback execution and distribution mechanism but never specifies who controls the buyback wallet, who executes purchases, or who implements the claim system. No multisig cited, no existing authority referenced.",
+      "inference": "Implementation requires substantial execution authority (buyback wallet control, market operations, claim system admin) but proposal provides zero specification of who holds these permissions. This is undefined authority for a critical treasury function - backdoor_permission HIGH severity."
+    },
+    {
+      "step": "Scan for KPIs and milestones",
+      "observation": "Rationale states this will 'significantly bring more value to MNDE ecosystem' with no metrics, baselines, or measurement criteria. No implementation timeline, no staged rollout, no success checkpoints.",
+      "inference": "Completely non-measurable KPI and zero milestone structure. Emit vague_kpi and missing_milestone red flags."
+    },
+    {
+      "step": "Assess token supply impact",
+      "observation": "Mechanism switches from burn (deflationary - removes tokens from supply) to distribute (neutral to inflationary - recirculates tokens). Skill mandates token_dilution flag for 'any direction' of supply trajectory change including 'paused emissions, burns, buybacks'.",
+      "inference": "Clear token_dilution trigger - stops burns and starts distributions. Magnitude unknown due to unspecified budget, but this is a fundamental tokenomics change affecting all future protocol revenue allocation. Medium severity due to unknown magnitude but systematic impact."
+    },
+    {
+      "step": "Compose delegate questions",
+      "observation": "Proposal has 6+ critical gaps: budget, execution authority, timeline, VeMNDE formula, transition plan, claim mechanics.",
+      "inference": "Delegate needs answers on execution authority (who controls buyback wallet), budget bounds (what percentage of protocol revenue), timeline, and technical implementation before this is voteable."
+    }
+  ],
+  "summary": "Replace MNDE burn mechanism with buyback-and-distribute where protocol revenue purchases MNDE from market and VeMNDE holders claim proportional rewards. No budget, timeline, authority structure, or success metrics specified.",
+  "stakeholders": [
+    {
+      "name": "berkantsc",
+      "role": "proposer",
+      "citation": "Author: berkantsc"
+    },
+    {
+      "name": "VeMNDE holders",
+      "role": "affected_group",
+      "citation": "VeMNDE holders gain the ability to claim proportional rewards"
+    }
+  ],
+  "treasury_impact": {
+    "direction": "outflow",
+    "amount_usd": null,
+    "confidence": "low",
+    "citation": "Protocol revenue will buy back MNDE on open market maybe weekly, and there will be claim rewards option for VeMNDE holders"
+  },
+  "red_flags": [
+    {
+      "category": "backdoor_permission",
+      "detail": "Proposal requires execution authority for buyback wallet control, market purchase operations, and claim system administration but provides zero specification of who holds these permissions - no multisig cited, no existing authority referenced, no implementation team named.",
+      "citation": "Protocol revenue will buy back MNDE on open market maybe weekly, and there will be claim rewards option for VeMNDE holders",
+      "severity": "high"
+    },
+    {
+      "category": "unbounded_spend",
+      "detail": "Proposal commits 'Protocol revenue' to buybacks with no percentage cap, no budget limit, and no maximum specified. Note explicitly confirms 'exact buyback budget' omitted from proposal.",
+      "citation": "Protocol revenue will buy back MNDE on open market maybe weekly",
+      "severity": "high"
+    },
+    {
+      "category": "token_dilution",
+      "detail": "Mechanism change stops MNDE burns (deflationary) and starts distributions to VeMNDE holders (increases circulating supply). Fundamental shift in token supply trajectory with unknown magnitude due to unspecified budget.",
+      "citation": "This proposes that instead of burning MNDE tokens, Marinade should implement a buyback and distribution model",
+      "severity": "medium"
+    },
+    {
+      "category": "vague_kpi",
+      "detail": "Success metric is non-measurable: 'significantly bring more value to MNDE ecosystem' with no numeric targets, baselines, or measurement criteria.",
+      "citation": "This approach will significantly bring more value to MNDE ecosystem",
+      "severity": "medium"
+    },
+    {
+      "category": "missing_milestone",
+      "detail": "No implementation timeline, no staged rollout, no transition plan from burn to distribute mechanism, no development checkpoints. Note confirms 'transition timeline' omitted from proposal.",
+      "citation": "Note: This proposal as posted is brief and lacks formal abstract / motivation / specification / accountability sections common in other MIPs",
+      "severity": "medium"
+    },
+    {
+      "category": "technical_risk",
+      "detail": "Implementation requires smart contract changes for buyback execution, claim system, VeMNDE power calculation, and rewards distribution with no technical specification or audit plan mentioned.",
+      "citation": "there will be claim rewards option for VeMNDE holders",
+      "severity": "medium"
+    }
+  ],
+  "questions_to_ask": [
+    "What percentage or absolute cap of protocol revenue will be allocated to MNDE buybacks, and how was this amount determined?",
+    "Who will control the buyback execution wallet and distribution system - an existing multisig, a new committee, or Marinade Labs?",
+    "What is the implementation timeline from vote passage to live buyback/claim system, and who is responsible for development and audit?",
+    "How is VeMNDE power calculated for proportional distribution, and will this formula be on-chain and verifiable?",
+    "What happens to the existing burn mechanism during transition - immediate stop or phased sunset?",
+    "Will there be minimum claim thresholds or claim frequency limits to manage gas costs for smaller VeMNDE holders?"
+  ],
+  "confidence": {
+    "overall": "low",
+    "unreadable_sections": [
+      "Exact buyback budget amount or percentage (explicitly noted as omitted)",
+      "Buyback frequency specifics beyond 'maybe weekly' (explicitly noted as omitted)",
+      "Claim cadence and mechanics (explicitly noted as omitted)",
+      "Transition timeline and implementation plan (explicitly noted as omitted)",
+      "VeMNDE power formula and calculation method (explicitly noted as omitted)",
+      "Execution authority and multisig structure (not specified in proposal)"
+    ]
+  }
+}

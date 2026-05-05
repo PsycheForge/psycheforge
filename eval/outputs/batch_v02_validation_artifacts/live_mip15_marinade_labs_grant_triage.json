@@ -1,0 +1,121 @@
+{
+  "reasoning_trace": [
+    {
+      "step": "Read end-to-end",
+      "observation": "Proposal has two components: (1) activate protocol fee flows to Marinade Foundation, (2) allocate 100M MNDE from DAO treasury to Marinade Labs for 12-18 months operations. Includes 1-year cliff. References MIP-11 and MIP-13 for revenue restructuring context.",
+      "inference": "Primary treasury action is 100M MNDE outflow. Fee flow activation provides context but is dependent on prior MIPs not included in this text."
+    },
+    {
+      "step": "Identify stakeholders",
+      "observation": "Author: helloiamvu. Beneficiary: Marinade Labs (receives 100M MNDE). Affected: MNDE holders (supply impact), Marinade Foundation (receives fees), DAO treasury.",
+      "inference": "Clear proposer and beneficiary. Foundation role is mentioned but structure undefined in proposal text."
+    },
+    {
+      "step": "Locate monetary amounts",
+      "observation": "100M MNDE allocation stated. '50% of performance fees support MNDE buybacks' mentioned but not quantified. No USD conversions provided.",
+      "inference": "Cannot determine USD value or fee flow magnitude from proposal text alone."
+    },
+    {
+      "step": "Scan KPIs",
+      "observation": "Use of funds: 'Core contributor compensation', 'Product development and audits', 'Marketing, partnerships, and ecosystem growth', 'Community programs and governance operations'. Success claim: 'Past MNDE allocations demonstrated measurable TVL and ecosystem growth' but no numbers provided.",
+      "inference": "No numeric targets, baselines, or thresholds. All success metrics are qualitative. This is vague_kpi."
+    },
+    {
+      "step": "Scan milestones",
+      "observation": "Duration specified as '12 to 18 months' (range, not fixed). 'Quarterly reporting' mentioned but no interim review gates or disbursement checkpoints defined. 'Unused MNDE at period conclusion returns to the DAO treasury' but 'period conclusion' is undefined.",
+      "inference": "No milestone-based disbursement controls. The 100M allocation appears to be upfront (after 1-year cliff) with no interim gates. This is missing_milestone."
+    },
+    {
+      "step": "Scan permissions",
+      "observation": "Proposal 'activate[s] protocol fee flows into the Marinade Foundation'. Foundation structure, multisig, or control not defined in proposal text. References MIP-11/MIP-13 but those documents not provided.",
+      "inference": "Foundation entity mentioned but unspecified in this proposal. Cannot verify if existing or new from provided text. Medium severity per calibration guidance for cited-but-undefined entities."
+    },
+    {
+      "step": "Scan token supply",
+      "observation": "100M MNDE moving from DAO treasury to Marinade Labs. 1-year cliff before unlock. No total supply figure provided. Proposal mentions buybacks as offset but doesn't quantify them.",
+      "inference": "Clear supply trajectory modification. Magnitude unknown without total supply, but 100M is large absolute number. Likely >1% of supply. Emit token_dilution flag."
+    },
+    {
+      "step": "Identify off-chain dependencies",
+      "observation": "'Quarterly reporting to the DAO' required. 'Unused MNDE at period conclusion returns to DAO treasury' requires voluntary compliance.",
+      "inference": "Two material off-chain dependencies: reporting and unused fund return. No enforcement mechanism specified."
+    }
+  ],
+  "summary": "Activates protocol fee flows to Marinade Foundation and allocates 100M MNDE from DAO treasury to Marinade Labs for 12-18 months operations (contributor pay, development, marketing, community). Includes 1-year cliff. Team loses direct revenue access; DAO treasury becomes central fee recipient. Quarterly reporting promised.",
+  "stakeholders": [
+    {
+      "name": "helloiamvu",
+      "role": "proposer",
+      "citation": "**Author:** helloiamvu"
+    },
+    {
+      "name": "Marinade Labs",
+      "role": "beneficiary",
+      "citation": "allocate 100M MNDE from the DAO treasury to Marinade Labs for operational expenses"
+    },
+    {
+      "name": "Marinade Foundation",
+      "role": "beneficiary",
+      "citation": "activate protocol fee flows into the Marinade Foundation"
+    },
+    {
+      "name": "MNDE holders",
+      "role": "affected_group",
+      "citation": "100M MNDE from the DAO treasury"
+    }
+  ],
+  "treasury_impact": {
+    "direction": "outflow",
+    "amount_usd": null,
+    "confidence": "medium",
+    "citation": "allocate 100M MNDE from the DAO treasury to Marinade Labs for operational expenses over 12 to 18 months"
+  },
+  "red_flags": [
+    {
+      "category": "vague_kpi",
+      "detail": "Use of funds described only qualitatively ('Core contributor compensation', 'Product development and audits', 'Marketing, partnerships, and ecosystem growth'). No numeric targets, baselines, or measurable success thresholds provided. Past track record claim ('demonstrated measurable TVL and ecosystem growth') lacks specific metrics.",
+      "citation": "**Use of Funds:** - Core contributor compensation - Product development and audits - Marketing, partnerships, and ecosystem growth - Community programs and governance operations",
+      "severity": "high"
+    },
+    {
+      "category": "missing_milestone",
+      "detail": "No interim review gates or milestone-based disbursement controls. Duration range is vague (12-18 months). 'Period conclusion' undefined. Quarterly reporting mentioned but not tied to continued funding approval.",
+      "citation": "**Duration:** 12 to 18 months of operational runway",
+      "severity": "high"
+    },
+    {
+      "category": "backdoor_permission",
+      "detail": "Protocol fee flows will be activated to 'Marinade Foundation' but the proposal does not define the Foundation's legal structure, multisig composition, or control mechanisms. Referenced prior MIPs (MIP-11, MIP-13) are not included in proposal text for verification.",
+      "citation": "activate protocol fee flows into the Marinade Foundation",
+      "severity": "medium"
+    },
+    {
+      "category": "token_dilution",
+      "detail": "100M MNDE allocated to operational entity. 1-year cliff delays but does not eliminate circulating supply impact. No total supply figure or dilution percentage provided. Buyback offset mentioned but not quantified.",
+      "citation": "**Amount:** 100M MNDE from the DAO treasury",
+      "severity": "medium"
+    },
+    {
+      "category": "unbounded_spend",
+      "detail": "Duration specified as a range (12 to 18 months) rather than fixed term. No breakdown of 100M MNDE allocation by expense category or time period.",
+      "citation": "**Duration:** 12 to 18 months of operational runway",
+      "severity": "medium"
+    }
+  ],
+  "questions_to_ask": [
+    "What is the specific legal structure, multisig composition, and key-holder identities of the Marinade Foundation that will receive protocol fees?",
+    "What numeric KPIs define successful deployment of the 100M MNDE (e.g., TVL growth target percentage, number of product releases, user acquisition numbers)?",
+    "At what specific milestone or date does 'period conclusion' occur—is it 12 months, 18 months, or some other deliverable-driven endpoint?",
+    "What percentage of total MNDE circulating supply does 100M represent, and what are the expected liquidation requirements post-cliff?",
+    "Will there be interim DAO review checkpoints (e.g., at 6 months) with authority to halt or modify the allocation, or is the full 100M committed once the cliff expires?",
+    "Can you quantify the expected protocol fee inflows and buyback volume over the 12-18 month period to demonstrate treasury replenishment feasibility?"
+  ],
+  "confidence": {
+    "overall": "medium",
+    "unreadable_sections": [
+      "MIP-11 and MIP-13 (referenced for revenue structure changes but not provided in proposal text)",
+      "Total MNDE supply (needed to calculate dilution percentage)",
+      "Marinade Foundation structure and governance (mentioned but not defined)"
+    ]
+  }
+}

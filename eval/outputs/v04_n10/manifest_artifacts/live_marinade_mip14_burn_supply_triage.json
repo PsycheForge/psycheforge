@@ -1,0 +1,118 @@
+{
+  "reasoning_trace": [
+    {
+      "step": "Read end-to-end",
+      "observation": "MIP-14 proposes a two-stage process: an opinion vote on burning 5-50% of MNDE total supply (or No Burn), followed by an execution proposal that the Marinade Foundation Council multisig executes. Treasury holds ~564M MNDE (56.4% of 1B fixed supply); circulating ~430M. Outcome section states community selected 30% burn.",
+      "inference": "Mechanism is a treasury-supply reduction (burn), not an outflow to a counterparty. Need to evaluate token-supply effects, execution authority, and KPI/measurability."
+    },
+    {
+      "step": "Identify stakeholders",
+      "observation": "Author cited as 'fisiroky'. Execution party cited as 'the Marinade Foundation Council multisig'. Affected parties: MNDE holders broadly (supply change). Treasury cited as 'the DAO treasury' / 'Realms-controlled treasury'.",
+      "inference": "Proposer = fisiroky. Counterparty/executor = Marinade Foundation Council multisig. Affected group = MNDE holders. Reviewer not named."
+    },
+    {
+      "step": "Locate monetary amounts",
+      "observation": "Quantities cited in MNDE units, not USD: '564 million MNDE', 'circulating supply stands at roughly 430 million', burn range '50 million and 500 million MNDE', resulting treasury '593 million–143 million'. No USD figures, no token price reference. Outcome: 30% selected = 300M MNDE burn.",
+      "inference": "No USD figures appear in proposal text. amount_usd must be null. Direction is not a treasury outflow to an external party — burn is supply destruction. Closest schema fit is 'none' (treasury MNDE balance decreases but no transfer to a counterparty); confidence medium because schema does not explicitly cover burns."
+    },
+    {
+      "step": "Scan KPI measurability",
+      "observation": "Stated rationale references 'improves the market cap to FDV ratio', 'removes sentiment-suppressing overhang', 'demonstrates the DAO's commitment to sustainable tokenomics' — no numeric post-burn MC/FDV target, no price target, no measurable threshold for success.",
+      "inference": "Success framing is qualitative. However, the proposal's PRIMARY action (the burn amount itself) is quantified via the opinion vote, so this is softer than a typical vague_kpi case. Emit vague_kpi at low severity for the rationale's qualitative success criteria."
+    },
+    {
+      "step": "Scan milestone bounding",
+      "observation": "Two-stage structure: opinion vote → execution proposal → multisig execution. Disbursement-style milestones not applicable (no contributor payments). Burn is a single onchain action.",
+      "inference": "No missing_milestone flag — single-action proposals don't require milestone bounding."
+    },
+    {
+      "step": "Scan permission / role changes",
+      "observation": "Execution clause: 'the Marinade Foundation Council multisig follows the vote and executes the transaction and burn hash on official channels.' This is mentioned explicitly in the main Implementation section (not buried), and the Council multisig appears to be a pre-existing authority. No new keypair, no expanded scope beyond executing the voted-on burn.",
+      "inference": "Authority use is explicit and summary-mentioned. Does NOT meet the HIDDEN qualifier for backdoor_permission. Council acting as executor of a community vote is standard governance pattern; no centralization flag warranted at material severity. No flag emitted."
+    },
+    {
+      "step": "Scan token-supply effects (mandatory)",
+      "observation": "Proposal directly modifies supply trajectory: 'Burning between 50 million and 500 million MNDE would reduce the total supply to 950 million–500 million'. Outcome resulted in 30% (300M) burn = 30% of total supply.",
+      "inference": "Mandatory token_dilution trigger fires — any supply-trajectory change requires the flag regardless of direction. Magnitude at outcome (30%) is well above the 5% high-severity threshold. Severity: high. Detail framing is neutral (deflationary, not dilutive, but the schema category covers any supply change)."
+    },
+    {
+      "step": "Scan off-chain dependencies",
+      "observation": "Execution requires (a) opinion-vote tooling (multi-choice poll on Realms), (b) a follow-up onchain burn proposal, (c) Council multisig signing, (d) publication of 'burn hash on official channels'. All within standard Realms governance flow.",
+      "inference": "No unusual off-chain dependencies. The two-stage structure does mean the execution vote is a separate proposal not included in this text — worth noting in confidence/unreadable_sections."
+    },
+    {
+      "step": "Scan technical risk and irreversibility",
+      "observation": "Proposal itself notes: 'Burned tokens cannot be re-minted; excessive burning constrains future flexibility' and 'Burned tokens become unavailable for ecosystem growth grants or partnerships'. Minting is 'permanently disabled', so burns are absolutely irreversible.",
+      "inference": "Irreversibility is a substantive consideration a careful delegate would weigh — not an exploit vector but a strategic constraint. Emit technical_risk at medium for the irreversible-future-flexibility tradeoff. Not paired with a high-severity centralization/backdoor flag on the same mechanism, so no demotion needed."
+    },
+    {
+      "step": "Compose questions",
+      "observation": "Notable gaps: post-burn treasury runway not modeled against historical grant/incentive spend; no commitment on Council execution timing; opinion-vote quorum/threshold not specified; no analysis of how 143M floor (at 50% burn) was chosen as adequate.",
+      "inference": "Questions should probe runway modeling, execution-vote thresholds, multisig discretion if vote is close, and the rationale for the 5-50% range bounds."
+    },
+    {
+      "step": "Assess confidence",
+      "observation": "Proposal text is clear and self-contained for the opinion-vote stage. The follow-up execution proposal text is referenced but not included. No USD valuation provided.",
+      "inference": "Overall confidence: high for what's in scope (the opinion-vote design and stated outcome). Note the execution-stage proposal as unreadable."
+    }
+  ],
+  "summary": "MIP-14 proposes a two-stage vote to burn 5-50% of MNDE total supply from the DAO treasury (~564M MNDE / 56.4% of 1B fixed cap). Opinion vote selects the percentage; Marinade Foundation Council multisig executes onchain. Outcome: community selected 30% (300M MNDE) burn.",
+  "stakeholders": [
+    {
+      "name": "fisiroky",
+      "role": "proposer",
+      "citation": "**Author:** fisiroky"
+    },
+    {
+      "name": "Marinade Foundation Council multisig",
+      "role": "counterparty",
+      "citation": "the Marinade Foundation Council multisig follows the vote and executes the transaction and burn hash on official channels"
+    },
+    {
+      "name": "MNDE holders",
+      "role": "affected_group",
+      "citation": "Burning between 50 million and 500 million MNDE would reduce the total supply to 950 million–500 million"
+    }
+  ],
+  "treasury_impact": {
+    "direction": "none",
+    "amount_usd": null,
+    "confidence": "medium",
+    "citation": "decrease treasury holdings to 593 million–143 million"
+  },
+  "red_flags": [
+    {
+      "category": "token_dilution",
+      "detail": "Proposal directly modifies supply trajectory via burn. Range covers 5-50% of total supply; selected outcome is 30% (300M MNDE) — well above the 5% high-severity threshold. Net effect is deflationary, but the supply-trajectory-change trigger applies in either direction.",
+      "citation": "Burning between 50 million and 500 million MNDE would reduce the total supply to 950 million–500 million",
+      "severity": "high"
+    },
+    {
+      "category": "technical_risk",
+      "detail": "Burns are absolutely irreversible because minting is permanently disabled. The proposal acknowledges this constrains future ecosystem-growth and partnership flexibility. A careful delegate would weigh whether the post-burn 143M-593M treasury floor is adequate for multi-year grant and incentive obligations.",
+      "citation": "Irreversibility: Burned tokens cannot be re-minted; excessive burning constrains future flexibility.",
+      "severity": "medium"
+    },
+    {
+      "category": "vague_kpi",
+      "detail": "Stated benefits (improved MC/FDV ratio, reduced sentiment overhang, demonstrated tokenomics commitment) lack numeric targets or post-burn success thresholds. The burn quantity itself is well-defined via the opinion vote, so this is softer than a typical vague-KPI case.",
+      "citation": "Burning a portion improves the market cap to FDV ratio and removes sentiment-suppressing overhang.",
+      "severity": "low"
+    }
+  ],
+  "questions_to_ask": [
+    "What is the projected multi-year runway for grants, liquidity incentives, and partnerships at each burn tier (5%, 10%, 20%, 30%, 40%, 50%), and how was 143M MNDE (the 50%-burn floor) judged sufficient?",
+    "What quorum and approval threshold will the follow-up onchain burn-execution proposal require, and does the Council multisig retain discretion to delay or decline execution if turnout is low or the winning option is narrowly chosen?",
+    "Why is 'No Burn' the only sub-5% option — was a smaller bracket (e.g., 1-4%) considered, and what excluded it?",
+    "How will the burn transaction hash and post-burn treasury balance be verified and published, and on what timeline after the execution proposal passes?",
+    "Are there outstanding MNDE-denominated commitments (vesting, partner allocations, incentive programs) that should be reserved before burning, and how do those interact with each burn tier?"
+  ],
+  "confidence": {
+    "overall": "high",
+    "unreadable_sections": [
+      "The follow-up onchain burn-execution proposal (referenced but not included in this text)",
+      "Opinion-vote quorum/threshold parameters (not specified in proposal)",
+      "USD valuation of MNDE at proposal date (no price reference provided)"
+    ]
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "reasoning_trace": [
+    {
+      "step": "Read end-to-end",
+      "observation": "Proposal requests swapping accumulated mSOL (2,279 + 1,071 = 3,350 mSOL, ~$587k total) from DAO treasury to Council wallet in exchange for equivalent MNDE value. Additionally requests redirecting protocol fees to Council wallet, with monthly MNDE transfers back to treasury until fees revert to DAO.",
+      "inference": "This combines an immediate asset swap with a structural change to revenue flows. Need to verify permission scope, termination conditions, and enforcement mechanisms."
+    },
+    {
+      "step": "Identify stakeholders",
+      "observation": "Author: Cerba; 'Marinade Labs proposes transferring accumulated mSOL from the DAO treasury to the Council wallet'; 'the Council wallet would transfer 9,741,000 MNDE tokens back to the DAO Treasury'.",
+      "inference": "Cerba is proposer. Marinade Labs is beneficiary (implied control of Council wallet). DAO treasury is counterparty in the swap."
+    },
+    {
+      "step": "Locate monetary amounts",
+      "observation": "Initial: '2,279 mSOL, valued at $437,000' for '9,741,000 MNDE tokens ($437,000 value)'. Follow-up: '1,071 mSOL, $149,932' for '5,605,639 MNDE'. Total: ~$587k asset exchange.",
+      "inference": "Asset swap maintains notional dollar value. Direction is internal_transfer (mSOL out, MNDE in). However, fee redirection changes ongoing revenue composition and introduces counterparty dependency."
+    },
+    {
+      "step": "Scan KPI measurability",
+      "observation": "Rationale states 'allowing Marinade Labs to fund operations supporting protocol growth' and 'growing protocol TVL' but provides no numeric targets, baselines, or measurement criteria.",
+      "inference": "Success metrics are non-measurable. Emit vague_kpi red flag."
+    },
+    {
+      "step": "Scan milestone bounding",
+      "observation": "'This monthly transfer would cease once fees redirect back to the DAO treasury' - no timeline, conditions, or review milestones specified for when fees return to DAO control.",
+      "inference": "Fee redirection has unbounded duration. Emit missing_milestone red flag."
+    },
+    {
+      "step": "Scan permissions",
+      "observation": "'redirecting protocol fees to the Council Wallet' - grants Council wallet control over protocol revenue stream that previously accrued to DAO treasury.",
+      "inference": "Authority transfer of fee flows to Marinade Labs (long-running operating organization with public team and track record). Per v0.3 calibration, this is MEDIUM severity. Emit backdoor_permission red flag."
+    },
+    {
+      "step": "Check enforcement mechanisms",
+      "observation": "'Monthly, the Council wallet would transfer equivalent MNDE value back to the DAO treasury' - no on-chain enforcement, escrow, or penalty mechanism described.",
+      "inference": "Monthly transfers rely on off-chain trust and Marinade Labs' goodwill. Emit centralization red flag for counterparty risk."
+    }
+  ],
+  "summary": "Swap 3,350 mSOL ($587k) from DAO treasury to Council wallet for equivalent MNDE. Redirect protocol fees to Council wallet, with monthly MNDE transfers back to treasury until fees revert to DAO (no specified timeline).",
+  "stakeholders": [
+    {
+      "name": "Cerba",
+      "role": "proposer",
+      "citation": "**Author:** Cerba"
+    },
+    {
+      "name": "Marinade Labs",
+      "role": "beneficiary",
+      "citation": "Marinade Labs proposes transferring accumulated mSOL from the DAO treasury (2,279 mSOL, valued at $437,000) to the Council wallet."
+    },
+    {
+      "name": "Council wallet",
+      "role": "counterparty",
+      "citation": "the Council wallet would transfer 9,741,000 MNDE tokens ($437,000 value) back to the DAO Treasury"
+    },
+    {
+      "name": "DAO treasury",
+      "role": "affected_group",
+      "citation": "accumulated mSOL from the DAO treasury"
+    }
+  ],
+  "treasury_impact": {
+    "direction": "internal_transfer",
+    "amount_usd": 587000,
+    "confidence": "medium",
+    "citation": "2,279 mSOL, valued at $437,000 [...] 1,071 mSOL, $149,932"
+  },
+  "red_flags": [
+    {
+      "category": "vague_kpi",
+      "detail": "No measurable success criteria for the proposal's stated goal of 'covering expenses and growing protocol TVL'. No baselines, numeric targets, or verification methods provided.",
+      "citation": "allowing Marinade Labs to fund operations supporting protocol growth",
+      "severity": "medium"
+    },
+    {
+      "category": "missing_milestone",
+      "detail": "Fee redirection to Council wallet has no defined timeline, review checkpoint, or termination conditions. Proposal states transfers 'would cease once fees redirect back to the DAO treasury' but provides no mechanism or schedule for this reversion.",
+      "citation": "This monthly transfer would cease once fees redirect back to the DAO treasury.",
+      "severity": "medium"
+    },
+    {
+      "category": "backdoor_permission",
+      "detail": "Redirecting protocol fees from DAO treasury to Council wallet transfers control of the protocol's revenue stream to Marinade Labs with no defined sunset or governance checkpoints. While Marinade Labs is an established operating organization, this grants significant ongoing authority.",
+      "citation": "redirecting protocol fees to the Council Wallet. Monthly, the Council wallet would transfer equivalent MNDE value back to the DAO treasury",
+      "severity": "medium"
+    },
+    {
+      "category": "centralization",
+      "detail": "Monthly MNDE transfers from Council wallet to treasury rely on off-chain trust and Marinade Labs' continued operation. No enforcement mechanism, escrow, or penalty clause protects the DAO if transfers are missed or Marinade Labs ceases operations.",
+      "citation": "Monthly, the Council wallet would transfer equivalent MNDE value back to the DAO treasury",
+      "severity": "medium"
+    }
+  ],
+  "questions_to_ask": [
+    "What on-chain enforcement mechanism guarantees monthly MNDE transfers from Council wallet to treasury? What recourse does the DAO have if transfers are missed?",
+    "What are the specific conditions, timeline, or governance trigger for redirecting fees back from Council wallet to DAO treasury?",
+    "Who are the signers of the Council wallet, and what governance controls does the DAO have over Council wallet operations?",
+    "How was the MNDE-to-mSOL exchange rate determined, and what protects the DAO if token prices diverge significantly after the swap?",
+    "Why is permanent fee redirection necessary instead of executing periodic mSOL-for-MNDE swaps as Marinade Labs needs liquidity?",
+    "What happens to accumulated fees in the Council wallet if Marinade Labs dissolves or the monthly transfer arrangement breaks down?"
+  ],
+  "confidence": {
+    "overall": "medium",
+    "unreadable_sections": [
+      "Council wallet multisig composition and key holders (not specified in proposal text)",
+      "On-chain implementation details for fee redirection mechanism",
+      "Prior governance precedent establishing Council wallet authority (MIP-15 mentioned but specifics not included)"
+    ]
+  }
+}

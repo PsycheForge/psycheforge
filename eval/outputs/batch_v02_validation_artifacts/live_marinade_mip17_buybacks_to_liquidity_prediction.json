@@ -1,0 +1,12 @@
+{
+  "predicted_outcome": 0,
+  "confidence_bps": 6800,
+  "reasoning_citation": "Treasury impact is internal_transfer with no direct outflow. No high-severity backdoor_permission flag is present. Three red flags include vague_kpi:medium, token_dilution:medium, and missing_milestone:low. Prior A calibration from N=7 live batch indicates Solana DAO communities approve proposals with internal treasury reallocation despite medium-severity flags when no direct drain exists. The token_dilution flag (pausing buybacks shifts supply trajectory) is substantive rather than procedural, tempering confidence below the 8000 bps cap permitted by triage confidence:medium.",
+  "key_triage_signals": [
+    "treasury_impact:internal_transfer",
+    "red_flag:vague_kpi:medium",
+    "red_flag:token_dilution:medium",
+    "red_flag:missing_milestone:low",
+    "confidence:medium"
+  ]
+}

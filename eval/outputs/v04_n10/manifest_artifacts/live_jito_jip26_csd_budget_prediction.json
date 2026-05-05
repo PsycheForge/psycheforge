@@ -1,0 +1,13 @@
+{
+  "predicted_outcome": 0,
+  "confidence_bps": 6800,
+  "reasoning_citation": "Per Prior A, treasury_impact.direction=outflow but flows to an existing internal subDAO multisig (JIP-17) with no backdoor_permission flag — all five red_flags are medium severity, none high. Process-only flags (vague_kpi, missing_milestone, centralization, token_dilution, technical_risk) at medium severity do not flip the prediction toward reject under the calibrated base rate. The proposal extends an already-ratified mechanism (JIP-17 multisig, ongoing TWAP buybacks with $3.2M precedent) rather than establishing new authority, which favors approval. Confidence capped at triage.confidence.overall=medium (8000 ceiling) and further reduced to 6800 because unreadable_sections include signer identities and audit posture — material blind spots inherited from triage.",
+  "key_triage_signals": [
+    "treasury_impact.direction:outflow",
+    "red_flags[*].severity:all_medium_no_high",
+    "red_flag:centralization:medium (existing JIP-17 multisig, not new authority)",
+    "red_flag:token_dilution:medium (buybacks reduce supply, holder-aligned)",
+    "triage.confidence.overall:medium",
+    "stakeholders[1].role:beneficiary (internal subDAO, not external counterparty)"
+  ]
+}

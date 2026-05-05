@@ -1,0 +1,95 @@
+{
+  "reasoning_trace": [
+    {
+      "step": "Read end-to-end",
+      "observation": "Two-stage proposal: (1) opinion vote on burn percentage (5-50% of total MNDE supply), (2) execution proposal for winning option. Target is 50M-500M MNDE from treasury holdings of 564M.",
+      "inference": "Treasury outflow via token burn. Outcome section notes 30% was ultimately selected. Need to evaluate token supply impact and execution authority."
+    },
+    {
+      "step": "Identify stakeholders",
+      "observation": "Author is fisiroky. Marinade Foundation Council multisig is designated to execute the burn. MNDE token holders are affected by supply reduction.",
+      "inference": "Three stakeholder groups identified. Council multisig composition not specified in proposal text."
+    },
+    {
+      "step": "Locate monetary amounts",
+      "observation": "Burn range: 50 million to 500 million MNDE (5-50% of 1B total supply). Treasury holds 564M MNDE. No USD values provided.",
+      "inference": "Token outflow measurable in MNDE but not USD. Treasury impact is significant (up to 50% of holdings) but USD valuation absent."
+    },
+    {
+      "step": "Scan for KPIs and milestones",
+      "observation": "No performance KPIs defined. This is a one-time burn action, not a grant with deliverables. Two-stage process outlined but no timeline between votes.",
+      "inference": "KPI measurability not applicable to burn proposals. Process structure adequate despite missing timeline specifics."
+    },
+    {
+      "step": "Scan for permission changes",
+      "observation": "Execution delegated to 'the Marinade Foundation Council multisig follows the vote and executes the transaction.' Proposal does not grant new authority or change multisig composition.",
+      "inference": "Council appears to be existing executor following DAO vote outcomes. No backdoor permission grant detected."
+    },
+    {
+      "step": "Scan for token supply effects",
+      "observation": "Proposal burns 5-50% of total MNDE supply, with 30% ultimately selected per Outcome section. Skill v0.3 mandates token_dilution flag for any supply trajectory modification.",
+      "inference": "High-severity token_dilution flag required. Burn range exceeds 5% threshold (30% outcome far exceeds). Deflationary impact significant."
+    },
+    {
+      "step": "Identify off-chain dependencies",
+      "observation": "'Thorough discourse and educational materials' required before opinion vote. Multisig must execute after proposals pass. No specific criteria for 'thorough' defined.",
+      "inference": "Standard governance dependencies. Educational materials requirement is vague but not a measurability risk for deliverables."
+    },
+    {
+      "step": "Compose delegate questions",
+      "observation": "Key gaps: Council multisig details, definition of 'thorough' materials, timeline between votes, fallback if execution proposal fails after opinion vote passes, treasury roadmap needs for next 12-24 months.",
+      "inference": "Five proposal-specific questions identified covering governance, process, and strategic planning concerns."
+    },
+    {
+      "step": "Assess confidence",
+      "observation": "Proposal text is complete and readable. Council multisig composition not described. Outcome section references 'subsequent proposal' not included in text.",
+      "inference": "High confidence for provided content. Unreadable sections: Council multisig details, subsequent execution proposal referenced in Outcome."
+    }
+  ],
+  "summary": "Two-stage opinion + execution vote to burn 5-50% of MNDE total supply (50M-500M tokens) from DAO treasury. Marinade Foundation Council multisig executes burn after DAO approval. Outcome: 30% burn selected by community vote.",
+  "stakeholders": [
+    {
+      "name": "fisiroky",
+      "role": "proposer",
+      "citation": "**Author:** fisiroky"
+    },
+    {
+      "name": "Marinade Foundation Council multisig",
+      "role": "counterparty",
+      "citation": "the Marinade Foundation Council multisig follows the vote and executes the transaction"
+    },
+    {
+      "name": "MNDE token holders",
+      "role": "affected_group",
+      "citation": "The DAO treasury holds approximately **564 million MNDE** (≈56.4% of supply), while circulating supply stands at roughly **430 million**"
+    }
+  ],
+  "treasury_impact": {
+    "direction": "outflow",
+    "amount_usd": null,
+    "confidence": "medium",
+    "citation": "burning **5–50% of the total MNDE supply** held in the DAO treasury. The DAO treasury holds approximately **564 million MNDE**"
+  },
+  "red_flags": [
+    {
+      "category": "token_dilution",
+      "detail": "Burn of 5-50% of total MNDE supply (50M-500M tokens), with 30% ultimately selected. Reduces total supply from 1B to 700M and treasury holdings from 564M to approximately 264M. Deflationary impact >5% threshold.",
+      "citation": "conducting an opinion vote on burning **5–50% of the total MNDE supply** held in the DAO treasury ... The community voted, and **30% of total MNDE supply** was selected for burning",
+      "severity": "high"
+    }
+  ],
+  "questions_to_ask": [
+    "What is the composition, signer identities, and signature threshold of the Marinade Foundation Council multisig that will execute the burn?",
+    "How will 'thorough discourse and educational materials' be defined, who produces them, and what is the review process before the opinion vote?",
+    "What is the timeline between the opinion vote conclusion and the submission of the execution proposal?",
+    "If the execution proposal fails to pass after the opinion vote succeeds, is the DAO bound by the opinion vote result or can it reconsider the burn amount?",
+    "What treasury activities (grants, liquidity programs, partnerships) does the DAO's 12-24 month roadmap require, and how would burning 50% vs 30% vs 10% constrain those plans?"
+  ],
+  "confidence": {
+    "overall": "high",
+    "unreadable_sections": [
+      "Marinade Foundation Council multisig composition, signer identities, and threshold",
+      "Subsequent execution proposal referenced in Outcome section (not included in proposal text)"
+    ]
+  }
+}

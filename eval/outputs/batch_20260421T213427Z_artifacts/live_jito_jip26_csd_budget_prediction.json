@@ -1,0 +1,13 @@
+{
+  "predicted_outcome": 0,
+  "confidence_bps": 6000,
+  "reasoning_citation": "Triage surfaces five medium-severity red flags (missing_milestone, centralization, technical_risk, unbounded_spend, vague_kpi) against a $12.5m upfront treasury transfer with no disbursement gates. However, the beneficiary is an established subDAO with prior execution track record ($3.2m mentioned). Medium-severity flag profile falls below the high-severity threshold that typically correlates with rejection when delegates scrutinize governance appendices. Quarterly reporting provides minimal accountability. Contested call with modest confidence, capped at triage.confidence.overall=medium.",
+  "key_triage_signals": [
+    "red_flag:missing_milestone:medium",
+    "red_flag:centralization:medium",
+    "red_flag:technical_risk:medium",
+    "red_flag:unbounded_spend:medium",
+    "treasury_impact:outflow:12500000",
+    "triage.confidence.overall:medium"
+  ]
+}

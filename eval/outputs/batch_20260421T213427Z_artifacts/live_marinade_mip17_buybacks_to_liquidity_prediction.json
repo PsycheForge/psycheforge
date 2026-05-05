@@ -1,0 +1,13 @@
+{
+  "predicted_outcome": 0,
+  "confidence_bps": 6800,
+  "reasoning_citation": "Triage surfaces two medium-severity red flags (vague_kpi, missing_milestone) for an internal treasury reallocation that shifts MNDE buyback funds to mSOL liquidity provisioning. Critically, zero high-severity flags appear—no backdoor_permission, centralization, or upgrade authority changes. Internal reallocations with process gaps but clean security posture typically pass in established DAOs when strategic intent is coherent. The missing MIP-16 reference (unreadable_sections) prevents full deployment plan verification, capping confidence at triage.confidence.overall=medium.",
+  "key_triage_signals": [
+    "treasury_impact.direction:internal_transfer",
+    "red_flag:vague_kpi:medium",
+    "red_flag:missing_milestone:medium",
+    "no_high_severity_red_flags",
+    "confidence.overall:medium",
+    "unreadable_sections:MIP-16"
+  ]
+}

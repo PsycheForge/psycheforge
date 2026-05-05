@@ -1,0 +1,108 @@
+{
+  "reasoning_trace": [
+    {
+      "step": "Read end-to-end",
+      "observation": "MIP15 requests 100M MNDE from DAO treasury to Marinade Labs for 12-18 months operations. Context: protocol fees now flow to DAO treasury instead of team wallet (per MIP-11, MIP-13). Includes 1-year cliff based on community feedback.",
+      "inference": "Treasury outflow. Need to verify KPI specificity, milestone controls, and vesting schedule post-cliff."
+    },
+    {
+      "step": "Identify stakeholders",
+      "observation": "Author helloiamvu; beneficiary Marinade Labs; affected groups include Marinade Foundation (fee recipient), MNDE holders (dilution), core contributors (funded).",
+      "inference": "Multiple stakeholder alignment needed. Labs is direct beneficiary of 100M MNDE grant."
+    },
+    {
+      "step": "Locate monetary amounts",
+      "observation": "100M MNDE requested. No USD valuation provided in proposal text.",
+      "inference": "Cannot convert to USD without external price data - mark amount_usd as null per grounding rule."
+    },
+    {
+      "step": "Scan KPIs",
+      "observation": "Use of funds lists categories (compensation, development, audits, marketing, partnerships, community programs, governance). Success criteria: 'measurable TVL and ecosystem growth' mentioned in rationale but no numeric targets, baselines, or thresholds defined.",
+      "inference": "Non-measurable success criteria. Quarterly reporting mentioned but no KPI framework. Emit vague_kpi red flag."
+    },
+    {
+      "step": "Scan milestone bounding",
+      "observation": "Grant is 100M MNDE for '12 to 18 months of operational runway' with quarterly reporting requirement. No intermediate milestone gates for disbursement. 'Unused MNDE at period conclusion returns to the DAO treasury' but no definition of 'unused'.",
+      "inference": "Lump grant with reporting but no milestone-gated release schedule. Emit missing_milestone red flag."
+    },
+    {
+      "step": "Scan token supply effects",
+      "observation": "1-year cliff added to prevent 'sudden circulating supply increase' and 'immediate sell pressure'. No detail on vesting schedule after cliff - full unlock or linear vesting unclear.",
+      "inference": "Post-cliff vesting ambiguity creates dilution risk. Emit token_dilution red flag."
+    },
+    {
+      "step": "Assess confidence",
+      "observation": "Proposal references MIP-11 and MIP-13 but does not include their text. No MNDE/USD price provided. Vesting schedule post-cliff unstated.",
+      "inference": "Multiple unreadable dependencies. Overall confidence: medium."
+    }
+  ],
+  "summary": "MIP15 grants 100M MNDE to Marinade Labs for 12-18 months operations after protocol fees shift from team wallet to DAO treasury. Includes 1-year cliff and quarterly reporting with unused funds returning to treasury.",
+  "stakeholders": [
+    {
+      "name": "helloiamvu",
+      "role": "proposer",
+      "citation": "Author: helloiamvu"
+    },
+    {
+      "name": "Marinade Labs",
+      "role": "beneficiary",
+      "citation": "allocate 100M MNDE from the DAO treasury to Marinade Labs for operational expenses"
+    },
+    {
+      "name": "Marinade Foundation",
+      "role": "affected_group",
+      "citation": "activate protocol fee flows into the Marinade Foundation"
+    },
+    {
+      "name": "MNDE token holders",
+      "role": "affected_group",
+      "citation": "This ensures: No sudden circulating supply increase; No immediate sell pressure"
+    },
+    {
+      "name": "Core contributors",
+      "role": "affected_group",
+      "citation": "Core contributor compensation"
+    }
+  ],
+  "treasury_impact": {
+    "direction": "outflow",
+    "amount_usd": null,
+    "confidence": "medium",
+    "citation": "Amount: 100M MNDE from the DAO treasury"
+  },
+  "red_flags": [
+    {
+      "category": "vague_kpi",
+      "detail": "Success metrics are non-measurable. 'Measurable TVL and ecosystem growth' mentioned but no numeric targets, baselines, or thresholds defined. Use of funds categories listed without deliverable specifications.",
+      "citation": "Past MNDE allocations demonstrated measurable TVL and ecosystem growth",
+      "severity": "medium"
+    },
+    {
+      "category": "missing_milestone",
+      "detail": "100M MNDE grant has no intermediate milestone gates. Quarterly reporting required but disbursement is not tied to deliverables or performance checkpoints.",
+      "citation": "Quarterly reporting to the DAO on spending, milestones, and treasury inflows",
+      "severity": "medium"
+    },
+    {
+      "category": "token_dilution",
+      "detail": "Vesting schedule after 1-year cliff is unspecified - unclear whether 100M MNDE unlocks all at once or via linear vesting, creating circulating supply uncertainty.",
+      "citation": "Based on community feedback, this proposal includes a 1-year cliff on the 100M MNDE allocation.",
+      "severity": "medium"
+    }
+  ],
+  "questions_to_ask": [
+    "What specific deliverables or KPIs must be achieved at the 3, 6, 9, and 12-month quarterly checkpoints?",
+    "After the 1-year cliff, does the 100M MNDE unlock all at once, or is there a linear vesting schedule over the remaining 6-18 months?",
+    "How is 'unused MNDE' measured at period conclusion - does it only count unspent tokens, or do liquidated/spent funds factor in?",
+    "What enforcement mechanism exists if quarterly reports are not delivered or fail to demonstrate adequate progress?",
+    "What are the numeric targets for 'measurable TVL and ecosystem growth' that would constitute successful use of this 100M MNDE allocation?"
+  ],
+  "confidence": {
+    "overall": "medium",
+    "unreadable_sections": [
+      "MIP-11 and MIP-13 details (referenced as prior governance context but not included in proposal text)",
+      "MNDE/USD valuation (no price data provided to convert 100M MNDE to dollar amount)",
+      "Post-cliff vesting schedule (1-year cliff mentioned but subsequent unlock schedule unspecified)"
+    ]
+  }
+}

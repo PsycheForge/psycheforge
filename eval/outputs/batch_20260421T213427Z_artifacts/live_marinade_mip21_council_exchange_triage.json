@@ -1,0 +1,117 @@
+{
+  "reasoning_trace": [
+    {
+      "step": "Read end-to-end",
+      "observation": "Proposal requests swapping 3,350 mSOL (2,279 initial + 1,071 follow-up) from DAO treasury for 15,346,639 MNDE from Council wallet, with ongoing fee redirection to Council wallet and monthly MNDE compensation transfers back to DAO.",
+      "inference": "Primary mechanism is asset swap (internal transfer between DAO entities). Secondary mechanism (fee redirection) represents major governance change with manual execution dependency."
+    },
+    {
+      "step": "Identify stakeholders",
+      "observation": "Cerba is author affiliated with Marinade Labs. Council wallet is counterparty. DAO Treasury is directly affected. MNDE holders indirectly affected by Labs avoiding MNDE sales.",
+      "inference": "Marinade Labs is the direct beneficiary receiving more-liquid mSOL instead of selling MNDE. Council wallet must execute ongoing monthly transfers."
+    },
+    {
+      "step": "Locate monetary amounts",
+      "observation": "Initial: 2,279 mSOL and 9,741,000 MNDE both valued at $437,000. Follow-up: 1,071 mSOL and 5,605,639 MNDE both valued at $149,932. Implied MNDE/mSOL ratio changed from 4,274 to 5,234 (22.5% shift) between January 14 and February 3.",
+      "inference": "Token valuations are volatile. No oracle or pricing mechanism specified. Exchange rate risk exists if execution timing creates divergence from stated valuations."
+    },
+    {
+      "step": "Scan permission changes",
+      "observation": "Proposal states 'redirecting protocol fees to the Council Wallet' with monthly MNDE transfers back. Reversion condition stated as 'This monthly transfer would cease once fees redirect back to the DAO treasury' with no timeline, trigger, or process defined.",
+      "inference": "Major protocol revenue flow change with indefinite duration. No smart contract enforcement of monthly transfers mentioned. Reversibility mechanism absent."
+    },
+    {
+      "step": "Scan off-chain dependencies",
+      "observation": "'Monthly, the Council wallet would transfer equivalent MNDE value back to the DAO treasury' requires manual action. 'implementation following shortly' on fee redirection is vague.",
+      "inference": "Ongoing manual transfer dependency creates counterparty risk. No enforcement if Council wallet fails to transfer. Technical implementation unspecified."
+    },
+    {
+      "step": "Assess measurability",
+      "observation": "No success metrics, milestones, or performance criteria defined. Proposal is operational swap + governance change, not a funded initiative.",
+      "inference": "Lack of milestones appropriate for swap but problematic for indefinite fee redirection. Monthly transfer 'equivalent MNDE value' calculation method unspecified."
+    }
+  ],
+  "summary": "Marinade Labs proposes swapping 3,350 mSOL ($587k) from DAO treasury for 15.3M MNDE from Council wallet, plus redirecting protocol fees to Council wallet with monthly MNDE compensation transfers back to DAO. No reversion timeline or enforcement mechanism specified for ongoing fee redirection.",
+  "stakeholders": [
+    {
+      "name": "Cerba",
+      "role": "proposer",
+      "citation": "**Author:** Cerba"
+    },
+    {
+      "name": "Marinade Labs",
+      "role": "beneficiary",
+      "citation": "Marinade Labs proposes transferring accumulated mSOL from the DAO treasury (2,279 mSOL, valued at $437,000) to the Council wallet"
+    },
+    {
+      "name": "Council wallet",
+      "role": "counterparty",
+      "citation": "In exchange, the Council wallet would transfer 9,741,000 MNDE tokens ($437,000 value) back to the DAO Treasury"
+    },
+    {
+      "name": "DAO Treasury",
+      "role": "affected_group",
+      "citation": "Marinade Labs proposes transferring accumulated mSOL from the DAO treasury"
+    },
+    {
+      "name": "MNDE token holders",
+      "role": "affected_group",
+      "citation": "Selling MNDE to fund operations would create significant selling pressure on the token"
+    }
+  ],
+  "treasury_impact": {
+    "direction": "internal_transfer",
+    "amount_usd": 586932,
+    "confidence": "medium",
+    "citation": "2,279 mSOL, valued at $437,000 [...] Additional mSOL accumulated over 12 days (1,071 mSOL, $149,932)"
+  },
+  "red_flags": [
+    {
+      "category": "backdoor_permission",
+      "detail": "Protocol fee flow permanently redirected from DAO treasury to Council wallet with no defined reversion timeline, conditions, or trigger mechanism. Changes fundamental revenue accumulation.",
+      "citation": "redirecting protocol fees to the Council Wallet. Monthly, the Council wallet would transfer equivalent MNDE value back to the DAO treasury [...] This monthly transfer would cease once fees redirect back to the DAO treasury",
+      "severity": "high"
+    },
+    {
+      "category": "centralization",
+      "detail": "Ongoing monthly transfers from Council wallet to DAO treasury rely on manual execution with no on-chain enforcement mechanism or penalty for non-compliance.",
+      "citation": "Monthly, the Council wallet would transfer equivalent MNDE value back to the DAO treasury, maintaining notional treasury value",
+      "severity": "high"
+    },
+    {
+      "category": "vague_kpi",
+      "detail": "Monthly transfer calculation method unspecified - no oracle, pricing mechanism, or formula provided for determining 'equivalent MNDE value' of accumulated fees.",
+      "citation": "Monthly, the Council wallet would transfer equivalent MNDE value back to the DAO treasury",
+      "severity": "medium"
+    },
+    {
+      "category": "technical_risk",
+      "detail": "Fee redirection implementation mechanism unspecified - no smart contract addresses, governance parameters, or technical specification provided. Timeline stated as vague 'following shortly'.",
+      "citation": "with fee redirection implementation following shortly",
+      "severity": "medium"
+    },
+    {
+      "category": "other",
+      "detail": "Token valuation risk: MNDE/mSOL exchange rate shifted 22.5% between initial proposal (4,274 MNDE/mSOL) and follow-up (5,234 MNDE/mSOL) within 12 days. No oracle or execution timing protection specified.",
+      "citation": "9,741,000 MNDE tokens ($437,000 value) [...] 5,605,639 MNDE, ($149,932)",
+      "severity": "medium"
+    }
+  ],
+  "questions_to_ask": [
+    "What specific on-chain mechanism implements the fee redirection - multisig parameter change, program upgrade, or governance action - and what are the reversion conditions?",
+    "Which price oracle or calculation method determines the 'equivalent MNDE value' for monthly Council-to-DAO transfers, and how is this verified?",
+    "What enforcement mechanism exists if the Council wallet fails to make a monthly transfer - penalty, reversion trigger, or legal commitment?",
+    "What dated exchange rates or DEX snapshots determined the $437k and $149,932 valuations, and why did the MNDE/mSOL ratio change 22.5% between January 14 and February 3?",
+    "Has the Council wallet entity formally agreed to this arrangement, and what are its composition, governance process, and accountability structure?",
+    "What is the estimated monthly protocol fee volume being redirected, and what is the projected duration before fees revert to the DAO treasury?"
+  ],
+  "confidence": {
+    "overall": "medium",
+    "unreadable_sections": [
+      "Technical implementation details for fee redirection mechanism",
+      "Council wallet governance structure and authorization process",
+      "Smart contract changes or program upgrades required",
+      "Historical protocol fee volumes for impact modeling"
+    ]
+  }
+}
