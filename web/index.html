@@ -963,6 +963,10 @@
       grid-template-columns: 1fr 1fr;
       gap: 32px;
     }
+    .contracts-grid.single {
+      grid-template-columns: 1fr;
+      max-width: 640px;
+    }
     .contract-row .contract-name {
       font-family: var(--font-mono);
       font-size: 11px;
@@ -1716,18 +1720,11 @@
         <div class="contracts-label">
           <span class="glyph">§</span>Contracts
         </div>
-        <div class="contracts-grid">
+        <div class="contracts-grid single">
           <div class="contract-row unlaunched">
             <div class="contract-name">Token mint <span class="contract-network">/ mainnet</span></div>
             <div class="contract-addr">TBA at launch</div>
             <div class="contract-note">Mint address will appear here when live. No presale and no airdrop have been announced. Treat any address claiming to be PsycheForge before this slot is populated as a fake.</div>
-          </div>
-          <div class="contract-row">
-            <div class="contract-name">Reputation program <span class="contract-network">/ devnet</span></div>
-            <div class="contract-addr">
-              <a href="https://explorer.solana.com/address/85huMKVbSddkbZiSk4XUBUSxsZS39tbd3sLp17viJJqH?cluster=devnet" target="_blank" rel="noopener">85huMKVbSddkbZiSk4XUBUSxsZS39tbd3sLp17viJJqH ↗</a>
-            </div>
-            <div class="contract-note">Anchor program for difficulty-weighted prediction scoring. Internal research artifact, paused as a public-facing claim until N≥50 calibration is demonstrable. Audit the on-chain account layout in the open repo.</div>
           </div>
         </div>
       </div>
